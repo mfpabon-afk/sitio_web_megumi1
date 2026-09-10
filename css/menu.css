@@ -1,0 +1,591 @@
+:root {
+
+  /* --- PANTALLA DE CARGA --------------------------------------------- */
+  --loading-bg-color: #0b0b0d;           /* Fondo de la pantalla de carga */
+  --loading-bar-color: #20188f;          /* Color de la barra de progreso */
+  --loading-text-color: #f1f1f1;         /* Color del texto "Cargando..." */
+  
+
+  /* Duración que la pantalla de carga permanece visible antes de
+     empezar a desvanecerse, y duración del propio desvanecido.
+     >>> AJUSTE AQUÍ LA VELOCIDAD DE LA PANTALLA DE CARGA <<< */
+  --loading-hold-time: 2.6s;
+  --loading-fade-time: 0.9s;
+
+ /* --- GIF de Megumi --- */
+.progress-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.loading-gif {
+  bottom: 100%;
+  left: 0;
+  width: 100px;
+  height: auto;
+  margin-bottom: 6px;
+  pointer-events: none;
+}
+
+/* --- Barra de progreso --- */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background-color: var(--loading-bar-color);
+  animation-name: loading-progress;
+  animation-duration: var(--loading-hold-time);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+
+  /* --- IMÁGENES DEL PERSONAJE / LOGO -----------------------------------
+     >>> CAMBIA ESTAS RUTAS POR TUS PROPIAS IMÁGENES <<< */
+  --logo-image: url('images/logo.png');
+  --character-image: url('images/character.png');
+
+  /* --- PALETA DE COLORES GENERAL --------------------------------------- */
+  --color-bg: #121214;                 /* Fondo general del main */
+  --color-bg-alt: #19191c;             /* Fondo alterno para secciones */
+  --color-sidebar-bg: #000000;         /* Fondo del menú lateral */
+  --color-text: #f5f5f5;
+  --color-text-muted: #b5b5ba;
+  --color-accent: #e63946;             /* Color de acento (links, bordes) */
+  --color-accent-soft: rgba(230, 57, 70, 0.18);
+  --color-border: rgba(255, 255, 255, 0.08);
+
+  /* --- DIMENSIONES ------------------------------------------------------ */
+  --sidebar-width: 200px;
+
+  /* --- VELOCIDADES / TIEMPOS DE ANIMACIÓN --------------------------------
+     >>> AJUSTA AQUÍ LA VELOCIDAD DE LOS EFECTOS DE SCROLL Y HOVER <<< */
+  --hover-transition: 0.25s ease;
+  --curtain-scroll-distance: 220vh;   /* "Recorrido" del efecto cortina */
+
+  /* --- CAPAS (z-index) ---------------------------------------------------
+     El personaje empieza por debajo del sidebar/h1 y termina por encima,
+     tal como pide el requisito de "cubrir" el menú al final del scroll. */
+  --z-sidebar: 10;
+  --z-hero-text: 5;
+  --z-character-start: 2;
+  --z-character-end: 20;
+}
+
+
+/* ============================= 2. RESET BASE ============================= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, p, ul {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* ============================= 3. PANTALLA DE CARGA =======================
+   Capa fija a pantalla completa. 
+   ========================================================================= */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--loading-bg-color);
+  background-image: var(--loading-bg-image);
+  background-size: cover;
+  background-position: center;
+
+  /* Desvanecido automático:
+     - permanece visible durante --loading-hold-time
+     - luego se desvanece durante --loading-fade-time
+     - "forwards" mantiene el estado final (oculta e inerte) */
+  animation-name: loading-fade-out;
+  animation-duration: var(--loading-fade-time);
+  animation-delay: var(--loading-hold-time);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes loading-fade-out {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.loading-content {
+  text-align: center;
+  width: min(320px, 80vw);
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.loading-brand {
+  color: var(--loading-text-color);
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  opacity: 0.8;
+}
+@font-face {
+  font-family: 'Jujutsu';
+  src: url('../resourse/jujutsu-kaisen/Jujutsu\ Kaisen.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+
+  
+
+.loading-text {
+  font-family:'Jujutsu';
+  color: var(--loading-text-color);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+  /* parpadeo mientras carga */
+  animation: loading-pulse 1.1s ease-in-out infinite;
+
+
+}
+
+@keyframes loading-pulse {
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 1; }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background-color: var(--loading-bar-color);
+
+  /* La barra se llena en el mismo tiempo que dura --loading-hold-time */
+  animation-name: loading-progress;
+  animation-duration: var(--loading-hold-time);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes loading-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+
+/* ============================= 4. MENÚ LATERAL (aside) ====================
+   Barra lateral fija de 200px a la izquierda.
+   ========================================================================= */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  z-index: var(--z-sidebar);
+
+  background-color: var(--color-sidebar-bg);
+  border-right: 1px solid var(--color-border);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 20px;
+}
+
+.sidebar__logo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 156px;
+  height: 56px;
+  
+}
+
+.sidebar__nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.sidebar__nav a {
+  position: relative;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  transition: color var(--hover-transition);
+}
+
+/* Efecto hover sutil: subrayado que crece + cambio de color */
+.sidebar__nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width var(--hover-transition);
+}
+
+.sidebar__nav a:hover,
+.sidebar__nav a:focus-visible {
+  color: var(--color-text);
+}
+
+.sidebar__nav a:hover::after,
+.sidebar__nav a:focus-visible::after {
+  width: 100%;
+}
+
+.sidebar__footer {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  opacity: 0.6;
+}
+
+
+/* ============================= 5. CONTENIDO PRINCIPAL (main) ============== */
+.main-content {
+  margin-left: var(--sidebar-width);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+}
+
+
+/* ============================= 6. HERO + EFECTO CORTINA ===================
+   Estado inicial: nombre del personaje visible + imagen a la derecha.
+   Al hacer scroll: el personaje se desliza de derecha a izquierda,
+   tapando primero el <h1> y terminando por cubrir parte del sidebar.
+
+   Técnica: la sección .hero es más alta que la pantalla
+   (--curtain-scroll-distance). Dentro, .character-wrap usa
+   position: sticky para quedar "clavado" en el viewport mientras
+   se recorre esa altura extra, y la imagen anima su transform
+   usando un scroll-timeline nativo de CSS (sin JavaScript).
+   ========================================================================= */
+.hero {
+  position: relative;
+  height: var(--curtain-scroll-distance);
+
+  /* Vincula esta sección como línea de tiempo de scroll para la
+     animación del personaje (ver .character-img más abajo). */
+  scroll-timeline-name: --hero-scroll;
+  scroll-timeline-axis: block;
+}
+
+.hero__intro {
+  position: sticky;
+  top: 22vh;
+  z-index: var(--z-hero-text);
+  padding: 0 60px;
+  max-width: 640px;
+}
+
+.hero__eyebrow {
+  color: var(--color-accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.hero__name {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.hero__subtitle {
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+}
+
+/* Contenedor que se mantiene fijo en pantalla mientras se hace scroll
+   a través de toda la altura de .hero */
+.character-wrap {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: var(--z-character-start);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.character-img {
+  width: min(520px, 60vw);
+  height: auto;
+  margin-right: 40px;
+
+  /* Estado base (sin soporte de scroll-timeline): el personaje se ve
+     estático a la derecha, la página sigue siendo 100% usable. */
+  transform: translateX(0);
+}
+
+/* ---- Animación de scroll nativa (progressive enhancement) --------------
+   Los navegadores compatibles (Chrome/Edge recientes) animan el
+   personaje en función del progreso real del scroll dentro de .hero.
+   Si el navegador no es compatible, se ignora este bloque y el
+   personaje se mantiene en su posición estática de arriba. */
+@supports (animation-timeline: scroll()) or (animation-timeline: works) {
+  .character-img {
+    animation-name: curtain-slide;
+    animation-duration: 1ms; /* la duración real la marca el scroll-timeline */
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --hero-scroll;
+  }
+}
+
+@keyframes curtain-slide {
+  /* 0% - inicio del scroll: personaje a la derecha, detrás del texto */
+  0% {
+    transform: translateX(0);
+    z-index: var(--z-character-start);
+  }
+  /* 45% - el personaje empieza a taparle el paso al <h1> */
+  45% {
+    transform: translateX(-48vw);
+    z-index: var(--z-character-start);
+  }
+  55% {
+    /* justo aquí el personaje pasa a estar POR ENCIMA del texto */
+    z-index: var(--z-character-end);
+  }
+  /* 100% - fin del recorrido: el personaje cubre parcialmente el sidebar */
+  100% {
+    transform: translateX(calc(-1 * (var(--sidebar-width) + 60vw)));
+    z-index: var(--z-character-end);
+  }
+}
+
+
+/* ============================= 7. CARACTERÍSTICAS (revelado) ==============
+   Esta sección vive "detrás" del personaje y se revela suavemente
+   a medida que el usuario sigue bajando.
+   ========================================================================= */
+.characteristics {
+  position: relative;
+  z-index: 1; /* por debajo del personaje mientras este aún la cubre */
+  padding: 100px 60px 120px;
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--color-text);
+}
+
+.characteristics__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 28px;
+}
+
+.stat-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 24px;
+
+  /* Estado base: totalmente visible (fallback sin animación) */
+  opacity: 1;
+  transform: none;
+}
+
+.stat-card__icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 14px;
+  opacity: 0.9;
+}
+
+.stat-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  color: var(--color-accent);
+}
+
+.stat-card p {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+/* ---- Revelado suave basado en scroll (progressive enhancement) ---------
+   Cada tarjeta aparece con un ligero desplazamiento + fade cuando
+   entra en el viewport, usando una view-timeline nativa de CSS.
+   >>> Ajusta --reveal-distance para controlar cuánto se desplazan <<< */
+@supports (animation-timeline: view()) {
+  :root {
+    --reveal-distance: 40px;
+  }
+
+  .stat-card {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+
+    animation-name: reveal-card;
+    animation-duration: 1ms;
+    animation-fill-mode: both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 35%;
+  }
+
+  @keyframes reveal-card {
+    from {
+      opacity: 0;
+      transform: translateY(var(--reveal-distance));
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
+/* ============================= 8. SECCIONES DE CONTENIDO GENERAL ========== */
+.content-section {
+  padding: 90px 60px;
+  background-color: var(--color-bg);
+}
+
+.content-section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+.content-section__text {
+  max-width: 700px;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  font-size: 1.02rem;
+}
+
+.list-block {
+  list-style: none;
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.list-block li {
+  padding: 16px 20px;
+  background-color: var(--color-bg-alt);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.list-block strong {
+  color: var(--color-text);
+}
+
+.site-footer {
+  padding: 40px 60px;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--color-border);
+}
+
+
+/* ============================= RESPONSIVE BÁSICO =========================
+   El menú fijo de 200px no funciona bien en pantallas muy pequeñas;
+   lo replegamos a una barra superior compacta. */
+@media (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: 64px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .sidebar__nav ul {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .sidebar__footer {
+    display: none;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-top: 64px;
+  }
+
+  .hero__intro {
+    padding: 0 24px;
+  }
+
+  .characteristics,
+  .content-section {
+    padding: 60px 24px;
+  }
+}
