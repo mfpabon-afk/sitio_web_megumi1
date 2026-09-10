@@ -4,10 +4,233 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Megumi Fushiguro</title>
-    <link rel="icon" type="image/punto" href="/resourse/f8523cdd443f646981f55fdd8bcd7173.jpg" />
+    <link rel="icon" type="image/x-icon" href="resourse/2bff325c670c3f907e20b7db51137674.png" />
     <link rel="stylesheet" href="css/menu.css" />
 </head>
 <body>
     
+<body>
+  <div class="loading-screen">
+
+    <div class="loading-content">
+      <!-- .loading-content centra y limita el ancho de todo
+           el contenido de la carga. -->
+
+      <p class="loading-brand">Jujutsu Kaisen</p>
+      <!-- Pequeño texto superior, funciona como "marca". -->
+
+      <p class="loading-text">Cargando...</p>
+      <!-- Texto principal con animación de parpadeo. -->
+
+      <div class="progress-bar">
+        <div class="progress-bar__fill"></div>
+      </div>
+      <!-- Barra de progreso:
+           - .progress-bar es el riel gris (fondo)
+           - .progress-bar__fill es la barra roja que crece
+           La nomenclatura "bloque__elemento" es BEM: ayuda a
+           saber que __fill pertenece a progress-bar. -->
+    </div>
+
+  </div>
+
+
+  <!-- ============================================================
+       2. MENÚ LATERAL
+       Uso <aside> porque es contenido complementario a la
+       página (navegación persistente). El CSS lo fija a la
+       izquierda con position: fixed.
+       ============================================================ -->
+  <aside class="sidebar">
+
+    <a href="index.html" class="sidebar__logo" aria-label="Inicio">
+      <!-- Es un <a> porque lleva a otra página.
+           aria-label describe el enlace a lectores de pantalla
+           (el símbolo 呪 no es descriptivo por sí solo). -->
+      <span class="sidebar__logo-text">呪</span>
+    </a>
+
+    <nav class="sidebar__nav" aria-label="Navegación principal">
+      <!-- <nav> es el elemento semántico para menús de navegación.
+           Ayuda a lectores de pantalla a saltar directo al menú. -->
+
+      <ul>
+        <!-- Una lista <ul> es lo correcto para un menú: son
+             elementos sin orden jerárquico, todos iguales. -->
+
+        <li><a href="index.html">Megumi</a></li>
+        <li><a href="tecnica.html">Técnica Maldita</a></li>
+        <li><a href="dominio.html">Dominio</a></li>
+        <li><a href="vinculos.html">Vínculos</a></li>
+        <!-- Cada <li> envuelve un <a>. Es más accesible y
+             semánticamente correcto que <a> sueltos. -->
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <!-- Pie del sidebar con info secundaria. Uso <div> y no
+           <footer> porque NO es el pie del documento, es solo
+           una zona del menú lateral. -->
+      <p>Fan page · 2026</p>
+    </div>
+
+  </aside>
+
+
+  <!-- ============================================================
+       3. CONTENIDO PRINCIPAL
+       <main> = el contenido único y central de ESTA página.
+       Debe haber solo UN <main> por página (regla HTML5).
+       ============================================================ -->
+  <main class="main-content">
+
+    <!-- ========== 3.1 HERO con efecto cortina ========== -->
+    <section class="hero">
+      <!-- <section> = agrupación temática de contenido.
+           El CSS le da altura extra (--curtain-scroll-distance)
+           para que el efecto de scroll tenga "recorrido". -->
+
+      <div class="hero__intro">
+        <!-- Bloque de texto que queda sticky arriba mientras
+             el personaje se desliza por encima. -->
+
+        <p class="hero__eyebrow">Hechicero de grado 2</p>
+        <!-- "eyebrow" = texto pequeño sobre el título principal.
+             Se usa para dar contexto antes del nombre. -->
+
+        <h1 class="hero__name">Megumi<br>Fushiguro</h1>
+        <!-- <h1> = título principal de la página. SOLO debe
+             haber un <h1> por documento (importante para SEO).
+             <br> fuerza salto de línea sin crear nuevo párrafo. -->
+
+        <p class="hero__subtitle">
+          El heredero de la Técnica de las Diez Sombras.
+        </p>
+      </div>
+
+      <div class="character-wrap">
+        <!-- Contenedor sticky donde vive la imagen.
+             El CSS lo mantiene fijo mientras se hace scroll. -->
+
+        <img
+          src="images/character.png"
+          alt="Megumi Fushiguro"
+          class="character-img">
+        <!-- alt describe la imagen para:
+             - Personas con lector de pantalla
+             - Cuando la imagen no carga
+             - Buscadores (SEO)
+             NUNCA dejes alt="" salvo en imágenes decorativas. -->
+      </div>
+
+    </section>
+
+
+    <!-- ========== 3.2 FICHA DEL PERSONAJE ========== -->
+    <section class="characteristics">
+
+      <h2 class="section-title">Ficha del personaje</h2>
+      <!-- <h2> = subtítulo. Respeta la jerarquía h1 → h2 → h3.
+           No uses h3 sin haber usado h2 antes. -->
+
+      <div class="characteristics__grid">
+        <!-- Grid contenedor. Los hijos se acomodan solos
+             gracias a grid-template-columns en el CSS. -->
+
+        <article class="stat-card">
+          <!-- <article> = contenido autocontenido que tiene
+               sentido por sí solo. Cada tarjeta es una "unidad". -->
+          <h3>Edad</h3>
+          <p>15 años</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Altura</h3>
+          <p>1,75 m</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Grado</h3>
+          <p>Hechicero de grado 2</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Afiliación</h3>
+          <p>Escuela Técnica de Magia de Tokio</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Clan</h3>
+          <p>Zen'in (heredero de las Diez Sombras)</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Padre</h3>
+          <p>Tōji Fushiguro</p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ========== 3.3 DESCRIPCIÓN ========== -->
+    <section class="content-section">
+      <h2 class="section-title">¿Quién es Megumi?</h2>
+      <p class="content-section__text">
+        Megumi Fushiguro (伏黒恵) es un estudiante de la Escuela
+        Técnica de Magia de Tokio y heredero de la Técnica de las
+        Diez Sombras, la técnica familiar del clan Zen'in.
+      </p>
+    </section>
+
+
+    <!-- ========== 3.4 PERSONALIDAD ========== -->
+    <section class="content-section content-section--alt">
+      <!-- content-section--alt es un MODIFICADOR BEM: misma base
+           pero con fondo alterno. Así alternas franjas visuales. -->
+
+      <h2 class="section-title">Personalidad</h2>
+
+      <ul class="list-block">
+        <!-- <ul> para lista de características (sin orden). -->
+
+        <li>
+          <strong>Tranquilo y reservado:</strong> rara vez habla
+          de sí mismo.
+        </li>
+        <li>
+          <strong>Protector silencioso:</strong> desea darles a
+          las personas buenas una mejor oportunidad de vivir.
+        </li>
+        <li>
+          <strong>No se considera un héroe:</strong> llama a ese
+          deseo «egoísta e irracional».
+        </li>
+        <li>
+          <strong>Marcado por Tsumiki:</strong> el coma de su
+          hermana suavizó su personalidad.
+        </li>
+      </ul>
+    </section>
+
+
+    <!-- ========== 3.5 FRASE ========== -->
+    <section class="content-section">
+      <h2 class="section-title">Frase representativa</h2>
+      <p class="content-section__text">
+        «Solo la realidad de la desigualdad existe por igual.»
+      </p>
+    </section>
+
+
+    <!-- ========== 3.6 PIE DE PÁGINA ========== -->
+    <footer class="site-footer">
+      <!-- <footer> = pie del documento. Aquí va info legal,
+           créditos, enlaces secundarios. -->
+      <p>Fan page no oficial · Jujutsu Kaisen © Gege Akutami</p>
+    </footer>
+
+  </main>
+
 </body>
 </html>
