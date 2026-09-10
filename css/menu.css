@@ -2,17 +2,51 @@
 
   /* --- PANTALLA DE CARGA --------------------------------------------- */
   --loading-bg-color: #0b0b0d;           /* Fondo de la pantalla de carga */
-  --loading-bar-color: #e63946;          /* Color de la barra de progreso */
+  --loading-bar-color: #20188f;          /* Color de la barra de progreso */
   --loading-text-color: #f1f1f1;         /* Color del texto "Cargando..." */
-  /* Imagen de fondo OPCIONAL para la carga. Deja "none" si no quieres una.
-     Ejemplo: url('images/loading-bg.jpg') */
-  --loading-bg-image: none;
+  
 
   /* Duración que la pantalla de carga permanece visible antes de
      empezar a desvanecerse, y duración del propio desvanecido.
-     >>> AJUSTA AQUÍ LA VELOCIDAD DE LA PANTALLA DE CARGA <<< */
+     >>> AJUSTE AQUÍ LA VELOCIDAD DE LA PANTALLA DE CARGA <<< */
   --loading-hold-time: 2.6s;
   --loading-fade-time: 0.9s;
+
+ /* --- GIF de Megumi --- */
+.progress-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.loading-gif {
+  bottom: 100%;
+  left: 0;
+  width: 100px;
+  height: auto;
+  margin-bottom: 6px;
+  pointer-events: none;
+}
+
+/* --- Barra de progreso --- */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background-color: var(--loading-bar-color);
+  animation-name: loading-progress;
+  animation-duration: var(--loading-hold-time);
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
 
   /* --- IMÁGENES DEL PERSONAJE / LOGO -----------------------------------
      >>> CAMBIA ESTAS RUTAS POR TUS PROPIAS IMÁGENES <<< */
@@ -122,6 +156,10 @@ a {
 .loading-content {
   text-align: center;
   width: min(320px, 80vw);
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 .loading-brand {
@@ -132,15 +170,27 @@ a {
   margin-bottom: 18px;
   opacity: 0.8;
 }
+@font-face {
+  font-family: 'Jujutsu';
+  src: url('../resourse/jujutsu-kaisen/Jujutsu\ Kaisen.ttf') format('truetype');
+  font-style: normal;
+  font-display: swap;
+}
+
+
+  
 
 .loading-text {
+  font-family:'Jujutsu';
   color: var(--loading-text-color);
-  font-size: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
   margin-bottom: 16px;
   letter-spacing: 2px;
-
-  /* Pequeño parpadeo mientras carga */
+  /* parpadeo mientras carga */
   animation: loading-pulse 1.1s ease-in-out infinite;
+
+
 }
 
 @keyframes loading-pulse {

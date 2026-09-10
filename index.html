@@ -11,28 +11,26 @@
     
 <body>
   <div class="loading-screen">
+<div class="loading-content">
+<!-- GIF de Megumi, va ENCIMA de la barra -->
+  <img
+      src="resourse/megumi-transparent-megumi.gif"
+      alt="Megumi corriendo"
+      class="loading-gif"
+    >
 
-    <div class="loading-content">
-      <!-- .loading-content centra y limita el ancho de todo
-           el contenido de la carga. -->
+  <p class="loading-text">Cargando...</p>
 
-      <p class="loading-brand">Jujutsu Kaisen</p>
-      <!-- Pequeño texto superior, funciona como "marca". -->
-
-      <p class="loading-text">Cargando...</p>
-      <!-- Texto principal con animación de parpadeo. -->
-
-      <div class="progress-bar">
-        <div class="progress-bar__fill"></div>
-      </div>
-      <!-- Barra de progreso:
-           - .progress-bar es el riel gris (fondo)
-           - .progress-bar__fill es la barra roja que crece
-           La nomenclatura "bloque__elemento" es BEM: ayuda a
-           saber que __fill pertenece a progress-bar. -->
+  <!-- CONTENEDOR DE LA BARRA-->
+  <div class="progress-wrap">
+    <!-- Barra de progreso -->
+    <div class="progress-bar">
+      <div class="progress-bar__fill"></div>
     </div>
 
+    </div>
   </div>
+</div>
 
 
   <!-- ============================================================
