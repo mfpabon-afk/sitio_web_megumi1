@@ -114,8 +114,7 @@ a {
 
 
 /* ============================= 3. PANTALLA DE CARGA =======================
-   Capa fija a pantalla completa. Se desvanece SOLA usando @keyframes +
-   animation-delay (sin necesidad de JavaScript).
+   Capa fija a pantalla completa. 
    ========================================================================= */
 .loading-screen {
   position: fixed;
@@ -248,22 +247,10 @@ a {
 .sidebar__logo {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 56px;
+  flex-direction: column;
+  width: 156px;
   height: 56px;
-  border-radius: 50%;
-  border: 2px solid var(--color-accent);
-
-  /* Si tienes un logo en imagen, descomenta estas dos líneas
-     y elimina el <span> de texto en el HTML si no lo necesitas:
-     background-image: var(--logo-image);
-     background-size: cover; */
-}
-
-.sidebar__logo-text {
-  font-weight: 700;
-  font-size: 1.4rem;
-  color: var(--color-accent);
+  
 }
 
 .sidebar__nav ul {
@@ -271,7 +258,7 @@ a {
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 25px;
 }
 
 .sidebar__nav a {
