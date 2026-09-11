@@ -6,7 +6,7 @@
     --color-tarjeta-sub: #16254a;
     --color-texto-titulo: #fccfff;
     --color-texto-cuerpo: #C0CEE0;
-    --color-rosa: #e1a8fa;
+    --color-rosa: #FDE2E4;
     --color-azul1: #a5dbe7;
     --color-azul2: #9cbae7;
     --borde-suave: #5261a5;
@@ -36,18 +36,55 @@ body {
     width: 1000px;
     max-width: 95%;
 }
+
 .contenendor_principal {
     width: 100%;
 }
+
 .encabezado_tecnica {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--color-tarjeta) ;
+    background: var(--color-tarjeta);
     border: 1px solid var(--borde-suave);
     border-radius: 10px;
     padding: 35px;
     margin-bottom: 25px;
     height: 280px;
 }
- 
+
+.titulo-principal {
+    font-size: 2.8rem;
+    color: var(--color-rosa);
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+}
+.subtitulo {
+    color: var(--color-azul2);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+.fan-gallery {
+    display: grid;
+    position: relative;
+    width: 220px;
+    height: 200px;
+}
+.fan-gallery img {
+    grid-column: 1;
+    grid-row: 1;
+    width: 130px;
+    height: 190px;
+    border-radius: 14px;
+
+    object-fit: cover;
+    transform-origin: bottom center;
+    transition: transform 0.4s ease;
+    box-shadow: 0 8px 16px var(--color-tarjeta-sub);
+}
+#photo0 { transform: rotate(-30deg); z-index: 1; }
+#photo1 { transform: rotate(-10deg); z-index: 2; }
+#photo2 { transform: rotate(10deg); z-index: 3; }
+#photo3 { transform: rotate(30deg); z-index: 4; }
+
+
