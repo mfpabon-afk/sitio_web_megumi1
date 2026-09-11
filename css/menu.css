@@ -1,70 +1,42 @@
 :root {
 
   /* --- PANTALLA DE CARGA --------------------------------------------- */
-  --loading-bg-color: #0b0b0d;           /* Fondo de la pantalla de carga */
-  --loading-bar-color: #20188f;          /* Color de la barra de progreso */
-  --loading-text-color: #f1f1f1;         /* Color del texto "Cargando..." */
-  
-
-  /* Duración que la pantalla de carga permanece visible antes de
-     empezar a desvanecerse, y duración del propio desvanecido.
-     >>> AJUSTE AQUÍ LA VELOCIDAD DE LA PANTALLA DE CARGA <<< */
-  --loading-hold-time: 2.6s;
+  --loading-bg-color: #f1f1f1;
+  --loading-bar-color: #20188f;
+  --loading-text-color: #1a0e0e;
+  --loading-bg-image: none;
+  --loading-hold-time: 0.8s;
   --loading-fade-time: 0.9s;
 
- /* --- GIF de Megumi --- */
-.progress-wrap {
-  position: relative;
-  width: 100%;
-}
-
-.loading-gif {
-  bottom: 100%;
-  left: 0;
-  width: 100px;
-  height: auto;
-  margin-bottom: 6px;
-  pointer-events: none;
-}
-
-/* --- Barra de progreso --- */
-.progress-bar {
-  width: 100%;
-  height: 6px;
-  border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-}
-
-.progress-bar__fill {
-  height: 100%;
-  width: 0%;
-  border-radius: 999px;
-  background-color: var(--loading-bar-color);
-  animation-name: loading-progress;
-  animation-duration: var(--loading-hold-time);
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-
-  /* --- IMÁGENES DEL PERSONAJE / LOGO -----------------------------------
-     >>> CAMBIA ESTAS RUTAS POR TUS PROPIAS IMÁGENES <<< */
-  --logo-image: url('images/logo.png');
-  --character-image: url('images/character.png');
-
   /* --- PALETA DE COLORES GENERAL --------------------------------------- */
-  --color-bg: #121214;                 /* Fondo general del main */
-  --color-bg-alt: #19191c;             /* Fondo alterno para secciones */
-  --color-sidebar-bg: #000000;         /* Fondo del menú lateral */
-  --color-text: #f5f5f5;
-  --color-text-muted: #b5b5ba;
-  --color-accent: #e63946;             /* Color de acento (links, bordes) */
-  --color-accent-soft: rgba(230, 57, 70, 0.18);
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-bg: #fefff0;
+  --color-bg-alt: #100c49;
+  --color-sidebar-bg: #100c49;
+  --color-text: #000000;
+  --color-text-muted: #929292;
+  --color-accent: #9075f1;
+  --color-border: rgba(255, 255, 255, 0.12);
 
-  /* --- DIMENSIONES ------------------------------------------------------ */
+  /* --- ÍCONO HAMBURGUESA --------------------------------------------------
+     >>> CAMBIA AQUÍ EL COLOR DE LAS 3 RAYITAS Y DEL PUNTO CENTRAL <<<
+     El ícono ya NO tiene fondo propio: se dibuja directo sobre la franja
+     que deja el --color-sidebar-bg cuando el menú se colapsa, para que
+     se vea "unificado" con esa franja en vez de un botón aparte. */
+  --toggle-bar-color: #ffffff;
+
+  /* --- DIMENSIONES ------------------------------------------------------
+     >>> --sidebar-width = ancho normal del menú
+     >>> --sidebar-collapsed-width = ancho al que se encoge durante
+         el scroll (queda solo el hueco para el ícono hamburguesa) <<< */
   --sidebar-width: 200px;
+  --sidebar-collapsed-width: 64px;
+
+  /* --- PERSONAJE ----------------------------------------------------------
+     >>> AJUSTA AQUÍ EL TAMAÑO DEL PERSONAJE <<<
+     Se dimensiona por ALTURA (no por ancho) para que se vea grande y
+     proporcional sin importar el aspect-ratio del PNG. */
+  --character-height: 92vh;
+  --character-max-width: 62vw; /* tope de ancho por si el PNG es muy ancho */
 
   /* --- VELOCIDADES / TIEMPOS DE ANIMACIÓN --------------------------------
      >>> AJUSTA AQUÍ LA VELOCIDAD DE LOS EFECTOS DE SCROLL Y HOVER <<< */
@@ -72,13 +44,21 @@
   --curtain-scroll-distance: 220vh;   /* "Recorrido" del efecto cortina */
 
   /* --- CAPAS (z-index) ---------------------------------------------------
-     El personaje empieza por debajo del sidebar/h1 y termina por encima,
-     tal como pide el requisito de "cubrir" el menú al final del scroll. */
+     El personaje empieza por debajo del sidebar/h1 y termina por
+     encima (cubriéndolos). Si el usuario abre el menú a mano con el
+     checkbox, --z-sidebar-expanded lo vuelve a poner por encima de
+     TODO, incluido el personaje. */
   --z-sidebar: 10;
+  --z-sidebar-expanded: 50;
   --z-hero-text: 5;
   --z-character-start: 2;
-  --z-character-end: 20;
+  --z-character-end: 2;
+  --z-toggle-button: 60; /* el botón hamburguesa siempre debe ser clicable */
 }
+
+/* NOTA: las imágenes del personaje y del logo se cargan directamente
+   con <img src="..."> en el HTML (index.html). Para cambiarlas, edita
+   el atributo src ahí, no aquí. */
 
 
 /* ============================= 2. RESET BASE ============================= */
@@ -93,9 +73,32 @@ html, body {
   min-height: 100vh;
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Helvetica';
   scroll-behavior: smooth;
-  overflow-x: hidden;
+
+  /* ---------------------------------------------------------------
+     CORRECCIÓN CLAVE: usábamos "overflow-x: hidden" aquí. Eso hace
+     que el navegador cree un nuevo "contenedor de scroll" en body,
+     y dentro de un contenedor de scroll, position: sticky dejaba
+     de anclarse al viewport real, lo que provocaba que la imagen
+     "flotara" verticalmente en vez de quedarse fija mientras se
+     desliza en horizontal.
+     "overflow-x: clip" recorta el desborde horizontal exactamente
+     igual (evita la barra de scroll lateral) pero SIN crear un
+     contenedor de scroll nuevo, así que sticky vuelve a funcionar
+     bien relativo al viewport real. --------------------------------- */
+  overflow-x: clip;
+
+  /* ---------------------------------------------------------------
+     "timeline-scope" declara aquí, en el body, que el timeline con
+     nombre --hero-view (declarado más abajo dentro de .hero) puede
+     ser usado por CUALQUIER descendiente del body — no solo por los
+     descendientes de .hero. Esto es lo que permite que el <aside
+     class="sidebar"> (que es HERMANO de <main>, no hijo de .hero)
+     pueda sincronizar su propia animación de encogimiento con el
+     mismo scroll que mueve al personaje. Sin esta línea, el sidebar
+     no "vería" el timeline y su animación simplemente no correría. */
+  timeline-scope: --hero-view;
 }
 
 h1, h2, h3, p, ul {
@@ -114,7 +117,8 @@ a {
 
 
 /* ============================= 3. PANTALLA DE CARGA =======================
-   Capa fija a pantalla completa. 
+   Capa fija a pantalla completa. Se desvanece SOLA usando @keyframes +
+   animation-delay (sin necesidad de JavaScript).
    ========================================================================= */
 .loading-screen {
   position: fixed;
@@ -129,10 +133,6 @@ a {
   background-size: cover;
   background-position: center;
 
-  /* Desvanecido automático:
-     - permanece visible durante --loading-hold-time
-     - luego se desvanece durante --loading-fade-time
-     - "forwards" mantiene el estado final (oculta e inerte) */
   animation-name: loading-fade-out;
   animation-duration: var(--loading-fade-time);
   animation-delay: var(--loading-hold-time);
@@ -141,34 +141,19 @@ a {
 }
 
 @keyframes loading-fade-out {
-  from {
-    opacity: 1;
-    visibility: visible;
-  }
-  to {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
+  from { opacity: 1; visibility: visible; }
+  to   { opacity: 0; visibility: hidden; pointer-events: none; }
 }
 
 .loading-content {
   text-align: center;
   width: min(320px, 80vw);
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
-.loading-brand {
-  color: var(--loading-text-color);
-  letter-spacing: 4px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  margin-bottom: 18px;
-  opacity: 0.8;
-}
 @font-face {
   font-family: 'Jujutsu';
   src: url('../resourse/jujutsu-kaisen/Jujutsu\ Kaisen.ttf') format('truetype');
@@ -176,25 +161,29 @@ a {
   font-display: swap;
 }
 
-
-  
+.loading-gif {
+  width: 100px;
+  height: auto;
+  margin-bottom: 6px;
+}
 
 .loading-text {
-  font-family:'Jujutsu';
+  font-family: 'Jujutsu';
   color: var(--loading-text-color);
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 16px;
   letter-spacing: 2px;
-  /* parpadeo mientras carga */
   animation: loading-pulse 1.1s ease-in-out infinite;
-
-
 }
 
 @keyframes loading-pulse {
   0%, 100% { opacity: 0.5; }
   50%      { opacity: 1; }
+}
+
+.progress-wrap {
+  width: 100%;
 }
 
 .progress-bar {
@@ -210,8 +199,6 @@ a {
   width: 0%;
   border-radius: 999px;
   background-color: var(--loading-bar-color);
-
-  /* La barra se llena en el mismo tiempo que dura --loading-hold-time */
   animation-name: loading-progress;
   animation-duration: var(--loading-hold-time);
   animation-timing-function: ease-in-out;
@@ -224,8 +211,145 @@ a {
 }
 
 
-/* ============================= 4. MENÚ LATERAL (aside) ====================
-   Barra lateral fija de 200px a la izquierda.
+/* ============================= 4. BOTÓN HAMBURGUESA (checkbox hack) =======
+   El checkbox real queda invisible pero funcional; el <label> es lo
+   que el usuario ve y pulsa. Al hacer clic en el label, el navegador
+   marca/desmarca el checkbox automáticamente — sin una sola línea
+   de JavaScript.
+   ========================================================================= */
+
+/* Checkbox visualmente oculto pero SIGUE siendo funcional: se puede
+   navegar con Tab y activar con Espacio (a diferencia de display:none,
+   que lo saca completamente de la accesibilidad). No lo posicionamos
+   encima del botón: como el <label for="menu-toggle"> ya activa el
+   checkbox al hacer clic, no hace falta que el checkbox "tape" nada. */
+.menu-toggle-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* El botón visible: 3 rayitas SIN fondo propio, para que se "funden"
+   con el color de la franja que deja el sidebar colapsado
+   (--color-sidebar-bg). Está centrado en esa franja mediante
+   left: calc(--sidebar-collapsed-width / 2) + translate(-50%,-50%).
+   Por defecto empieza invisible (opacity:0 más abajo, en el bloque
+   @supports) y solo se revela cuando el scroll llega al punto donde
+   el menú grande termina de encogerse. */
+.menu-toggle-label {
+  position: fixed;
+  top: 50%;
+  left: calc(var(--sidebar-collapsed-width) / 2);
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  z-index: var(--z-toggle-button);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  cursor: pointer;
+  background: transparent;
+
+  /* Este es el estado "sin JS / sin soporte de scroll-timeline":
+     si el navegador no soporta la animación, el ícono queda
+     SIEMPRE visible y clicable, para no perder la función. */
+  opacity: 1;
+}
+
+.menu-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--toggle-bar-color);
+  border-radius: 2px;
+  transition: opacity var(--hover-transition);
+}
+
+/* El "punto" que reemplaza a las rayitas cuando el menú está abierto.
+   Vive como ::after del propio label, centrado sobre él. */
+.menu-toggle-label::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--toggle-bar-color);
+  opacity: 0;
+  transition: opacity var(--hover-transition);
+}
+
+/* ---- Aparición del ícono ligada al scroll (progressive enhancement) ----
+   Aparece justo en el mismo punto (70%) en el que .sidebar termina de
+   encogerse (ver @keyframes sidebar-collapse más abajo). Antes de eso
+   permanece invisible Y no-clicable (pointer-events:none), porque el
+   menú completo ya está a la vista y no hace falta abrirlo. */
+@supports (animation-timeline: view()) {
+  .menu-toggle-label {
+    opacity: 0;
+    pointer-events: none;
+
+    animation-name: toggle-reveal;
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --hero-view;
+    animation-range: cover 0% cover 100%;
+  }
+}
+
+@keyframes toggle-reveal {
+  0%   { opacity: 0; pointer-events: none; }
+  69%  { opacity: 0; pointer-events: none; }
+  70%  { opacity: 1; pointer-events: auto; }
+  100% { opacity: 1; pointer-events: auto; }
+}
+
+/* ---- Menú ABIERTO: el ícono se mueve al centro del panel completo,
+   las rayitas se apagan y aparece el punto en su lugar ------------------
+   !important es obligatorio en opacity/pointer-events/left porque
+   están compitiendo con la animación de scroll de arriba; es la única
+   forma en que una regla normal le gana a una animación en curso. */
+#menu-toggle:checked ~ .menu-toggle-label {
+  left: calc(var(--sidebar-width) / 2) !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+#menu-toggle:checked ~ .menu-toggle-label .menu-toggle-bar {
+  opacity: 0;
+}
+
+#menu-toggle:checked ~ .menu-toggle-label::after {
+  opacity: 1;
+}
+
+/* Contorno de accesibilidad al navegar con teclado (Tab). */
+#menu-toggle:focus-visible ~ .menu-toggle-label {
+  outline: 2px solid var(--toggle-bar-color);
+  outline-offset: 6px;
+}
+
+
+/* ============================= 5. MENÚ LATERAL (aside) ====================
+   Barra lateral fija a la izquierda. Tiene DOS comportamientos que
+   compiten entre sí:
+
+   a) Se encoge SOLA a medida que el usuario hace scroll dentro del
+      hero (mismo timeline --hero-view que usa el personaje).
+   b) Se puede forzar a estar SIEMPRE expandida marcando el checkbox
+      de arriba — ver el bloque "#menu-toggle:checked ~ .sidebar"
+      más abajo, con !important (única forma de ganarle a una
+      animación en curso con CSS puro).
    ========================================================================= */
 .sidebar {
   position: fixed;
@@ -237,6 +361,7 @@ a {
 
   background-color: var(--color-sidebar-bg);
   border-right: 1px solid var(--color-border);
+  overflow: hidden; /* recorta el contenido mientras el ancho se encoge */
 
   display: flex;
   flex-direction: column;
@@ -246,11 +371,14 @@ a {
 
 .sidebar__logo {
   display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 156px;
-  height: 56px;
-  
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar__logo-img {
+  width: 100%;
+  max-width: 156px;
+  height: auto;
 }
 
 .sidebar__nav ul {
@@ -267,10 +395,10 @@ a {
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--color-text-muted);
+  white-space: nowrap; /* evita que el texto se parta al encogerse */
   transition: color var(--hover-transition);
 }
 
-/* Efecto hover sutil: subrayado que crece + cambio de color */
 .sidebar__nav a::after {
   content: '';
   position: absolute;
@@ -296,36 +424,121 @@ a {
   font-size: 0.7rem;
   color: var(--color-text-muted);
   opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* ---- Encogido automático ligado al scroll (progressive enhancement) ----
+   El ancho del sidebar y la opacidad de su contenido usan el MISMO
+   timeline con nombre (--hero-view) que anima al personaje, gracias
+   a "timeline-scope" declarado en el body (sección 2). Así ambos
+   efectos avanzan sincronizados con el mismo scroll. */
+@supports (animation-timeline: view()) {
+  .sidebar {
+    animation-name: sidebar-collapse;
+    animation-duration: 1ms; /* la duración real la da el timeline */
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --hero-view;
+    animation-range: cover 0% cover 100%;
+  }
+
+  .sidebar__nav,
+  .sidebar__footer {
+    animation-name: sidebar-fade-content;
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --hero-view;
+    animation-range: cover 0% cover 100%;
+  }
+}
+
+@keyframes sidebar-collapse {
+  0%   { width: var(--sidebar-width); }
+  70%  { width: var(--sidebar-width); }
+  100% { width: var(--sidebar-collapsed-width); }
+}
+
+@keyframes sidebar-fade-content {
+  0%   { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ---- Apertura manual con el checkbox: SIEMPRE gana ----------------------
+   !important es obligatorio aquí: es la única forma en que una regla
+   normal de CSS puede tener más prioridad que una animación en curso
+   sobre la misma propiedad. Así, sin importar en qué punto del scroll
+   esté el usuario, marcar el checkbox vuelve a mostrar el menú
+   completo, por encima incluso del personaje. */
+#menu-toggle:checked ~ .sidebar {
+  width: var(--sidebar-width) !important;
+  z-index: var(--z-sidebar-expanded) !important;
+}
+
+#menu-toggle:checked ~ .sidebar .sidebar__nav,
+#menu-toggle:checked ~ .sidebar .sidebar__footer {
+  opacity: 1 !important;
 }
 
 
-/* ============================= 5. CONTENIDO PRINCIPAL (main) ============== */
+/* ============================= 6. CONTENIDO PRINCIPAL (main) ==============
+   margin-left arranca igual al ancho del sidebar (200px) y se anima en
+   PARALELO al mismo --hero-view: cuando el sidebar se encoge a 64px,
+   el contenido "recupera" ese espacio corriéndose a la izquierda.
+   Esto es lo que pediste: que el resto de la información se acomode
+   de acuerdo al menú, en vez de dejar un margen fijo de 200px siempre.
+   ========================================================================= */
 .main-content {
   margin-left: var(--sidebar-width);
   background-color: var(--color-bg);
   min-height: 100vh;
 }
 
+@supports (animation-timeline: view()) {
+  .main-content {
+    animation-name: main-content-shift;
+    animation-duration: 1ms;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --hero-view;
+    animation-range: cover 0% cover 100%;
+  }
+}
 
-/* ============================= 6. HERO + EFECTO CORTINA ===================
-   Estado inicial: nombre del personaje visible + imagen a la derecha.
-   Al hacer scroll: el personaje se desliza de derecha a izquierda,
-   tapando primero el <h1> y terminando por cubrir parte del sidebar.
+/* Mismo punto de quiebre (70%) que sidebar-collapse, para que ambos
+   efectos se vean perfectamente sincronizados. */
+@keyframes main-content-shift {
+  0%   { margin-left: var(--sidebar-width); }
+  70%  { margin-left: var(--sidebar-width); }
+  100% { margin-left: var(--sidebar-collapsed-width); }
+}
 
-   Técnica: la sección .hero es más alta que la pantalla
-   (--curtain-scroll-distance). Dentro, .character-wrap usa
-   position: sticky para quedar "clavado" en el viewport mientras
-   se recorre esa altura extra, y la imagen anima su transform
-   usando un scroll-timeline nativo de CSS (sin JavaScript).
+/* Si el usuario reabre el menú a mano, el contenido vuelve a dejarle
+   sus 200px completos (si no, el sidebar expandido quedaría tapando
+   parte del contenido que ya se había corrido a la izquierda). */
+#menu-toggle:checked ~ .main-content {
+  margin-left: var(--sidebar-width) !important;
+}
+
+
+/* ============================= 7. HERO + EFECTO CORTINA ===================
+   Estado inicial: <h1> a la izquierda, personaje pegado al margen
+   derecho. Al hacer scroll: el personaje queda FIJO en pantalla
+   (sticky) y se desliza en HORIZONTAL de derecha a izquierda.
    ========================================================================= */
 .hero {
   position: relative;
-  height: var(--curtain-scroll-distance);
+  height: var(--curtain-scroll-distance); /* 220vh: da "recorrido" al scroll */
 
-  /* Vincula esta sección como línea de tiempo de scroll para la
-     animación del personaje (ver .character-img más abajo). */
-  scroll-timeline-name: --hero-scroll;
-  scroll-timeline-axis: block;
+  /* Este .hero es la FUENTE del timeline con nombre --hero-view: su
+     propio progreso de entrada/salida del viewport es lo que mide
+     el avance de TODA la animación (0% a 100%). Por eso su altura
+     (220vh) es lo que determina cuánto scroll dura el efecto
+     completo. >>> Sube o baja --curtain-scroll-distance para que
+     la animación dure más o menos scroll <<< */
+  view-timeline-name: --hero-view;
+  view-timeline-axis: block;
 }
 
 .hero__intro {
@@ -356,8 +569,10 @@ a {
   font-size: 1.05rem;
 }
 
-/* Contenedor que se mantiene fijo en pantalla mientras se hace scroll
-   a través de toda la altura de .hero */
+/* Contenedor sticky: se ancla al viewport (top:0) y se queda fijo
+   durante los 220vh de .hero. ESTE es el elemento animado, no la
+   <img> de adentro — así su z-index compite de verdad contra el
+   .sidebar (que es su hermano en el árbol de apilamiento). */
 .character-wrap {
   position: sticky;
   top: 0;
@@ -366,63 +581,66 @@ a {
   z-index: var(--z-character-start);
 
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;      /* centrado VERTICAL dentro de los 100vh */
+  justify-content: flex-end; /* pegado al borde derecho (horizontal) */
   pointer-events: none;
   overflow: visible;
+
+  transform: translateX(0); /* estado base sin soporte de scroll-driven */
 }
 
+/* Se dimensiona por ALTURA (no por ancho) y sin margen a la derecha,
+   para que quede grande, proporcional y tocando justo el borde
+   derecho de la pantalla, tal como pediste.
+   >>> Si la imagen igual se ve "chica" o centrada dentro de su propio
+   marco, el problema ya no es CSS: es que el archivo PNG tiene mucho
+   espacio transparente alrededor del dibujo. Recorta el PNG bien
+   ajustado al personaje (sin aire de sobra) y este mismo CSS lo hará
+   ver grande automáticamente. <<< */
 .character-img {
-  width: min(520px, 60vw);
-  height: auto;
-  margin-right: 40px;
-
-  /* Estado base (sin soporte de scroll-timeline): el personaje se ve
-     estático a la derecha, la página sigue siendo 100% usable. */
-  transform: translateX(0);
+  height: var(--character-height);
+  width: auto;
+  max-width: var(--character-max-width);
+  margin-right: 0;
 }
 
-/* ---- Animación de scroll nativa (progressive enhancement) --------------
-   Los navegadores compatibles (Chrome/Edge recientes) animan el
-   personaje en función del progreso real del scroll dentro de .hero.
-   Si el navegador no es compatible, se ignora este bloque y el
-   personaje se mantiene en su posición estática de arriba. */
-@supports (animation-timeline: scroll()) or (animation-timeline: works) {
-  .character-img {
+/* ---- ANIMACIÓN HORIZONTAL: aquí se controla todo el desplazamiento ------
+   .character-wrap escucha el timeline --hero-view (declarado en
+   .hero, del cual SÍ es descendiente, así que no necesita
+   timeline-scope). animation-range: cover 0% cover 100% hace que el
+   0%-100% de las @keyframes corresponda exactamente al 0%-100% del
+   recorrido de scroll de .hero. */
+@supports (animation-timeline: view()) {
+  .character-wrap {
     animation-name: curtain-slide;
-    animation-duration: 1ms; /* la duración real la marca el scroll-timeline */
+    animation-duration: 1ms;
     animation-timing-function: linear;
     animation-fill-mode: both;
-    animation-timeline: --hero-scroll;
+    animation-timeline: --hero-view;
+    animation-range: cover 0% cover 100%;
   }
 }
 
 @keyframes curtain-slide {
-  /* 0% - inicio del scroll: personaje a la derecha, detrás del texto */
+  /* 0%: Empieza a la izquierda (fuera de la pantalla) */
   0% {
-    transform: translateX(0);
-    z-index: var(--z-character-start);
-  }
-  /* 45% - el personaje empieza a taparle el paso al <h1> */
-  45% {
-    transform: translateX(-48vw);
-    z-index: var(--z-character-start);
-  }
-  55% {
-    /* justo aquí el personaje pasa a estar POR ENCIMA del texto */
+    transform: translateX(0vw);
     z-index: var(--z-character-end);
   }
-  /* 100% - fin del recorrido: el personaje cubre parcialmente el sidebar */
+  
+  /* 100%: Termina pegado a la derecha */
   100% {
-    transform: translateX(calc(-1 * (var(--sidebar-width) + 60vw)));
+    transform: translateX(80);
     z-index: var(--z-character-end);
   }
 }
 
 
-/* ============================= 7. CARACTERÍSTICAS (revelado) ==============
-   Esta sección vive "detrás" del personaje y se revela suavemente
-   a medida que el usuario sigue bajando.
+/* ============================= 8. FICHA DEL PERSONAJE (revelado) ==========
+   Vive "detrás" del personaje. Cada tarjeta usa su PROPIO
+   animation-timeline: view() (anónimo, sin nombre) porque acá sí
+   nos interesa la visibilidad de cada tarjeta individual entrando
+   al viewport — no un recorrido compartido como el del hero.
    ========================================================================= */
 .characteristics {
   position: relative;
@@ -455,13 +673,6 @@ a {
   transform: none;
 }
 
-.stat-card__icon {
-  width: 36px;
-  height: 36px;
-  margin-bottom: 14px;
-  opacity: 0.9;
-}
-
 .stat-card h3 {
   font-size: 1.05rem;
   margin-bottom: 8px;
@@ -474,10 +685,10 @@ a {
   line-height: 1.5;
 }
 
-/* ---- Revelado suave basado en scroll (progressive enhancement) ---------
-   Cada tarjeta aparece con un ligero desplazamiento + fade cuando
-   entra en el viewport, usando una view-timeline nativa de CSS.
-   >>> Ajusta --reveal-distance para controlar cuánto se desplazan <<< */
+/* ---- REVELADO: fade-in + translateY al entrar en el viewport ----------
+   >>> Ajusta --reveal-distance para controlar cuánto se desplazan
+   las tarjetas, y animation-range para controlar en qué punto de
+   su entrada empiezan/terminan de aparecer <<< */
 @supports (animation-timeline: view()) {
   :root {
     --reveal-distance: 40px;
@@ -490,8 +701,8 @@ a {
     animation-name: reveal-card;
     animation-duration: 1ms;
     animation-fill-mode: both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 35%;
+    animation-timeline: view(); /* view() anónimo: sigue a esta misma tarjeta */
+    animation-range: entry 0% cover 40%;
   }
 
   @keyframes reveal-card {
@@ -507,7 +718,7 @@ a {
 }
 
 
-/* ============================= 8. SECCIONES DE CONTENIDO GENERAL ========== */
+/* ============================= 9. SECCIONES DE CONTENIDO GENERAL ========== */
 .content-section {
   padding: 90px 60px;
   background-color: var(--color-bg);
@@ -556,14 +767,19 @@ a {
 
 /* ============================= RESPONSIVE BÁSICO =========================
    El menú fijo de 200px no funciona bien en pantallas muy pequeñas;
-   lo replegamos a una barra superior compacta. */
+   lo replegamos a una barra superior compacta. En móvil desactivamos
+   el encogido automático por scroll (deja lío visual en pantallas
+   angostas) y dejamos el checkbox como único control del menú. */
 @media (max-width: 700px) {
   .sidebar {
+    position: fixed;
     width: 100%;
     height: 64px;
+    top: 0;
     flex-direction: row;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 16px 0 76px; /* espacio para el botón hamburguesa */
+    animation: none !important;
   }
 
   .sidebar__nav ul {
@@ -575,8 +791,30 @@ a {
     display: none;
   }
 
+  .sidebar__nav,
+  .sidebar__footer {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  /* En móvil el ícono no depende del scroll: siempre visible y fijo
+     en su propia esquina de la barra superior. */
+  .menu-toggle-label {
+    animation: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    top: 32px;
+    left: 32px;
+    transform: translate(-50%, -50%);
+  }
+
+  #menu-toggle:checked ~ .menu-toggle-label {
+    left: 32px !important; /* no lo mandamos al centro del panel en móvil */
+  }
+
   .main-content {
-    margin-left: 0;
+    animation: none !important;
+    margin-left: 0 !important;
     margin-top: 64px;
   }
 
