@@ -8,70 +8,80 @@
     <link rel="stylesheet" href="css/menu.css" />
 </head>
 <body>
-    
-<body>
+
+  <!-- ============================================================
+       1. PANTALLA DE CARGA (100% CSS)
+       ============================================================ -->
   <div class="loading-screen">
-<div class="loading-content">
-<!-- GIF de Megumi, va ENCIMA de la barra -->
-  <img
-      src="resourse/megumi-transparent-megumi.gif"
-      alt="Megumi corriendo"
-      class="loading-gif"
-    >
+    <div class="loading-content">
 
-  <p class="loading-text">Cargando...</p>
+      <img
+        src="resourse/megumi-transparent-megumi.gif"
+        alt="Megumi corriendo"
+        class="loading-gif">
 
-  <!-- CONTENEDOR DE LA BARRA-->
-  <div class="progress-wrap">
-    <!-- Barra de progreso -->
-    <div class="progress-bar">
-      <div class="progress-bar__fill"></div>
-    </div>
+      <p class="loading-text">Cargando...</p>
+
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-bar__fill"></div>
+        </div>
+      </div>
 
     </div>
   </div>
-</div>
 
 
   <!-- ============================================================
-       2. MENÚ LATERAL
+       2. MENÚ HAMBURGUESA (CSS Checkbox Hack)
+       ------------------------------------------------------------
+       El checkbox va OCULTO. El <label for="menu-toggle"> es el
+       botón visible (las 3 rayitas). Al hacer clic en el label,
+       el navegador marca el checkbox automáticamente (sin JS).
+
+       IMPORTANTE: este input y su label deben ir ANTES del
+       <aside class="sidebar"> en el HTML, porque en menu.css
+       usamos el selector de hermano general `~`:
+
+           #menu-toggle:checked ~ .sidebar { ... }
+
+       Ese selector SOLO puede "ver" elementos que vengan DESPUÉS
+       de él en el mismo nivel del DOM, nunca antes ni dentro.
+       ============================================================ -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+  <label for="menu-toggle" class="menu-toggle-label" aria-label="Abrir o cerrar menú">
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
+  </label>
+
+
+  <!-- ============================================================
+       3. MENÚ LATERAL
        Uso <aside> porque es contenido complementario a la
        página (navegación persistente). El CSS lo fija a la
-       izquierda con position: fixed.
+       izquierda con position: fixed y lo encoge/expande según
+       el scroll y según el checkbox de arriba.
        ============================================================ -->
   <aside class="sidebar">
 
     <a href="index.html" class="sidebar__logo" aria-label="Inicio">
-      <!-- Es un <a> porque lleva a otra página.
-           aria-label describe el enlace a lectores de pantalla
-           (el símbolo 呪 no es descriptivo por sí solo). -->
       <img
-      src="resourse/Jujutsu-Kaisen-Logo-No-Background.png"
-      alt="logo Jujutsu"
-      class="sidebar__logo"
-    >
+        src="resourse/Jujutsu-Kaisen-Logo-No-Background.png"
+        alt="logo Jujutsu"
+        class="sidebar__logo-img">
     </a>
 
     <nav class="sidebar__nav" aria-label="Navegación principal">
-      <!-- <nav>Ayuda a lectores de pantalla a saltar directo al menú. -->
-
       <ul>
-        <!-- Una lista <ul> es lo correcto para un menú: son
-             elementos sin orden jerárquico, todos iguales. -->
-
-        <li><a href="index.html">Megumi</a></li>
+        <li><a href="index.html">Megumi Fushiguro</a></li>
         <li><a href="tecnica.html">Técnica Maldita</a></li>
         <li><a href="dominio.html">Dominio</a></li>
         <li><a href="vinculos.html">Vínculos</a></li>
-        <!-- Cada <li> envuelve un <a>. Es más accesible y
-             semánticamente correcto que <a> sueltos. -->
       </ul>
     </nav>
 
     <div class="sidebar__footer">
-      <!-- Pie del sidebar con info secundaria. Uso <div> y no
-           <footer> porque NO es el pie del documento, es solo
-           una zona del menú lateral. -->
       <p>Fan page · 2026</p>
     </div>
 
@@ -79,68 +89,57 @@
 
 
   <!-- ============================================================
-       3. CONTENIDO PRINCIPAL
+       4. CONTENIDO PRINCIPAL
        <main> = el contenido único y central de ESTA página.
        Debe haber solo UN <main> por página (regla HTML5).
        ============================================================ -->
   <main class="main-content">
 
-    <!-- ========== 3.1 HERO con efecto cortina ========== -->
+    <!-- ========== 4.1 HERO con efecto cortina ========== -->
     <section class="hero">
-      <!-- <section> = agrupación temática de contenido.
-           El CSS le da altura extra (--curtain-scroll-distance)
-           para que el efecto de scroll tenga "recorrido". -->
+      <!-- Esta sección mide 220vh (ver --curtain-scroll-distance
+           en menu.css). Esa altura extra es el "recorrido" que
+           el usuario scrollea mientras el personaje se desliza. -->
 
       <div class="hero__intro">
-        <!-- Bloque de texto que queda sticky arriba mientras
-             el personaje se desliza por encima. -->
+        <!-- Texto sticky a la izquierda. Al 50% del recorrido,
+             el personaje pasa a estar POR ENCIMA (z-index) y
+             lo tapa visualmente. -->
 
         <p class="hero__eyebrow">Hechicero de grado 2</p>
-        <!-- "eyebrow" = texto pequeño sobre el título principal.
-             Se usa para dar contexto antes del nombre. -->
-
         <h1 class="hero__name">Megumi<br>Fushiguro</h1>
-        <!-- <h1> = título principal de la página. SOLO debe
-             haber un <h1> por documento (importante para SEO).
-             <br> fuerza salto de línea sin crear nuevo párrafo. -->
-
         <p class="hero__subtitle">
-          El heredero de la Técnica de las Diez Sombras.
+          El heredero de las Diez Sombras.
         </p>
       </div>
 
       <div class="character-wrap">
-        <!-- Contenedor sticky donde vive la imagen.
-             El CSS lo mantiene fijo mientras se hace scroll. -->
+        <!-- Contenedor sticky: se queda FIJO en pantalla mientras
+             se hace scroll dentro de .hero. Es este elemento (no
+             la imagen) el que anima transform/z-index — ver
+             menu.css sección 6 para el detalle completo. -->
 
         <img
-          src="images/character.png"
+          src="resourse/megumi.png"
           alt="Megumi Fushiguro"
           class="character-img">
-        <!-- alt describe la imagen para:
-             - Personas con lector de pantalla
-             - Cuando la imagen no carga
-             - Buscadores (SEO)
-             NUNCA dejes alt="" salvo en imágenes decorativas. -->
       </div>
 
     </section>
 
 
-    <!-- ========== 3.2 FICHA DEL PERSONAJE ========== -->
+    <!-- ========== 4.2 FICHA DEL PERSONAJE (revelado) ========== -->
     <section class="characteristics">
+      <!-- Esta sección vive "detrás" del personaje. Sus tarjetas
+           usan animation-timeline: view() para aparecer con
+           fade-in + traslación hacia arriba cuando entran al
+           viewport (ver menu.css sección 7). -->
 
       <h2 class="section-title">Ficha del personaje</h2>
-      <!-- <h2> = subtítulo. Respeta la jerarquía h1 → h2 → h3.
-           No uses h3 sin haber usado h2 antes. -->
 
       <div class="characteristics__grid">
-        <!-- Grid contenedor. Los hijos se acomodan solos
-             gracias a grid-template-columns en el CSS. -->
 
         <article class="stat-card">
-          <!-- <article> = contenido autocontenido que tiene
-               sentido por sí solo. Cada tarjeta es una "unidad". -->
           <h3>Edad</h3>
           <p>15 años</p>
         </article>
@@ -174,7 +173,7 @@
     </section>
 
 
-    <!-- ========== 3.3 DESCRIPCIÓN ========== -->
+    <!-- ========== 4.3 DESCRIPCIÓN ========== -->
     <section class="content-section">
       <h2 class="section-title">¿Quién es Megumi?</h2>
       <p class="content-section__text">
@@ -185,16 +184,11 @@
     </section>
 
 
-    <!-- ========== 3.4 PERSONALIDAD ========== -->
+    <!-- ========== 4.4 PERSONALIDAD ========== -->
     <section class="content-section content-section--alt">
-      <!-- content-section--alt es un MODIFICADOR BEM: misma base
-           pero con fondo alterno. Así alternas franjas visuales. -->
-
       <h2 class="section-title">Personalidad</h2>
 
       <ul class="list-block">
-        <!-- <ul> para lista de características (sin orden). -->
-
         <li>
           <strong>Tranquilo y reservado:</strong> rara vez habla
           de sí mismo.
@@ -215,7 +209,7 @@
     </section>
 
 
-    <!-- ========== 3.5 FRASE ========== -->
+    <!-- ========== 4.5 FRASE ========== -->
     <section class="content-section">
       <h2 class="section-title">Frase representativa</h2>
       <p class="content-section__text">
@@ -224,10 +218,8 @@
     </section>
 
 
-    <!-- ========== 3.6 PIE DE PÁGINA ========== -->
+    <!-- ========== 4.6 PIE DE PÁGINA ========== -->
     <footer class="site-footer">
-      <!-- <footer> = pie del documento. Aquí va info legal,
-           créditos, enlaces secundarios. -->
       <p>Fan page no oficial · Jujutsu Kaisen © Gege Akutami</p>
     </footer>
 
