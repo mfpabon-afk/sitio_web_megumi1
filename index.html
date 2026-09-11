@@ -95,34 +95,34 @@
        ============================================================ -->
   <main class="main-content">
 
-    <!-- ========== 4.1 HERO con efecto cortina ========== -->
+    <!-- ========== 4.1 HERO: fondo fijo + texto animado ========== -->
     <section class="hero">
-      <!-- Esta sección mide 220vh (ver --curtain-scroll-distance
-           en menu.css). Esa altura extra es el "recorrido" que
-           el usuario scrollea mientras el personaje se desliza. -->
+      <!-- Esta sección mide 220vh (ver --curtain-scroll-distance en
+           menu.css). Esa altura extra es el "recorrido" que el
+           usuario scrollea mientras el TEXTO se anima (el personaje
+           de fondo se queda quieto, ya no se desliza). -->
 
-      <div class="hero__intro">
-        <!-- Texto sticky a la izquierda. Al 50% del recorrido,
-             el personaje pasa a estar POR ENCIMA (z-index) y
-             lo tapa visualmente. -->
+      <div class="hero__bg">
+        <!-- Imagen de fondo a pantalla completa. Sticky: se queda
+             fija durante todo el recorrido de .hero. Es la capa
+             protagonista al inicio (por delante del texto). -->
+        <img
+          src="resourse/megumi.png"
+          alt="Megumi Fushiguro"
+          class="hero__bg-img">
+      </div>
+
+      <div class="hero__text">
+        <!-- Bloque de texto: EMPIEZA chico y detrás del personaje.
+             Al hacer scroll crece (scale), pasa a estar POR DELANTE
+             (z-index) y se acomoda abajo, junto a él — ver
+             @keyframes hero-text-reveal en menu.css sección 7. -->
 
         <p class="hero__eyebrow">Hechicero de grado 2</p>
         <h1 class="hero__name">Megumi<br>Fushiguro</h1>
         <p class="hero__subtitle">
           El heredero de las Diez Sombras.
         </p>
-      </div>
-
-      <div class="character-wrap">
-        <!-- Contenedor sticky: se queda FIJO en pantalla mientras
-             se hace scroll dentro de .hero. Es este elemento (no
-             la imagen) el que anima transform/z-index — ver
-             menu.css sección 6 para el detalle completo. -->
-
-        <img
-          src="resourse/megumi.png"
-          alt="Megumi Fushiguro"
-          class="character-img">
       </div>
 
     </section>
