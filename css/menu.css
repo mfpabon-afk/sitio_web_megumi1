@@ -1,28 +1,8 @@
 :root {
 
-  /* --- PANTALLA DE CARGA --------------------------------------------- */
-  --loading-bg-color: #fefff0;
-  --loading-bar-color: #20188f;
-  --loading-text-color: #1a0e0e;
-  --loading-bg-image: none;
+  --loading-bg-image: none; /* opcional: url('...'); no es un color, es una imagen */
   --loading-hold-time: 0.8s;
   --loading-fade-time: 0.9s;
-
-  /* --- PALETA DE COLORES GENERAL --------------------------------------- */
-  --color-bg: #fefff0;
-  --color-bg-alt: #100c49;
-  --color-sidebar-bg: #3a4278;
-  --color-text: #000000;
-  --color-text-muted: #929292;
-  --color-accent: #9075f1;
-  --color-border: rgba(255, 255, 255, 0.12);
-
-  /* --- ÍCONO HAMBURGUESA --------------------------------------------------
-     >>> CAMBIA AQUÍ EL COLOR DE LAS 3 RAYITAS Y DEL PUNTO CENTRAL <<<
-     El ícono ya NO tiene fondo propio: se dibuja directo sobre la franja
-     que deja el --color-sidebar-bg cuando el menú se colapsa, para que
-     se vea "unificado" con esa franja en vez de un botón aparte. */
-  --toggle-bar-color: #ffffff;
 
   /* --- DIMENSIONES ------------------------------------------------------
      >>> --sidebar-width = ancho normal del menú
@@ -31,28 +11,26 @@
   --sidebar-width: 200px;
   --sidebar-collapsed-width: 64px;
 
-  /* --- PERSONAJE ----------------------------------------------------------
-     >>> AJUSTA AQUÍ EL TAMAÑO DEL PERSONAJE <<<
-     Se dimensiona por ALTURA (no por ancho) para que se vea grande y
-     proporcional sin importar el aspect-ratio del PNG. */
+  /* --- PERSONAJE / HERO ---------------------------------------------------
+     >>> AJUSTA AQUÍ EL TAMAÑO DE LA IMAGEN DE FONDO DEL HERO <<< */
   --character-height: 92vh;
-  --character-max-width: 62vw; /* tope de ancho por si el PNG es muy ancho */
+  --character-max-width: 62vw;
 
   /* --- VELOCIDADES / TIEMPOS DE ANIMACIÓN --------------------------------
      >>> AJUSTA AQUÍ LA VELOCIDAD DE LOS EFECTOS DE SCROLL Y HOVER <<< */
   --hover-transition: 0.25s ease;
-  --curtain-scroll-distance: 220vh;   /* "Recorrido" del efecto cortina */
+  --curtain-scroll-distance: 220vh;   /* "Recorrido" del efecto del hero */
 
-  /* --- CAPAS (z-index) ---------------------------------------------------
-     El personaje empieza por debajo del sidebar/h1 y termina por
-     encima (cubriéndolos). Si el usuario abre el menú a mano con el
-     checkbox, --z-sidebar-expanded lo vuelve a poner por encima de
-     TODO, incluido el personaje. */
+  /* --- CAPAS (z-index) -----------------------------------------------------
+     El texto del hero EMPIEZA detrás de la imagen del personaje y
+     TERMINA por delante (ver @keyframes hero-text-reveal). Si el
+     usuario abre el menú a mano con el checkbox, --z-sidebar-expanded
+     lo pone por encima de todo. */
   --z-sidebar: 10;
   --z-sidebar-expanded: 50;
-  --z-hero-text: 5;
-  --z-character-start: 10;
-  --z-character-end: 20;
+  --z-hero-bg: 2;          /* imagen del personaje: capa fija */
+  --z-hero-text-behind: 1; /* texto al inicio: DETRÁS del personaje */
+  --z-hero-text-front: 3;  /* texto al final: DELANTE del personaje */
   --z-toggle-button: 60; /* el botón hamburguesa siempre debe ser clicable */
 }
 
@@ -71,8 +49,8 @@ html, body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: #fefff0;
+  color: #000000;
   font-family: 'Helvetica';
   scroll-behavior: smooth;
 
@@ -128,7 +106,7 @@ a {
   align-items: center;
   justify-content: center;
 
-  background-color: var(--loading-bg-color);
+  background-color: #fefff0;
   background-image: var(--loading-bg-image);
   background-size: cover;
   background-position: center;
@@ -169,7 +147,7 @@ a {
 
 .loading-text {
   font-family: 'Jujutsu';
-  color: var(--loading-text-color);
+  color: #1a0e0e;
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 16px;
@@ -198,7 +176,7 @@ a {
   height: 100%;
   width: 0%;
   border-radius: 999px;
-  background-color: var(--loading-bar-color);
+  background-color: #20188f;
   animation-name: loading-progress;
   animation-duration: var(--loading-hold-time);
   animation-timing-function: ease-in-out;
@@ -270,7 +248,7 @@ a {
   display: block;
   width: 22px;
   height: 2px;
-  background-color: var(--toggle-bar-color);
+  background-color: #ffffff;
   border-radius: 2px;
   transition: opacity var(--hover-transition);
 }
@@ -283,7 +261,7 @@ a {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--toggle-bar-color);
+  background-color: #ffffff;
   opacity: 0;
   transition: opacity var(--hover-transition);
 }
@@ -314,13 +292,17 @@ a {
   100% { opacity: 1; pointer-events: auto; }
 }
 
-/* ---- Menú ABIERTO: el ícono se mueve al centro del panel completo,
-   las rayitas se apagan y aparece el punto en su lugar ------------------
-   !important es obligatorio en opacity/pointer-events/left porque
-   están compitiendo con la animación de scroll de arriba; es la única
-   forma en que una regla normal le gana a una animación en curso. */
+/* ---- Menú ABIERTO: el ícono se mueve a la esquina inferior derecha
+   del panel completo (no al centro, para no tapar los enlaces), las
+   rayitas se apagan y aparece el punto en su lugar ------------------
+   !important es obligatorio en opacity/pointer-events/top/left/transform
+   porque están compitiendo con la animación de scroll de arriba; es la
+   única forma en que una regla normal le gana a una animación en curso. */
 #menu-toggle:checked ~ .menu-toggle-label {
-  left: calc(var(--sidebar-width) / 2) !important;
+  top: auto !important;
+  bottom: 20px !important;
+  left: calc(var(--sidebar-width) - 52px) !important; /* esquina inf. derecha */
+  transform: none !important;
   opacity: 1 !important;
   pointer-events: auto !important;
 }
@@ -335,7 +317,7 @@ a {
 
 /* Contorno de accesibilidad al navegar con teclado (Tab). */
 #menu-toggle:focus-visible ~ .menu-toggle-label {
-  outline: 2px solid var(--toggle-bar-color);
+  outline: 2px solid #ffffff;
   outline-offset: 6px;
 }
 
@@ -359,8 +341,8 @@ a {
   height: 100vh;
   z-index: var(--z-sidebar);
 
-  background-color: var(--color-sidebar-bg);
-  border-right: 1px solid var(--color-border);
+  background-color: #100c49;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
   overflow: hidden; /* recorta el contenido mientras el ancho se encoge */
 
   display: flex;
@@ -386,33 +368,45 @@ a {
   padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center; /* centra los <li> horizontalmente dentro del menú */
   gap: 25px;
 }
 
+/* Enlaces centrados horizontalmente: display:block + text-align:center
+   (un <a> es inline por defecto, por eso necesita display:block para
+   que text-align tenga efecto). */
 .sidebar__nav a {
   position: relative;
+  display: block;
+  text-align: center;
   font-size: 0.95rem;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: #929292;
   white-space: nowrap; /* evita que el texto se parta al encogerse */
   transition: color var(--hover-transition);
 }
 
+/* El subrayado ahora crece desde el CENTRO hacia los lados
+   (left:50% + translateX(-50%)) en vez de crecer desde la izquierda,
+   para que quede parejo con el texto centrado. */
 .sidebar__nav a::after {
   content: '';
   position: absolute;
-  left: 0;
+  left: 50%;
   bottom: -4px;
   width: 0%;
   height: 2px;
-  background-color: var(--color-accent);
+  background-color: #9075f1;
+  transform: translateX(-50%);
   transition: width var(--hover-transition);
 }
 
 .sidebar__nav a:hover,
 .sidebar__nav a:focus-visible {
-  color: var(--color-text);
+  /* CORRECCIÓN: antes quedaba en #000000 (negro), invisible sobre el
+     fondo oscuro del sidebar (#100c49). Blanco sí contrasta. */
+  color: #ffffff;
 }
 
 .sidebar__nav a:hover::after,
@@ -422,7 +416,7 @@ a {
 
 .sidebar__footer {
   font-size: 0.7rem;
-  color: var(--color-text-muted);
+  color: #929292;
   opacity: 0.6;
   white-space: nowrap;
 }
@@ -491,7 +485,7 @@ a {
    ========================================================================= */
 .main-content {
   margin-left: var(--sidebar-width);
-  background-color: var(--color-bg);
+  background-color: #fefff0;
   min-height: 100vh;
 }
 
@@ -522,35 +516,85 @@ a {
 }
 
 
-/* ============================= 7. HERO + EFECTO CORTINA ===================
-   Estado inicial: <h1> a la izquierda, personaje pegado al margen
-   derecho. Al hacer scroll: el personaje queda FIJO en pantalla
-   (sticky) y se desliza en HORIZONTAL de derecha a izquierda.
+/* ============================= 7. HERO: FONDO + REVELADO DE TEXTO =========
+   NUEVA ANIMACIÓN (reemplaza por completo el deslizamiento horizontal
+   anterior). Ahora:
+   - La imagen del personaje es un fondo FIJO a pantalla completa
+     (no se mueve, no se desliza).
+   - El texto (eyebrow + <h1> + subtítulo) EMPIEZA chico, detrás del
+     personaje (z-index bajo, escala reducida) y, a medida que se
+     hace scroll, CRECE (transform: scale), pasa a estar por DELANTE
+     del personaje (z-index alto) y se acomoda abajo, junto a él.
    ========================================================================= */
 .hero {
   position: relative;
   height: var(--curtain-scroll-distance); /* 220vh: da "recorrido" al scroll */
 
-  /* Este .hero es la FUENTE del timeline con nombre --hero-view: su
-     propio progreso de entrada/salida del viewport es lo que mide
-     el avance de TODA la animación (0% a 100%). Por eso su altura
-     (220vh) es lo que determina cuánto scroll dura el efecto
-     completo. >>> Sube o baja --curtain-scroll-distance para que
-     la animación dure más o menos scroll <<< */
+  /* Este .hero sigue siendo la FUENTE del timeline con nombre
+     --hero-view: su propio progreso de entrada/salida del viewport
+     mide el avance de TODA la animación (0% a 100%).
+     >>> Sube o baja --curtain-scroll-distance para que la animación
+     dure más o menos scroll <<< */
   view-timeline-name: --hero-view;
   view-timeline-axis: block;
 }
 
-.hero__intro {
+/* Imagen de fondo a pantalla completa. Sticky para quedarse fija
+   mientras dura el recorrido de scroll de .hero. NO se anima: es el
+   personaje protagonista, quieto, y el texto es lo que se mueve
+   alrededor/encima de él. */
+.hero__bg {
   position: sticky;
-  top: 22vh;
-  z-index: var(--z-hero-text);
-  padding: 0 60px;
-  max-width: 640px;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: var(--z-hero-bg);
+  overflow: hidden;
+}
+
+.hero__bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* llena toda la pantalla sin deformarse */
+  object-position: center 15%; /* ajusta el encuadre vertical del PNG aquí */
+}
+
+/* Bloque de texto: EMPIEZA chico y detrás de la imagen (z-index bajo),
+   TERMINA grande, por delante (z-index alto) y desplazado hacia abajo
+   para acomodarse "junto al personaje". Es sticky, igual que el fondo,
+   para que ambos ocupen la misma pantalla mientras dura el scroll. */
+.hero__text {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: var(--z-hero-text-behind);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 40px;
+
+  transform-origin: center center;
+  transform: scale(0.45); /* estado base sin soporte de scroll-driven */
+}
+
+/* Panel translúcido detrás del texto: EMPIEZA invisible y se va
+   oscureciendo a medida que el texto se acerca al frente, para que
+   al final quede "perfectamente legible" sobre la imagen. */
+.hero__text::before {
+  content: '';
+  position: absolute;
+  inset: -24px -48px;
+  z-index: -1;
+  border-radius: 28px;
+  background-color: rgba(16, 12, 73, 0); /* mismo tono que --color-bg-alt, empieza en 0 de opacidad */
 }
 
 .hero__eyebrow {
-  color: var(--color-accent);
+  color: #9075f1;
   letter-spacing: 3px;
   text-transform: uppercase;
   font-size: 0.85rem;
@@ -562,67 +606,30 @@ a {
   font-weight: 800;
   line-height: 1.05;
   margin-bottom: 12px;
-  color: var(--color-accent);
+  color: #9075f1;
 }
 
 .hero__subtitle {
-  color: var(--color-text-muted);
+  color: #C0CEE0;
   font-size: 1.05rem;
 }
 
-/* Contenedor sticky: se ancla al viewport (top:0) y se queda fijo
-   durante los 220vh de .hero. ESTE es el elemento animado, no la
-   <img> de adentro — así su z-index compite de verdad contra el
-   .sidebar (que es su hermano en el árbol de apilamiento). */
-.character-wrap {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  z-index: var(--z-character-start);
-
-  display: flex;
-  align-items: center;      /* centrado VERTICAL dentro de los 100vh */
-  justify-content: flex-end; /* pegado al borde derecho (horizontal) */
-  pointer-events: none;
-  overflow: visible;
-
-  transform: translateX(0); /* estado base sin soporte de scroll-driven */
-}
-
-/* Se dimensiona por ALTURA (no por ancho) y sin margen a la derecha,
-   para que quede grande, proporcional y tocando justo el borde
-   derecho de la pantalla, tal como pediste.
-   >>> Si la imagen igual se ve "chica" o centrada dentro de su propio
-   marco, el problema ya no es CSS: es que el archivo PNG tiene mucho
-   espacio transparente alrededor del dibujo. Recorta el PNG bien
-   ajustado al personaje (sin aire de sobra) y este mismo CSS lo hará
-   ver grande automáticamente. <<< */
-.character-img {
-  position: absolute;
-  right: 0;      /* Pegada a la derecha */
-  bottom: 0;     /* Pegada abajo (puedes cambiar a top: 20% si la quieres más arriba) */
-  
-  /* Control de tamaño */
-  height: var(--character-height);
-  width: auto;
-  max-width: var(--character-max-width);
-  object-fit: contain; /* Evita que la imagen se deforme */
-  
-  /* Sin márgenes para que quede pegada al borde */
-  margin: 0;
-  padding: 0;
-}
-
-/* ---- ANIMACIÓN HORIZONTAL: aquí se controla todo el desplazamiento ------
-   .character-wrap escucha el timeline --hero-view (declarado en
-   .hero, del cual SÍ es descendiente, así que no necesita
-   timeline-scope). animation-range: cover 0% cover 100% hace que el
-   0%-100% de las @keyframes corresponda exactamente al 0%-100% del
-   recorrido de scroll de .hero. */
+/* ---- AQUÍ SE CONTROLA LA NUEVA ANIMACIÓN DEL TEXTO ----------------------
+   .hero__text escucha el mismo timeline --hero-view. animation-range:
+   cover 0% cover 100% hace que el 0%-100% de las @keyframes
+   corresponda exactamente al recorrido completo del scroll de .hero. */
 @supports (animation-timeline: view()) {
-  .character-wrap {
-    animation-name: curtain-slide;
+  .hero__text {
+    animation-name: hero-text-reveal;
+    animation-duration: 1ms; /* la duración real la da el scroll-timeline */
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+    animation-timeline: --hero-view;
+    animation-range: cover 0% cover 100%;
+  }
+
+  .hero__text::before {
+    animation-name: hero-panel-reveal;
     animation-duration: 1ms;
     animation-timing-function: linear;
     animation-fill-mode: both;
@@ -631,17 +638,32 @@ a {
   }
 }
 
-@keyframes curtain-slide {
-  /* 0%: Empieza a la izquierda (fuera de la pantalla) */
- 0% {
-    transform: translateX(50vw);
-    z-index: var(--z-character-start);
+@keyframes hero-text-reveal {
+  /* 0%: chico y DETRÁS del personaje */
+  0% {
+    transform: scale(0.45) translateY(0);
+    z-index: var(--z-hero-text-behind);
   }
-  /* 100%: Termina pegado a la derecha */
+  /* 55%: va creciendo y bajando, todavía detrás */
+  55% {
+    transform: scale(0.75) translateY(18vh);
+    z-index: var(--z-hero-text-behind);
+  }
+  /* 56%: cruza justo aquí al frente del personaje (z-index sube) */
+  56% {
+    z-index: var(--z-hero-text-front);
+  }
+  /* 100%: tamaño final, legible, acomodado debajo/junto al personaje */
   100% {
-    transform: translateX(-50vw);
-    z-index: var(--z-character-start);
+    transform: scale(1) translateY(32vh);
+    z-index: var(--z-hero-text-front);
   }
+}
+
+@keyframes hero-panel-reveal {
+  0%   { background-color: rgba(16, 12, 73, 0); }
+  55%  { background-color: rgba(16, 12, 73, 0); }
+  100% { background-color: rgba(16, 12, 73, 0.72); }
 }
 
 
@@ -656,14 +678,24 @@ a {
   position: relative;
   z-index: 1; /* por debajo del personaje mientras este aún la cubre */
   padding: 100px 60px 120px;
-  background-color: var(--color-bg-alt);
-  border-top: 1px solid var(--color-border);
+  background-color: #100c49;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .section-title {
   font-size: 2rem;
   margin-bottom: 40px;
-  color: var(--color-text);
+  color: #000000;
+}
+
+/* CORRECCIÓN: .section-title se usa tanto sobre fondo claro
+   (.content-section) como sobre fondo oscuro (.characteristics y
+   .content-section--alt). El negro de arriba solo se ve bien en el
+   primer caso; aquí se sobreescribe a blanco para los fondos oscuros
+   (antes quedaba invisible: negro sobre #100c49). */
+.characteristics .section-title,
+.content-section--alt .section-title {
+  color: #ffffff;
 }
 
 .characteristics__grid {
@@ -673,8 +705,8 @@ a {
 }
 
 .stat-card {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
+  background-color: #fefff0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 24px;
 
@@ -686,11 +718,11 @@ a {
 .stat-card h3 {
   font-size: 1.05rem;
   margin-bottom: 8px;
-  color: var(--color-accent);
+  color: #9075f1;
 }
 
 .stat-card p {
-  color: var(--color-text-muted);
+  color: #929292;
   font-size: 0.92rem;
   line-height: 1.5;
 }
@@ -731,16 +763,16 @@ a {
 /* ============================= 9. SECCIONES DE CONTENIDO GENERAL ========== */
 .content-section {
   padding: 90px 60px;
-  background-color: var(--color-bg);
+  background-color: #fefff0;
 }
 
 .content-section--alt {
-  background-color: var(--color-bg-alt);
+  background-color: #100c49;
 }
 
 .content-section__text {
   max-width: 700px;
-  color: var(--color-text-muted);
+  color: #929292;
   line-height: 1.7;
   font-size: 1.02rem;
 }
@@ -755,23 +787,25 @@ a {
 
 .list-block li {
   padding: 16px 20px;
-  background-color: var(--color-bg-alt);
-  border-left: 3px solid var(--color-accent);
+  background-color: #100c49;
+  border-left: 3px solid #9075f1;
   border-radius: 4px;
-  color: var(--color-text-muted);
+  color: #929292;
   line-height: 1.5;
 }
 
+/* CORRECCIÓN: estaba en #000000 (negro), invisible sobre el fondo
+   oscuro de .list-block li (#100c49). */
 .list-block strong {
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .site-footer {
   padding: 40px 60px;
   text-align: center;
-  color: var(--color-text-muted);
+  color: #929292;
   font-size: 0.8rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 
@@ -819,7 +853,10 @@ a {
   }
 
   #menu-toggle:checked ~ .menu-toggle-label {
-    left: 32px !important; /* no lo mandamos al centro del panel en móvil */
+    top: 32px !important;
+    bottom: auto !important;
+    left: 32px !important; /* no lo mandamos a la esquina del panel en móvil */
+    transform: translate(-50%, -50%) !important;
   }
 
   .main-content {
@@ -828,7 +865,7 @@ a {
     margin-top: 64px;
   }
 
-  .hero__intro {
+  .hero__text {
     padding: 0 24px;
   }
 
