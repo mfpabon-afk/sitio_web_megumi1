@@ -366,8 +366,44 @@ body {
     padding: 8px;
     border-radius: 6px;
     font-size: 0.8rem;
-    color: var(--color-verde);
+    color: var(--color-azul1);
+}.caja-analogia {
+    background-color: var(--color-tarjeta-sub);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid var(--borde-suave);
 }
+
+
+footer {
+    width: 100%;
+    margin-top: 50px;
+    background-color: #060B12;
+    border-top: 1px solid var(--borde-suave);
+    color: #8A99AD;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.85rem;
+}
+/* Secccion 3*/
+.galeria-tres-imagenes {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0 25px 0;
+    justify-content: space-between;
+}
+
+
+.tarjeta-galeria {
+    flex: 1;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--borde-suave);
+}
+
+
 
 
 
