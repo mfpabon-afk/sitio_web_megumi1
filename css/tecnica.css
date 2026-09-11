@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-    --color-fondo: #4d4e8f;
+    --color-fondo: #9cbae7;
     --color-tarjeta: #3a4278;
     --color-tarjeta-sub: #16254a;
     --color-texto-titulo: #fccfff;
@@ -36,5 +36,18 @@ body {
     width: 1000px;
     max-width: 95%;
 }
-
-
+.contenendor_principal {
+    width: 100%;
+}
+.encabezado_tecnica {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-tarjeta) ;
+    border: 1px solid var(--borde-suave);
+    border-radius: 10px;
+    padding: 35px;
+    margin-bottom: 25px;
+    height: 280px;
+}
+ 
