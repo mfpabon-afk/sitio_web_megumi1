@@ -86,5 +86,43 @@ body {
 #photo1 { transform: rotate(-10deg); z-index: 2; }
 #photo2 { transform: rotate(10deg); z-index: 3; }
 #photo3 { transform: rotate(30deg); z-index: 4; }
+.fan-gallery:hover #photo0 { transform: rotate(-42deg); }
+.fan-gallery:hover #photo1 { transform: rotate(-18deg); }
+.fan-gallery:hover #photo2 { transform: rotate(18deg); }
+.fan-gallery:hover #photo3 { transform: rotate(42deg); }
+
+.nav {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    padding: 0 20px;
+}
+.nav-item {
+    margin-right: 12px;
+}
+.nav-item a {
+    color: var(--color-texto-cuerpo);
+    background-color: var(--color-tarjeta-sub);
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: block;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}.nav-item:hover a {
+    color: var(--color-azul1);
+    border-color: var(--color-azul1);
+}
+
 
 
