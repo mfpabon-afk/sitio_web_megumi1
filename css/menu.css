@@ -1,7 +1,7 @@
 :root {
 
   /* --- PANTALLA DE CARGA --------------------------------------------- */
-  --loading-bg-color: #f1f1f1;
+  --loading-bg-color: #fefff0;
   --loading-bar-color: #20188f;
   --loading-text-color: #1a0e0e;
   --loading-bg-image: none;
@@ -51,8 +51,8 @@
   --z-sidebar: 10;
   --z-sidebar-expanded: 50;
   --z-hero-text: 5;
-  --z-character-start: 2;
-  --z-character-end: 2;
+  --z-character-start: 10;
+  --z-character-end: 20;
   --z-toggle-button: 60; /* el botón hamburguesa siempre debe ser clicable */
 }
 
@@ -562,6 +562,7 @@ a {
   font-weight: 800;
   line-height: 1.05;
   margin-bottom: 12px;
+  color: var(--color-accent);
 }
 
 .hero__subtitle {
@@ -598,10 +599,19 @@ a {
    ajustado al personaje (sin aire de sobra) y este mismo CSS lo hará
    ver grande automáticamente. <<< */
 .character-img {
+  position: absolute;
+  right: 0;      /* Pegada a la derecha */
+  bottom: 0;     /* Pegada abajo (puedes cambiar a top: 20% si la quieres más arriba) */
+  
+  /* Control de tamaño */
   height: var(--character-height);
   width: auto;
   max-width: var(--character-max-width);
-  margin-right: 0;
+  object-fit: contain; /* Evita que la imagen se deforme */
+  
+  /* Sin márgenes para que quede pegada al borde */
+  margin: 0;
+  padding: 0;
 }
 
 /* ---- ANIMACIÓN HORIZONTAL: aquí se controla todo el desplazamiento ------
@@ -623,17 +633,17 @@ a {
 
 @keyframes curtain-slide {
   /* 0%: Empieza a la izquierda (fuera de la pantalla) */
-  0% {
-    transform: translateX(0vw);
-    z-index: var(--z-character-end);
+ 0% {
+    transform: translateX(50vw);
+    z-index: var(--z-character-start);
   }
-  
   /* 100%: Termina pegado a la derecha */
   100% {
-    transform: translateX(80);
-    z-index: var(--z-character-end);
+    transform: translateX(-50vw);
+    z-index: var(--z-character-start);
   }
 }
+
 
 
 /* ============================= 8. FICHA DEL PERSONAJE (revelado) ==========
