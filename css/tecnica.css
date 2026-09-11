@@ -262,4 +262,42 @@ body {
     font-size: 0.95rem;
     font-weight: 600;
     margin-bottom: 8px;
+}.carrusel-manual {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 5px 18px 5px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+.carrusel-manual::-webkit-scrollbar {
+    height: 8px; /* Ancho cómodo para hacer clic con mouse */
+}
+
+
+.carrusel-manual::-webkit-scrollbar-track {
+    background: var(--color-tarjeta-sub);
+    border-radius: 10px;
+    border: 1px solid var(--borde-suave);
+}
+
+
+.carrusel-manual::-webkit-scrollbar-thumb {
+    background: var(--color-rosa); 
+    cursor: pointer;  
+}
+.carrusel-manual {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-rosa) var(--color-tarjeta-sub);
+}
+.card-shikigami {
+    position: relative;
+    width: 260px;
+    height: 380px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid var(--borde-suave);
+    background-color: var(--color-tarjeta-sub);
+    scroll-snap-align: start; /* Alineación fluida de las tarjetas */
 }
