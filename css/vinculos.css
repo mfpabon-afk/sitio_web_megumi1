@@ -1,6 +1,321 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* ============================================================
+   MENÚ COMPARTIDO (sidebar + botón hamburguesa)
+   Este bloque es IDÉNTICO en index.css, tecnica.css, vinculos.css,
+   clan-zenin.css e historia.css — cada página trae su propia
+   copia para no depender de ningún otro archivo CSS.
+   ============================================================ */
+/* ============================================================
+   Esta página NO usa variables de color en :root — cada color
+   está escrito directo en la propiedad de cada selector, tal
+   como se pidió. Solo quedan aquí las variables que NO son
+   color (dimensiones, tiempos, capas), porque se reutilizan en
+   varios calc() y selectores :checked.
+   ============================================================ */
+:root {
+  --sidebar-width: 200px;
+  --sidebar-collapsed-width: 64px;
+  --hover-transition: 0.25s ease;
+
+  --z-sidebar: 10;
+  --z-sidebar-expanded: 50;
+  --z-toggle-button: 60;
+}
+
+/* ============================= RESET BASE ============================= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+/* ============================= 3. BOTÓN HAMBURGUESA (checkbox hack) =======
+   El checkbox real queda invisible pero funcional; el <label> es lo
+   que el usuario ve y pulsa. Al hacer clic en el label, el navegador
+   marca/desmarca el checkbox automáticamente — sin una sola línea
+   de JavaScript.
+
+   En esta página el sidebar NUNCA se encoge (no hay scroll-cortina
+   aquí), así que el botón queda SIEMPRE visible en su esquina fija,
+   sin depender de ningún scroll-timeline.
+   ========================================================================= */
+
+/* Checkbox visualmente oculto pero SIGUE siendo funcional: se puede
+   navegar con Tab y activar con Espacio (a diferencia de display:none,
+   que lo saca completamente de la accesibilidad). */
+.menu-toggle-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* El botón visible: 3 rayitas SIN fondo propio, fijo en la esquina
+   superior izquierda (aquí no hay franja de sidebar colapsado a la
+   cual "unirse", porque el sidebar de esta página siempre mide
+   --sidebar-width completo). */
+.menu-toggle-label {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  z-index: var(--z-toggle-button);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  cursor: pointer;
+  background: transparent;
+  opacity: 1;
+}
+
+.menu-toggle-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: opacity var(--hover-transition);
+}
+
+/* El "punto" que reemplaza a las rayitas cuando el menú está abierto.
+   Vive como ::after del propio label, centrado sobre él. */
+.menu-toggle-label::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  opacity: 0;
+  transition: opacity var(--hover-transition);
+}
+
+/* ---- Menú ABIERTO: el ícono se mueve a la esquina inferior derecha
+   del panel, las rayitas se apagan y aparece el punto en su lugar --- */
+#menu-toggle:checked ~ .menu-toggle-label {
+  top: auto;
+  bottom: 20px;
+  left: calc(var(--sidebar-width) - 52px);
+  transform: none;
+}
+
+#menu-toggle:checked ~ .menu-toggle-label .menu-toggle-bar {
+  opacity: 0;
+}
+
+#menu-toggle:checked ~ .menu-toggle-label::after {
+  opacity: 1;
+}
+
+/* Contorno de accesibilidad al navegar con teclado (Tab). */
+#menu-toggle:focus-visible ~ .menu-toggle-label {
+  outline: 2px solid #ffffff;
+  outline-offset: 6px;
+}
+/* ============================= 5. MENÚ LATERAL (aside) ====================
+   Barra lateral fija a la izquierda. Tiene DOS comportamientos que
+   compiten entre sí:
+
+   a) Se encoge SOLA a medida que el usuario hace scroll dentro del
+      hero (mismo timeline --hero-view que usa el personaje).
+   b) Se puede forzar a estar SIEMPRE expandida marcando el checkbox
+      de arriba — ver el bloque "#menu-toggle:checked ~ .sidebar"
+      más abajo, con !important (única forma de ganarle a una
+      animación en curso con CSS puro).
+   ========================================================================= */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  z-index: var(--z-sidebar);
+
+  background-color: #100c49;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  overflow: hidden; /* recorta el contenido mientras el ancho se encoge */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 20px;
+}
+
+.sidebar__logo {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar__logo-img {
+  width: 100%;
+  max-width: 156px;
+  height: auto;
+}
+
+.sidebar__nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra los <li> horizontalmente dentro del menú */
+  gap: 25px;
+}
+
+/* Enlaces centrados horizontalmente: display:block + text-align:center
+   (un <a> es inline por defecto, por eso necesita display:block para
+   que text-align tenga efecto). */
+.sidebar__nav a {
+  position: relative;
+  display: block;
+  text-align: center;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #929292;
+  white-space: nowrap; /* evita que el texto se parta al encogerse */
+  transition: color var(--hover-transition);
+}
+
+/* El subrayado ahora crece desde el CENTRO hacia los lados
+   (left:50% + translateX(-50%)) en vez de crecer desde la izquierda,
+   para que quede parejo con el texto centrado. */
+.sidebar__nav a::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background-color: #9075f1;
+  transform: translateX(-50%);
+  transition: width var(--hover-transition);
+}
+
+.sidebar__nav a:hover,
+.sidebar__nav a:focus-visible {
+  /* CORRECCIÓN: antes quedaba en #000000 (negro), invisible sobre el
+     fondo oscuro del sidebar (#100c49). Blanco sí contrasta. */
+  color: #ffffff;
+}
+
+.sidebar__nav a:hover::after,
+.sidebar__nav a:focus-visible::after {
+  width: 100%;
+}
+
+/* Separadores de categoría dentro del menú (ej. "Personaje",
+   "Poderes", "Contexto"). Son <li> normales con esta clase, sin
+   enlace adentro — solo texto chico con una línea arriba para
+   dividir visualmente los grupos de enlaces. */
+.sidebar__nav-label {
+  width: 100%;
+  text-align: center;
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #929292;
+  opacity: 0.7;
+  white-space: nowrap;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* El primer separador (arriba de todo) no necesita la línea divisoria */
+.sidebar__nav ul > li.sidebar__nav-label:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.sidebar__footer {
+  font-size: 0.7rem;
+  color: #929292;
+  opacity: 0.6;
+  white-space: nowrap;
+}
+
+/* Esta página no tiene <section class="hero">, así que el sidebar NO
+   se encoge con el scroll (eso solo pasa en index.html). Se queda
+   siempre en su ancho completo. El checkbox igual funciona para
+   subir su z-index por encima de cualquier otro contenido si hiciera
+   falta, y para el efecto visual del punto/rayitas del botón. */
+#menu-toggle:checked ~ .sidebar {
+  z-index: var(--z-sidebar-expanded);
+}
+/* ============================= 4. CONTENIDO PRINCIPAL (main) ==============
+   Como esta página no tiene <section class="hero">, el margen se
+   queda fijo en el ancho del sidebar (no hay scroll-cortina que lo
+   anime). El color de fondo se sobreescribe más abajo, en la parte
+   específica de esta página, para que combine con su propia paleta.
+   ========================================================================= */
+.main-content {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+}
+/* ============================= RESPONSIVE BÁSICO =========================
+   El menú fijo de 200px no funciona bien en pantallas muy pequeñas;
+   lo replegamos a una barra superior compacta. */
+@media (max-width: 700px) {
+  .sidebar {
+    position: fixed;
+    width: 100%;
+    height: 64px;
+    top: 0;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 16px 0 76px; /* espacio para el botón hamburguesa */
+  }
+
+  .sidebar__nav ul {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .sidebar__footer {
+    display: none;
+  }
+
+  .menu-toggle-label {
+    top: 16px;
+    left: 16px;
+  }
+
+  #menu-toggle:checked ~ .menu-toggle-label {
+    top: 16px;
+    bottom: auto;
+    left: 16px;
+    transform: none;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+    margin-top: 64px;
+  }
+}
+
+
+/* ============================================================
    CAMBIO DE ARQUITECTURA: ya NO hay variables de color en :root
    (se quitó por completo el bloque :root de este archivo). Cada
    color está escrito directo en la propiedad de cada selector.
@@ -381,20 +696,21 @@ body {
 }
 
 
-/* ============================================================
-   COMPATIBILIDAD CON EL MENÚ LATERAL (menu.css)
-   ------------------------------------------------------------
-   tecnica.html y vinculos.html ahora cargan menu.css ADEMÁS de
-   este archivo, para tener el mismo <aside class="sidebar"> fijo
-   que index.html. menu.css ya define `.main-content` con su
-   margin-left animado; aquí solo se sobreescribe el color de
-   fondo para que combine con la paleta oscura de esta página
-   (si no, se vería el fondo claro del sitio principal por los
-   bordes). Como esta página no tiene ningún <section class="hero">,
-   el timeline --hero-view no existe aquí, así que el sidebar
-   simplemente se queda fijo en 200px (no se encoge) — está bien,
-   es el comportamiento esperado en páginas sin scroll-cortina.
-   ============================================================ */
+/* Color de fondo del contenedor que deja espacio para el sidebar
+   (ver bloque "MENÚ COMPARTIDO" al principio del archivo). */
 .main-content {
     background-color: #12163A;
+}
+
+
+/* Subtítulos de cada categoría del mapa de vínculos (Familia,
+   Amigos, Maestros): mismo estilo que .subtitulo-seccion pero más
+   chico y con separación superior, sin usar estilos en línea. */
+.categoria-titulo {
+  font-size: 1.2rem;
+  margin-top: 32px;
+}
+
+.categoria-titulo--primera {
+  margin-top: 24px;
 }
