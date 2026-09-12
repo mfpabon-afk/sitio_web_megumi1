@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Megumi Fushiguro - Vínculos</title>
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/tecnica.css">
     <link rel="stylesheet" href="css/vinculos.css">
 </head>
 
@@ -33,10 +34,17 @@
 
     <nav class="sidebar__nav" aria-label="Navegación principal">
       <ul>
+        <li class="sidebar__nav-label">Personaje</li>
         <li><a href="index.html">Megumi Fushiguro</a></li>
+        <li><a href="vinculos.html">Vínculos</a></li>
+
+        <li class="sidebar__nav-label">Poderes</li>
         <li><a href="tecnica.html">Técnica Maldita</a></li>
         <li><a href="dominio.html">Dominio</a></li>
-        <li><a href="vinculos.html">Vínculos</a></li>
+
+        <li class="sidebar__nav-label">Contexto</li>
+        <li><a href="clan-zenin.html">Clan Zenin</a></li>
+        <li><a href="historia.html">Historia</a></li>
       </ul>
     </nav>
 
@@ -59,250 +67,236 @@
       <main class="contenendor_principal">
 
         <!-- ============================================================
-             MAPA DE RELACIONES INTERACTIVO — 100% CSS (Checkbox Hack)
+             MAPA DE RELACIONES — tarjetas estilo "shikigami"
              ------------------------------------------------------------
-             NIVEL 1: 3 categorías (Familia / Amigos / Maestros). Cada
-             una es un <input type="checkbox"> oculto + su <label> a modo
-             de botón. Al marcarlo, se despliega su panel con 3 tarjetas.
+             Reutiliza EXACTAMENTE las clases .card-shikigami /
+             .card-art-full / .card-info-overlay / .card-header /
+             .card-title / .type-badge / .card-body / .skills-list /
+             .tactical-box que ya existen en tecnica.css para las
+             cartas de shikigami. Al pasar el mouse (:hover) sobre la
+             tarjeta, el overlay oscuro se revela con la información
+             — mismo comportamiento, cero CSS nuevo para ese efecto.
 
-             NIVEL 2: dentro de cada tarjeta hay OTRO checkbox oculto +
-             label. Al marcarlo, se despliega la descripción de ese
-             personaje. Es el mismo truco, anidado un nivel más.
-
-             Todo el detalle de cómo funciona (por qué el checkbox debe
-             ir ANTES del panel en el HTML, y cómo se anima la altura
-             con grid-template-rows) está comentado en tecnica.css,
-             sección "MAPA DE VÍNCULOS — CSS CHECKBOX HACK".
+             Cada categoría (Familia / Amigos / Maestros) es un
+             .carrusel-manual: fila horizontal con scroll-snap, igual
+             que el carrusel de shikigamis de tecnica.html.
              ============================================================ -->
         <section class="caja-seccion" id="mapa-vinculos">
           <h2 class="titulo-seccion">Mapa de Relaciones</h2>
           <p class="texto-contenido">
-            Elige una categoría para ver a los personajes relacionados con
-            Megumi. Haz clic en cada tarjeta para leer más sobre su vínculo.
+            Pasa el mouse sobre cada tarjeta para leer más sobre su
+            vínculo con Megumi.
           </p>
 
-          <div class="mapa-vinculos">
+          <!-- ============ FAMILIA ============ -->
+          <h3 class="subtitulo-seccion" style="font-size:1.2rem; margin-top:24px;">Familia</h3>
+          <div class="carrusel-manual">
 
-            <!-- ============ CATEGORÍA: FAMILIA ============ -->
-            <div class="categoria">
-              <input type="checkbox" id="cat-familia" class="categoria__checkbox">
-              <label for="cat-familia" class="categoria__boton">Familia</label>
-
-              <div class="categoria__panel-wrap">
-                <div class="categoria__panel">
-                  <div class="categoria__panel-inner">
-
-                    <!-- Tarjeta: Tōji Fushiguro -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-toji" class="personaje__checkbox">
-                      <label for="p-toji" class="personaje__tarjeta">
-                        <img src="imagenes/toji.jpg" alt="Tōji Fushiguro" class="personaje__foto">
-                        <span class="personaje__nombre">Tōji Fushiguro</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            Padre biológico de Megumi. Sin energía maldita
-                            propia, planeó vender a su hijo al clan Zen'in
-                            como portador de la Técnica de las Diez Sombras.
-                            Su relación con Megumi es más genética que
-                            afectiva, pero define buena parte de su origen.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                    <!-- Tarjeta: Tsumiki Fushiguro -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-tsumiki" class="personaje__checkbox">
-                      <label for="p-tsumiki" class="personaje__tarjeta">
-                        <img src="imagenes/tsumiki.jpg" alt="Tsumiki Fushiguro" class="personaje__foto">
-                        <span class="personaje__nombre">Tsumiki Fushiguro</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            Hermana adoptiva de Megumi. Es la razón principal
-                            por la que Megumi decidió convertirse en
-                            hechicero: quería protegerla y darle una vida
-                            mejor. Su estado tras caer en coma marcó
-                            profundamente la personalidad de Megumi.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                    <!-- Tarjeta: Naoya Zenin -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-naoya" class="personaje__checkbox">
-                      <label for="p-naoya" class="personaje__tarjeta">
-                        <img src="imagenes/naoya.jpg" alt="Naoya Zenin" class="personaje__foto">
-                        <span class="personaje__nombre">Naoya Zenin</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            Primo dentro del clan Zenin y una de las figuras
-                            más hostiles hacia Megumi, a quien desprecia por
-                            no haber nacido dentro del clan pese a portar su
-                            técnica más codiciada.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                  </div>
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/toji.jpg" alt="Tōji Fushiguro">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Tōji Fushiguro</h4>
+                  <span class="type-badge">Familia · Padre biológico</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Sin energía maldita propia, pero un cuerpo excepcional.</li>
+                    <li>Planeó vender a Megumi al clan Zen'in.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> más genético que afectivo; define el origen de Megumi.
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- ============ CATEGORÍA: AMIGOS ============ -->
-            <div class="categoria">
-              <input type="checkbox" id="cat-amigos" class="categoria__checkbox">
-              <label for="cat-amigos" class="categoria__boton">Amigos</label>
-
-              <div class="categoria__panel-wrap">
-                <div class="categoria__panel">
-                  <div class="categoria__panel-inner">
-
-                    <!-- Tarjeta: Yuji Itadori -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-yuji" class="personaje__checkbox">
-                      <label for="p-yuji" class="personaje__tarjeta">
-                        <img src="imagenes/yuji.jpg" alt="Yuji Itadori" class="personaje__foto">
-                        <span class="personaje__nombre">Yuji Itadori</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            Compañero de la Escuela Técnica de Tokio y su
-                            primer amigo cercano dentro del mundo de la
-                            hechicería. Su optimismo contrasta con el
-                            carácter reservado de Megumi, y con el tiempo
-                            se convierten en un equipo muy sólido en combate.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                    <!-- Tarjeta: Nobara Kugisaki -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-nobara" class="personaje__checkbox">
-                      <label for="p-nobara" class="personaje__tarjeta">
-                        <img src="imagenes/nobara.jpg" alt="Nobara Kugisaki" class="personaje__foto">
-                        <span class="personaje__nombre">Nobara Kugisaki</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            La tercera integrante del trío de primer año.
-                            Su carácter directo suele chocar con la
-                            frialdad inicial de Megumi, pero ambos
-                            terminan desarrollando un respeto mutuo forjado
-                            en misiones compartidas.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                    <!-- Tarjeta: Maki Zenin -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-maki" class="personaje__checkbox">
-                      <label for="p-maki" class="personaje__tarjeta">
-                        <img src="imagenes/maki.jpg" alt="Maki Zenin" class="personaje__foto">
-                        <span class="personaje__nombre">Maki Zenin</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            Senpai de Megumi y, al igual que él, alguien que
-                            no encaja del todo en el rígido clan Zenin.
-                            Comparten una relación de mutuo respeto por
-                            haber crecido bajo la sombra del mismo clan.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                  </div>
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/tsumiki.jpg" alt="Tsumiki Fushiguro">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Tsumiki Fushiguro</h4>
+                  <span class="type-badge">Familia · Hermana adoptiva</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Razón principal por la que Megumi se hizo hechicero.</li>
+                    <li>Su coma marcó profundamente su personalidad.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> la persona que Megumi más quiere proteger.
                 </div>
               </div>
-            </div>
+            </article>
 
-            <!-- ============ CATEGORÍA: MAESTROS ============ -->
-            <div class="categoria">
-              <input type="checkbox" id="cat-maestros" class="categoria__checkbox">
-              <label for="cat-maestros" class="categoria__boton">Maestros</label>
-
-              <div class="categoria__panel-wrap">
-                <div class="categoria__panel">
-                  <div class="categoria__panel-inner">
-
-                    <!-- Tarjeta: Satoru Gojo -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-gojo" class="personaje__checkbox">
-                      <label for="p-gojo" class="personaje__tarjeta">
-                        <img src="imagenes/gojo.jpg" alt="Satoru Gojo" class="personaje__foto">
-                        <span class="personaje__nombre">Satoru Gojo</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            Profesor a cargo de la clase de primer año.
-                            Reconoció el potencial de Megumi desde temprano
-                            y fue quien lo llevó a la Escuela Técnica,
-                            apostando por él como una de las piezas clave
-                            del futuro de la hechicería.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                    <!-- Tarjeta: Masamichi Yaga -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-yaga" class="personaje__checkbox">
-                      <label for="p-yaga" class="personaje__tarjeta">
-                        <img src="imagenes/yaga.jpg" alt="Masamichi Yaga" class="personaje__foto">
-                        <span class="personaje__nombre">Masamichi Yaga</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            Director de la Escuela Técnica de Tokio.
-                            Supervisa la formación de Megumi desde una
-                            posición más institucional, velando por su
-                            desarrollo dentro de las normas de la escuela.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                    <!-- Tarjeta: Shoko Ieiri -->
-                    <article class="personaje">
-                      <input type="checkbox" id="p-shoko" class="personaje__checkbox">
-                      <label for="p-shoko" class="personaje__tarjeta">
-                        <img src="imagenes/shoko.jpg" alt="Shoko Ieiri" class="personaje__foto">
-                        <span class="personaje__nombre">Shoko Ieiri</span>
-                      </label>
-                      <div class="personaje__info-wrap">
-                        <div class="personaje__info">
-                          <p>
-                            Médica de la escuela y figura cercana a Gojo.
-                            Atiende a Megumi tras sus misiones y es una de
-                            las pocas adultas en quien los estudiantes
-                            confían abiertamente.
-                          </p>
-                        </div>
-                      </div>
-                    </article>
-
-                  </div>
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/naoya.jpg" alt="Naoya Zenin">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Naoya Zenin</h4>
+                  <span class="type-badge">Familia · Primo (Clan Zenin)</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Una de las figuras más hostiles hacia Megumi.</li>
+                    <li>Lo desprecia por no haber nacido dentro del clan.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> rivalidad y desprecio dentro del propio clan.
                 </div>
               </div>
-            </div>
+            </article>
 
           </div>
+
+          <!-- ============ AMIGOS ============ -->
+          <h3 class="subtitulo-seccion" style="font-size:1.2rem; margin-top:32px;">Amigos</h3>
+          <div class="carrusel-manual">
+
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/yuji.jpg" alt="Yuji Itadori">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Yuji Itadori</h4>
+                  <span class="type-badge">Amigos · Compañero de clase</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Su primer amigo cercano en la hechicería.</li>
+                    <li>Forman un equipo muy sólido en combate.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> el optimismo de Yuji contrasta con la frialdad de Megumi.
+                </div>
+              </div>
+            </article>
+
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/nobara.jpg" alt="Nobara Kugisaki">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Nobara Kugisaki</h4>
+                  <span class="type-badge">Amigos · Compañera de clase</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Tercera integrante del trío de primer año.</li>
+                    <li>Carácter directo que choca al inicio con Megumi.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> respeto mutuo forjado en misiones compartidas.
+                </div>
+              </div>
+            </article>
+
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/maki.jpg" alt="Maki Zenin">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Maki Zenin</h4>
+                  <span class="type-badge">Amigos · Senpai</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Tampoco encaja del todo en el rígido clan Zenin.</li>
+                    <li>Comparten el peso de crecer bajo el mismo clan.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> respeto mutuo entre parias del clan Zenin.
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- ============ MAESTROS ============ -->
+          <h3 class="subtitulo-seccion" style="font-size:1.2rem; margin-top:32px;">Maestros</h3>
+          <div class="carrusel-manual">
+
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/gojo.jpg" alt="Satoru Gojo">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Satoru Gojo</h4>
+                  <span class="type-badge">Maestros · Profesor</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Reconoció su potencial y lo sacó del clan Zenin.</li>
+                    <li>Apostó por él como pieza clave del futuro.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> mentor que le abrió las puertas de la Escuela Técnica.
+                </div>
+              </div>
+            </article>
+
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/yaga.jpg" alt="Masamichi Yaga">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Masamichi Yaga</h4>
+                  <span class="type-badge">Maestros · Director</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Director de la Escuela Técnica de Tokio.</li>
+                    <li>Supervisa su formación desde una posición institucional.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> autoridad y respaldo formal dentro de la escuela.
+                </div>
+              </div>
+            </article>
+
+            <article class="card-shikigami">
+              <div class="card-art-full">
+                <img src="imagenes/shoko.jpg" alt="Shoko Ieiri">
+              </div>
+              <div class="card-info-overlay">
+                <header class="card-header">
+                  <h4 class="card-title">Shoko Ieiri</h4>
+                  <span class="type-badge">Maestros · Médica de la escuela</span>
+                </header>
+                <div class="card-body">
+                  <ul class="skills-list">
+                    <li>Lo atiende tras cada misión.</li>
+                    <li>Una de las pocas adultas en quien confían los estudiantes.</li>
+                  </ul>
+                </div>
+                <div class="tactical-box">
+                  <strong>Vínculo:</strong> cuidado y confianza fuera del combate.
+                </div>
+              </div>
+            </article>
+
+          </div>
+
         </section>
+
 
       </main>
     </div>

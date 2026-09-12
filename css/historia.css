@@ -1,0 +1,428 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --color-fondo: #12163A;
+    --color-tarjeta: #3a4278;
+    --color-tarjeta-sub: #16254a;
+    --color-texto-titulo: #fccfff;
+    --color-texto-cuerpo: #C0CEE0;
+    --color-rosa: #FDE2E4;
+    --color-azul1: #a5dbe7;
+    --color-azul2: #A7E0DB;
+    --borde-suave: #5261a5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, .titulo-principal, .subtitulo-seccion {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto-cuerpo);
+    font-family: 'Merriweather', serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.caja-principal {
+    width: 1000px;
+    max-width: 95%;
+}
+
+.contenendor_principal {
+    width: 100%;
+}
+
+.encabezado_tecnica {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+    border-radius: 10px;
+    padding: 35px;
+    margin-bottom: 25px;
+    height: 280px;
+}
+
+.titulo-principal {
+    font-size: 2.8rem;
+    color: var(--color-rosa);
+    text-transform: uppercase; 
+    letter-spacing: 2px;
+}
+
+.subtitulo {
+    color: var(--color-azul2);
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.fan-gallery {
+    display: grid;
+    position: relative;
+    width: 220px;
+    height: 200px;
+}
+
+.fan-gallery img {
+    grid-column: 1;
+    grid-row: 1;
+    width: 130px;
+    height: 190px;
+    border-radius: 14px;
+    object-fit: cover;
+    transform-origin: bottom center;
+    transition: transform 0.4s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+#photo0 { transform: rotate(-30deg); z-index: 1; }
+#photo1 { transform: rotate(-10deg); z-index: 2; }
+#photo2 { transform: rotate(10deg); z-index: 3; }
+#photo3 { transform: rotate(30deg); z-index: 4; }
+
+.fan-gallery:hover #photo0 { transform: rotate(-42deg); }
+.fan-gallery:hover #photo1 { transform: rotate(-18deg); }
+.fan-gallery:hover #photo2 { transform: rotate(18deg); }
+.fan-gallery:hover #photo3 { transform: rotate(42deg); }
+
+.navegacion {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 30px;
+    border-radius: 16px;
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.nav-item {
+    margin-right: 12px;
+}
+
+.nav-item a {
+    color: var(--color-texto-cuerpo);
+    background-color: var(--color-tarjeta-sub);
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: block;
+    text-decoration: none;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover a {
+    color: var(--color-azul1);
+    border-color: var(--color-azul1);
+}
+
+.caja-seccion, .seccion-bloque {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.titulo-seccion, .subtitulo-seccion {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: var(--color-azul2);
+    margin-bottom: 18px;
+    text-transform: uppercase;
+}
+
+.texto-contenido, .introduccion-seccion {
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.tarjeta-imagen-simple {
+    width: 100%;
+    max-width: 420px;
+    height: 240px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 25px auto;
+    border: 2px solid var(--borde-suave);
+}
+
+.tarjeta-imagen-simple img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-cards {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    flex: 1;
+    min-width: 260px;
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--borde-suave);
+    border-radius: 14px;
+    padding: 22px;
+}
+
+.info-card-title {
+    color: var(--color-azul1);
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+}
+
+.tipos_tecnica {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.tarjeta_innata, .tarjeta_no_innata {
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--borde-suave);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.tarjeta_innata h3, .tarjeta_no_innata h3 {
+    color: var(--color-texto-titulo);
+    margin-bottom: 8px;
+}
+
+.etiqueta_ejemplo {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: var(--color-azul2);
+    font-weight: 600;
+}
+
+.contenedor-fichas {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.tarjeta-personaje {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--borde-suave);
+    border-radius: 16px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.tarjeta-personaje-toji {
+    flex-direction: row-reverse;
+}
+
+.fija-personaje {
+    width: 180px;
+    height: 180px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.fija-personaje img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contenido-personaje h3 {
+    color: var(--color-texto-titulo);
+    font-size: 1.4rem;
+}
+
+.subtitulo-personaje {
+    color: var(--color-rosa);
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Sección 3: Galería de 3 Imágenes */
+.galeria-tres-imagenes {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0 25px 0;
+    justify-content: space-between;
+}
+
+.tarjeta-galeria {
+    flex: 1;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--borde-suave);
+}
+
+.tarjeta-galeria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sección 4: Carrusel */
+.carrusel-manual {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 5px 18px 5px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-rosa) var(--color-tarjeta-sub);
+}
+
+.carrusel-manual::-webkit-scrollbar {
+    height: 8px;
+}
+
+.carrusel-manual::-webkit-scrollbar-track {
+    background: var(--color-tarjeta-sub);
+    border-radius: 10px;
+    border: 1px solid var(--borde-suave);
+}
+
+.carrusel-manual::-webkit-scrollbar-thumb {
+    background: var(--color-rosa); 
+    border-radius: 10px;
+    cursor: pointer;   
+}
+
+.card-shikigami {
+    position: relative;
+    width: 260px;
+    height: 380px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 2px solid var(--borde-suave);
+    background-color: var(--color-tarjeta-sub);
+    scroll-snap-align: start;
+}
+
+.card-art-full {
+    width: 100%;
+    height: 100%;
+}
+
+.card-art-full img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-info-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 19, 30, 0.95);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card-shikigami:hover .card-info-overlay {
+    opacity: 1;
+}
+
+.card-header {
+    border-bottom: 1px solid var(--borde-suave);
+    padding-bottom: 8px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    color: var(--color-texto-titulo);
+}
+
+.type-badge {
+    font-size: 0.75rem;
+    color: var(--color-azul1);
+    text-transform: uppercase;
+}
+
+.card-body {
+    font-size: 0.85rem;
+}
+
+.skills-list {
+    list-style: none;
+    margin-top: 8px;
+}
+
+.skills-list li {
+    margin-bottom: 4px;
+}
+
+.tactical-box {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--color-azul1);
+}
+
+.caja-analogia {
+    background-color: var(--color-tarjeta-sub);
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 1px solid var(--borde-suave);
+}
+
+footer {
+    width: 100%;
+    margin-top: 50px;
+    background-color: #060B12;
+    border-top: 1px solid var(--borde-suave);
+    color: #8A99AD;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.85rem;
+}
+
+/* ============================================================
+   COMPATIBILIDAD CON EL MENÚ LATERAL (menu.css)
+   tecnica.html, clan-zenin.html e historia.html cargan menu.css
+   ADEMÁS de este archivo, para tener el mismo <aside class="sidebar">
+   fijo que index.html. menu.css ya define `.main-content` con su
+   margin-left; aquí solo se sobreescribe el fondo para que combine
+   con la paleta oscura de esta página en vez del fondo claro del
+   sitio principal. Como estas páginas no tienen <section class="hero">,
+   el sidebar se queda fijo en 200px (no se encoge) — es el
+   comportamiento esperado en páginas sin scroll-cortina.
+   ============================================================ */
+.main-content {
+    background-color: var(--color-fondo);
+}
