@@ -1,12 +1,230 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitio webUwU</title>
-    <link rel="stylesheet" href="css/menu.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Megumi Fushiguro</title>
+    <link rel="icon" type="image/x-icon" href="resourse/2bff325c670c3f907e20b7db51137674.png" />
+    <link rel="stylesheet" href="css/menu.css" />
 </head>
 <body>
-    
+
+  <!-- ============================================================
+       1. PANTALLA DE CARGA (100% CSS)
+       ============================================================ -->
+  <div class="loading-screen">
+    <div class="loading-content">
+
+      <img
+        src="resourse/megumi-transparent-megumi.gif"
+        alt="Megumi bravo"
+        class="loading-gif">
+
+      <p class="loading-text">Cargando...</p>
+
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-bar__fill"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       2. MENÚ HAMBURGUESA 
+       ------------------------------------------------------------
+       El checkbox va OCULTO. El <label for="menu-toggle"> es el
+       botón visible (las 3 rayitas). Al hacer clic en el label,
+       el navegador marca el checkbox automáticamente (sin JS).
+
+       IMPORTANTE: este input y su label deben ir ANTES del
+       <aside class="sidebar"> en el HTML, porque en menu.css
+       usamos el selector de hermano general `~`:
+
+           #menu-toggle:checked ~ .sidebar { ... }
+
+       Ese selector SOLO puede "ver" elementos que vengan DESPUÉS
+       de él en el mismo nivel del DOM, nunca antes ni dentro.
+       ============================================================ -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+  <label for="menu-toggle" class="menu-toggle-label" aria-label="Abrir o cerrar menú">
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
+  </label>
+
+
+  <!-- ============================================================
+       3. MENÚ LATERAL
+       Uso <aside> porque es contenido complementario a la
+       página (navegación persistente). El CSS lo fija a la
+       izquierda con position: fixed y lo encoge/expande según
+       el scroll y según el checkbox de arriba.
+       ============================================================ -->
+  <aside class="sidebar">
+
+    <a href="index.html" class="sidebar__logo" aria-label="Inicio">
+      <img
+        src="resourse/Jujutsu-Kaisen-Logo-No-Background.png"
+        alt="logo Jujutsu"
+        class="sidebar__logo-img">
+    </a>
+
+    <nav class="sidebar__nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html">Megumi Fushiguro</a></li>
+        <li><a href="tecnica.html">Técnica Maldita</a></li>
+        <li><a href="dominio.html">Dominio</a></li>
+        <li><a href="vinculos.html">Vínculos</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar__footer">
+      <p>Fan page · 2026</p>
+    </div>
+
+  </aside>
+
+
+  <!-- ============================================================
+       4. CONTENIDO PRINCIPAL
+       <main> = el contenido único y central de ESTA página.
+       Debe haber solo UN <main> por página (regla HTML5).
+       ============================================================ -->
+  <main class="main-content">
+
+    <!-- ========== 4.1 HERO: fondo fijo + texto animado ========== -->
+    <section class="hero">
+      <!-- Esta sección mide 220vh (ver --curtain-scroll-distance en
+           menu.css). Esa altura extra es el "recorrido" que el
+           usuario scrollea mientras el TEXTO se anima (el personaje
+           de fondo se queda quieto, ya no se desliza). -->
+
+      <div class="hero__bg">
+        <!-- Imagen de fondo a pantalla completa. Sticky: se queda
+             fija durante todo el recorrido de .hero. Es la capa
+             protagonista al inicio (por delante del texto). -->
+        <video autoplay loop muted playsinline 
+        class="hero-video">
+    <!-- CAMBIA "tu_video.mp4" por el nombre real de tu archivo descargado -->
+         <source src="resourse/mahoraga-x-megumi-jujutsu-kaisen-moewalls-com.mov" type="video/mp4">
+    Tu navegador no soporta videos HTML5.
+        </video>
+      </div>
+
+      <div class="hero__text">
+        <!-- Bloque de texto: EMPIEZA chico y detrás del personaje.
+             Al hacer scroll crece (scale), pasa a estar POR DELANTE
+             (z-index) y se acomoda abajo, junto a él — ver
+             @keyframes hero-text-reveal en menu.css sección 7. -->
+
+        <p class="hero__eyebrow">Hechicero de grado 2</p>
+        <h1 class="hero__name">Megumi<br>Fushiguro</h1>
+        <p class="hero__subtitle">
+          El heredero de las Diez Sombras.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- ========== 4.2 FICHA DEL PERSONAJE (revelado) ========== -->
+    <section class="characteristics">
+      <!-- Esta sección vive "detrás" del personaje. Sus tarjetas
+           usan animation-timeline: view() para aparecer con
+           fade-in + traslación hacia arriba cuando entran al
+           viewport (ver menu.css sección 7). -->
+
+      <h2 class="section-title">Ficha del personaje</h2>
+
+      <div class="characteristics__grid">
+
+        <article class="stat-card">
+          <h3>Edad</h3>
+          <p>15 años</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Altura</h3>
+          <p>1,75 m</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Grado</h3>
+          <p>Hechicero de grado 2</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Afiliación</h3>
+          <p>Escuela Técnica de Magia de Tokio</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Clan</h3>
+          <p>Zen'in (heredero de las Diez Sombras)</p>
+        </article>
+
+        <article class="stat-card">
+          <h3>Padre</h3>
+          <p>Tōji Fushiguro</p>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ========== 4.3 DESCRIPCIÓN ========== -->
+    <section class="content-section">
+      <h2 class="section-title">¿Quién es Megumi?</h2>
+      <p class="content-section__text">
+        Megumi Fushiguro (伏黒恵) es un estudiante de la Escuela
+        Técnica de Magia de Tokio y heredero de la Técnica de las
+        Diez Sombras, la técnica familiar del clan Zen'in.
+      </p>
+    </section>
+
+
+    <!-- ========== 4.4 PERSONALIDAD ========== -->
+    <section class="content-section content-section--alt">
+      <h2 class="section-title">Personalidad</h2>
+
+      <ul class="list-block">
+        <li>
+          <strong>Tranquilo y reservado:</strong> rara vez habla
+          de sí mismo.
+        </li>
+        <li>
+          <strong>Protector silencioso:</strong> desea darles a
+          las personas buenas una mejor oportunidad de vivir.
+        </li>
+        <li>
+          <strong>No se considera un héroe:</strong> llama a ese
+          deseo «egoísta e irracional».
+        </li>
+        <li>
+          <strong>Marcado por Tsumiki:</strong> el coma de su
+          hermana suavizó su personalidad.
+        </li>
+      </ul>
+    </section>
+
+
+    <!-- ========== 4.5 FRASE ========== -->
+    <section class="content-section">
+      <h2 class="section-title">Frase representativa</h2>
+      <p class="content-section__text">
+        «Solo la realidad de la desigualdad existe por igual.»
+      </p>
+    </section>
+
+
+    <!-- ========== 4.6 PIE DE PÁGINA ========== -->
+    <footer class="site-footer">
+      <p>Fan page no oficial · Jujutsu Kaisen © Gege Akutami</p>
+    </footer>
+
+  </main>
+
 </body>
-<!-- </html> -->
