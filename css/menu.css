@@ -544,6 +544,17 @@ a {
      hace scroll, CRECE (transform: scale), pasa a estar por DELANTE
      del personaje (z-index alto) y se acomoda abajo, junto a él.
    ========================================================================= */
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover; /* ¡CLAVE! Esto hace que el video cubra toda la pantalla sin deformarse */
+  z-index: -1; /* Lo manda detrás del texto y del personaje */
+  pointer-events: none; /* Evita que el video bloquee los clics en el menú */
+}
+
 .hero {
   position: relative;
   height: var(--curtain-scroll-distance); /* 220vh: da "recorrido" al scroll */
