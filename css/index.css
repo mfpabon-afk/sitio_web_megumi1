@@ -31,10 +31,16 @@ a { color: inherit; text-decoration: none; }
 
 /* ============================= 3. PANTALLA DE CARGA ======================= */
 .loading-screen {
-  position: fixed; inset: 0; z-index: 999;
-  display: flex; align-items: center; justify-content: center;
-  background-color: #fefff0; background-image: var(--loading-bg-image);
-  background-size: cover; background-position: center;
+  position: fixed; 
+  inset: 0; 
+  z-index: 999;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background-color: #fefff0; 
+  background-image: var(--loading-bg-image);
+  background-size: cover; 
+  background-position: center;
   animation: loading-fade-out var(--loading-fade-time) var(--loading-hold-time) ease forwards;
 }
 
@@ -44,86 +50,138 @@ a { color: inherit; text-decoration: none; }
 }
 
 .loading-content {
-  text-align: center; width: min(320px, 80vw);
-  display: flex; flex-direction: column; align-items: center; gap: 15px;
+  text-align: center;
+  width: min(320px, 80vw);
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 15px;
 }
 
 @font-face {
   font-family: 'Jujutsu';
   src: url('../resourse/jujutsu-kaisen/Jujutsu\ Kaisen.ttf') format('truetype');
-  font-style: normal; font-display: swap;
+  font-style: normal; 
+  font-display: swap;
 }
 
-.loading-gif { width: 100px; height: auto; margin-bottom: 6px; }
+.loading-gif { 
+    width: 100px; 
+    height: auto; 
+    margin-bottom: 6px; 
+}
 
 .loading-text {
-  font-family: 'Jujutsu'; color: #1a0e0e; font-size: 2rem; font-weight: bold;
-  margin-bottom: 16px; letter-spacing: 2px;
+  font-family: 'Jujutsu'; 
+  color: #1a0e0e; 
+  font-size: 2rem; 
+  font-weight: bold;
+  margin-bottom: 16px; 
+  letter-spacing: 2px;
   animation: loading-pulse 1.1s ease-in-out infinite;
 }
 
-@keyframes loading-pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+@keyframes loading-pulse { 
+    0%, 100% { 
+        opacity: 0.5; 
+    } 
+    50% { 
+        opacity: 1; 
+    } 
+}
 
-.progress-wrap { width: 100%; }
-.progress-bar { width: 100%; height: 6px; border-radius: 999px; background-color: rgba(255, 255, 255, 0.12); overflow: hidden; }
+.progress-wrap { 
+    width: 100%; 
+}
+.progress-bar { 
+    width: 100%; 
+    height: 6px; 
+    border-radius: 999px; 
+    background-color: rgba(255, 255, 255, 0.12); 
+    overflow: hidden; 
+}
 .progress-bar__fill {
-  height: 100%; width: 0%; border-radius: 999px; background-color: #20188f;
+  height: 100%; 
+  width: 0%; 
+  border-radius: 999px; 
+  background-color: #20188f;
   animation: loading-progress var(--loading-hold-time) ease-in-out forwards;
 }
 
-@keyframes loading-progress { from { width: 0%; } to { width: 100%; } }
-
-/* ============================= 4. CONTENIDO PRINCIPAL (main) ============== */
-.main-content {
-  /* Estas variables (sidebar-width) ahora deben estar declaradas en tu menu.css 
-     para que el contenido respete el espacio del menú que se inyecte */
-  margin-left: var(--sidebar-width, 200px);
-  background-color: #fefff0;
-  min-height: 100vh;
+@keyframes loading-progress { 
+    from { 
+        width: 0%; 
+    } 
+    to { 
+        width: 100%; 
+    } 
 }
-
-@supports (animation-timeline: view()) {
-  .main-content {
-    animation: main-content-shift 1ms linear both;
-    animation-timeline: --hero-view;
-    animation-range: cover 0% cover 100%;
-  }
-}
-
-@keyframes main-content-shift {
-  0%, 70%  { margin-left: var(--sidebar-width, 200px); }
-  100% { margin-left: var(--sidebar-collapsed-width, 64px); }
-}
-
-#menu-toggle:checked ~ .main-content { margin-left: var(--sidebar-width, 200px) !important; }
 
 /* ============================= 5. HERO: FONDO + REVELADO DE TEXTO ========= */
 .hero-video {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
-  object-fit: cover; z-index: -1; pointer-events: none;
+  position: absolute; 
+  top: 0; left: 0; 
+  width: 100%; 
+  height: 100vh;
+  object-fit: cover; 
+  z-index: -1; 
+  pointer-events: none;
 }
 
 .hero {
-  position: relative; height: var(--curtain-scroll-distance);
-  view-timeline-name: --hero-view; view-timeline-axis: block;
+  position: relative; 
+  height: var(--curtain-scroll-distance);
+  view-timeline-name: --hero-view; 
+  view-timeline-axis: block;
 }
 
-.hero__bg { position: sticky; top: 0; height: 100vh; width: 100%; z-index: var(--z-hero-bg); overflow: hidden; }
+.hero__bg { 
+    position: sticky; 
+    top: 0; 
+    height: 100vh; 
+    width: 100%; 
+    z-index: var(--z-hero-bg); 
+    overflow: hidden; }
 
 .hero__text {
-  position: sticky; top: 0; height: 100vh; width: 100%; z-index: var(--z-hero-text-behind);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 40px;
-  transform-origin: center center; transform: scale(0.45);
+  position: sticky; 
+  top: 0; 
+  height: 100vh; 
+  width: 100%; 
+  z-index: var(--z-hero-text-behind);
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  text-align: center; 
+  padding: 100px;
+  transform-origin: center center; 
+  transform: scale(0.45);
 }
 
 .hero__text::before {
-  content: ''; position: absolute; inset: -24px -48px; z-index: -1;
-  border-radius: 28px; background-color: rgba(16, 12, 73, 0);
+  content: ''; 
+  position: absolute; 
+  inset: -24px -48px; z-index: -1;
+  border-radius: 28px; 
+  background-color: rgba(16, 12, 73, 0);
 }
 
-.hero__eyebrow { color: #9075f1; letter-spacing: 3px; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px; }
-.hero__name { font-size: clamp(2.4rem, 6vw, 5rem); font-weight: 800; line-height: 1.05; margin-bottom: 12px; color: #9075f1; }
-.hero__subtitle { color: #C0CEE0; font-size: 1.05rem; }
+.hero__eyebrow { 
+    color: #bebebe; 
+    letter-spacing: 3px; 
+    text-transform: uppercase; 
+    font-size: 0.85rem; 
+    margin-bottom: 10px; 
+}
+.hero__name { 
+    font-size: clamp(2.4rem, 6vw, 5rem); 
+    font-weight: 800; line-height: 1.05; 
+    margin-bottom: 12px; 
+    color: #ffffff; }
+.hero__subtitle { 
+    color: #91efff; 
+    font-size: 1.05rem; }
 
 @supports (animation-timeline: view()) {
   .hero__text {

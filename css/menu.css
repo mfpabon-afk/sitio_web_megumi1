@@ -12,8 +12,15 @@
 
 /* ============================= BOTÓN HAMBURGUESA ============================= */
 .menu-toggle-checkbox {
-  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
-  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  position: absolute; 
+  width: 1px; 
+  height: 1px; 
+  margin: -1px; 
+  padding: 0;
+  overflow: hidden; 
+  clip: rect(0, 0, 0, 0); 
+  white-space: nowrap; 
+  border: 0;
 }
 
 .menu-toggle-label {
@@ -23,88 +30,250 @@
   transform: translate(-50%, -50%);
   width: 40px; height: 40px;
   z-index: var(--z-toggle-button);
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-  cursor: pointer; background: transparent; opacity: 1;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 6px;
+  cursor: pointer; 
+  background: transparent; 
+  opacity: 1;
 }
 
 .menu-toggle-bar {
-  display: block; width: 22px; height: 2px; background-color: #ffffff;
-  border-radius: 2px; transition: opacity var(--hover-transition);
+  display: block; 
+  width: 22px; 
+  height: 2px; 
+  background-color: #ffffff;
+  border-radius: 2px; 
+  transition: opacity var(--hover-transition);
 }
 
 .menu-toggle-label::after {
-  content: ''; position: absolute; width: 10px; height: 10px;
-  border-radius: 50%; background-color: #ffffff; opacity: 0;
+  content: ''; 
+  position: absolute; 
+  width: 10px; 
+  height: 10px;
+  border-radius: 50%; 
+  background-color: #ffffff; 
+  opacity: 0;
   transition: opacity var(--hover-transition);
 }
 
 @supports (animation-timeline: view()) {
   .menu-toggle-label {
-    opacity: 0; pointer-events: none;
-    animation-name: toggle-reveal; animation-duration: 1ms;
-    animation-timing-function: linear; animation-fill-mode: both;
-    animation-timeline: --hero-view; animation-range: cover 0% cover 100%;
+    opacity: 0; 
+    pointer-events: none;
+    animation-name: toggle-reveal; 
+    animation-duration: 1ms;
+    animation-timing-function: linear; 
+    animation-fill-mode: both;
+    animation-timeline: --hero-view; 
+    animation-range: cover 0% cover 100%;
   }
 }
 
 @keyframes toggle-reveal {
-  0%, 69% { opacity: 0; pointer-events: none; }
-  70%, 100% { opacity: 1; pointer-events: auto; }
+  0%, 69% { 
+    opacity: 0; pointer-events: none; 
+  }
+  70%, 100% { 
+    opacity: 1; pointer-events: auto; 
+  }
 }
 
 #menu-toggle:checked ~ .menu-toggle-label {
-  top: auto !important; bottom: 20px !important; left: calc(var(--sidebar-width) - 52px) !important;
-  transform: none !important; opacity: 1 !important; pointer-events: auto !important;
+  top: auto !important; 
+  bottom: 20px !important; 
+  left: calc(var(--sidebar-width) - 52px) !important;
+  transform: none !important; 
+  opacity: 1 !important; 
+  pointer-events: auto !important;
 }
-#menu-toggle:checked ~ .menu-toggle-label .menu-toggle-bar { opacity: 0; }
-#menu-toggle:checked ~ .menu-toggle-label::after { opacity: 1; }
-#menu-toggle:focus-visible ~ .menu-toggle-label { outline: 2px solid #ffffff; outline-offset: 6px; }
+#menu-toggle:checked ~ .menu-toggle-label .menu-toggle-bar { 
+  opacity: 0; 
+}
+#menu-toggle:checked ~ .menu-toggle-label::after { 
+  opacity: 1; 
+}
+#menu-toggle:focus-visible ~ .menu-toggle-label { 
+  outline: 2px solid #ffffff; outline-offset: 6px; 
+}
 
 /* ============================= MENÚ LATERAL (aside) ============================= */
 .sidebar {
-  position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
-  z-index: var(--z-sidebar); background-color: #100c49;
-  border-right: 1px solid rgba(255, 255, 255, 0.12); overflow: hidden;
-  display: flex; flex-direction: column; justify-content: space-between; padding: 28px 20px;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: var(--sidebar-width); 
+  height: 100vh;
+  z-index: var(--z-sidebar); 
+  background-color: #100c49;
+  border-right: 1px solid rgba(255, 255, 255, 0.12); 
+  overflow: hidden;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  padding: 28px 20px;
 }
 
-.sidebar__logo { display: flex; justify-content: center; flex-shrink: 0; }
-.sidebar__logo-img { width: 100%; max-width: 156px; height: auto; }
+.sidebar__logo { 
+  display: flex; 
+  justify-content: center; 
+  flex-shrink: 0; 
+}
+.sidebar__logo-img { 
+  width: 100%; 
+  max-width: 156px; 
+  height: auto; 
+}
 
-.sidebar__nav ul { list-style: none; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 25px; }
+.sidebar__nav ul { 
+  list-style: none; 
+  padding: 0; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 25px; }
 .sidebar__nav a {
-  position: relative; display: block; text-align: center; font-size: 0.95rem;
-  letter-spacing: 1px; text-transform: uppercase; color: #929292;
-  white-space: nowrap; transition: color var(--hover-transition);
+  position: relative; 
+  display: block; 
+  text-align: center; 
+  font-size: 0.95rem;
+  letter-spacing: 1px; 
+  text-transform: uppercase; 
+  color: #929292;
+  white-space: nowrap; 
+  transition: color var(--hover-transition);
 }
 .sidebar__nav a::after {
-  content: ''; position: absolute; left: 50%; bottom: -4px; width: 0%; height: 2px;
-  background-color: #9075f1; transform: translateX(-50%); transition: width var(--hover-transition);
+  content: ''; 
+  position: absolute; 
+  left: 50%; 
+  bottom: -4px; 
+  width: 0%; 
+  height: 2px;
+  background-color: #9075f1; 
+  transform: translateX(-50%); 
+  transition: width var(--hover-transition);
 }
-.sidebar__nav a:hover, .sidebar__nav a:focus-visible { color: #ffffff; }
-.sidebar__nav a:hover::after, .sidebar__nav a:focus-visible::after { width: 100%; }
+.sidebar__nav a:hover, .sidebar__nav a:focus-visible { 
+  color: #ffffff; 
+}
+.sidebar__nav a:hover::after, .sidebar__nav a:focus-visible::after { 
+  width: 100%; 
+}
 
-.sidebar__footer { font-size: 0.7rem; color: #929292; opacity: 0.6; white-space: nowrap; }
+.sidebar__footer { 
+  font-size: 0.7rem; 
+  color: #929292; 
+  opacity: 0.6; 
+  white-space: nowrap; 
+}
 
 @supports (animation-timeline: view()) {
-  .sidebar { animation: sidebar-collapse 1ms linear both; animation-timeline: --hero-view; animation-range: cover 0% cover 100%; }
-  .sidebar__nav, .sidebar__footer { animation: sidebar-fade-content 1ms linear both; animation-timeline: --hero-view; animation-range: cover 0% cover 100%; }
+  .sidebar { 
+    animation: sidebar-collapse 1ms linear both; 
+    animation-timeline: --hero-view; 
+    animation-range: cover 0% cover 100%; }
+  .sidebar__nav, .sidebar__footer { 
+    animation: sidebar-fade-content 1ms linear both; 
+    animation-timeline: --hero-view; 
+    animation-range: cover 0% cover 100%; 
+  }
 }
-@keyframes sidebar-collapse { 0%, 70% { width: var(--sidebar-width); } 100% { width: var(--sidebar-collapsed-width); } }
-@keyframes sidebar-fade-content { 0%, 70% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes sidebar-collapse { 
+  0%, 70% { width: var(--sidebar-width); 
+  } 
+  100% { 
+    width: var(--sidebar-collapsed-width); } 
+  }
+@keyframes sidebar-fade-content {
+  0%, 70% { 
+    opacity: 1; 
+  } 
+  100% { 
+    opacity: 0; 
+  } 
+}
 
-#menu-toggle:checked ~ .sidebar { width: var(--sidebar-width) !important; z-index: var(--z-sidebar-expanded) !important; }
-#menu-toggle:checked ~ .sidebar .sidebar__nav, #menu-toggle:checked ~ .sidebar .sidebar__footer { opacity: 1 !important; }
+#menu-toggle:checked ~ .sidebar { 
+  width: var(--sidebar-width) !important; 
+  z-index: var(--z-sidebar-expanded) !important; 
+}
+#menu-toggle:checked ~ .sidebar .sidebar__nav, #menu-toggle:checked ~ .sidebar .sidebar__footer { 
+  opacity: 1 !important; 
+}
 
 /* ============================= RESPONSIVE MENÚ ============================= */
 @media (max-width: 700px) {
   .sidebar {
-    width: 100%; height: 64px; flex-direction: row; align-items: center; padding: 0 16px 0 76px; animation: none !important;
+    width: 100%; 
+    height: 64px; 
+    flex-direction: row; 
+    align-items: center; 
+    padding: 0 16px 0 76px; 
+    animation: none !important;
   }
-  .sidebar__nav ul { flex-direction: row; gap: 16px; }
-  .sidebar__footer { display: none; }
-  .sidebar__nav, .sidebar__footer { animation: none !important; opacity: 1 !important; }
+  .sidebar__nav ul { 
+    flex-direction: row; 
+    gap: 16px; 
+  }
+  .sidebar__footer { 
+    display: none; 
+  }
+  .sidebar__nav, .sidebar__footer { 
+    animation: none !important; 
+    opacity: 1 !important; 
+  }
   
-  .menu-toggle-label { animation: none !important; opacity: 1 !important; pointer-events: auto !important; top: 32px; left: 32px; transform: translate(-50%, -50%); }
-  #menu-toggle:checked ~ .menu-toggle-label { top: 32px !important; bottom: auto !important; left: 32px !important; transform: translate(-50%, -50%) !important; }
+  .menu-toggle-label { 
+    animation: none !important; 
+    opacity: 1 !important; 
+    pointer-events: auto !important; 
+    top: 32px; left: 32px; 
+    transform: translate(-50%, -50%); 
+  }
+  #menu-toggle:checked ~ .menu-toggle-label { 
+    top: 32px !important; 
+    bottom: auto !important; 
+    left: 32px !important; 
+    transform: translate(-50%, -50%) !important; 
+  }
+  .main-content {
+  /* Estas variables (sidebar-width) ahora deben estar declaradas en tu menu.css 
+     para que el contenido respete el espacio del menú que se inyecte */
+  margin-left: var(--sidebar-width, 200px);
+  background-color: #fefff0;
+  min-height: 100vh;
+}
+
+@supports (animation-timeline: view()) {
+  .main-content {
+    animation: main-content-shift 1ms linear both;
+    animation-timeline: --hero-view;
+    animation-range: cover 0% cover 100%;
+  }
+}
+
+@keyframes main-content-shift {
+  0%, 70%  { 
+    margin-left: var(--sidebar-width, 200px); 
+  }
+  100% { 
+    margin-left: var(--sidebar-collapsed-width, 64px); 
+  }
+}
+
+#menu-toggle:checked ~ .main-content { 
+  margin-left: var(--sidebar-width, 200px) !important; 
+}
+
+.hero {
+  position: relative; height: var(--curtain-scroll-distance);
+  view-timeline-name: --hero-view; view-timeline-axis: block;
+}
+
+.hero__bg { position: sticky; top: 0; height: 100vh; width: 100%; z-index: var(--z-hero-bg); overflow: hidden; }
+
 }
