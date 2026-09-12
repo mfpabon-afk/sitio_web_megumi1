@@ -1,27 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* ============================================================
-   CAMBIO DE ARQUITECTURA: ya NO hay variables de color en :root
-   (se quitó por completo el bloque :root de este archivo). Cada
-   color está escrito directo en la propiedad de cada selector.
-
-   >>> PALETA DE REFERENCIA (para saber qué hex es cada cosa) <<<
-   Fondo general:        #12163A
-   Tarjeta:               #3a4278
-   Tarjeta (sub/oscura):  #16254a
-   Texto de títulos:      #fccfff
-   Texto de cuerpo:       #C0CEE0
-   Rosa (acentos):        #FDE2E4
-   Azul 1:                #a5dbe7
-   Azul 2 (verde-agua):   #A7E0DB
-   Borde suave:           #5261a5
-   Cian (type-badge):     #7ee8fa  <- antes era var(--color-cian),
-                                      una variable que NUNCA se
-                                      definió en el :root original;
-                                      el texto quedaba invisible.
-   Verde (tactical-box):  #9be89d  <- mismo caso, var(--color-verde)
-                                      tampoco existía antes.
-   ============================================================ */
 * {
     box-sizing: border-box;
     margin: 0;
