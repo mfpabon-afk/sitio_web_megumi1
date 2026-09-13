@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --color-fondo: #0c0f24;
+    --color-tarjeta: #3a4278;
+    --color-tarjeta-sub: #121733;
+    --color-borde: #e1a8fa;
+    --color-texto-titulo: #C6B4EE;
+    --color-texto-cuerpo: #c5ceec;
+    --color-azul: #a5dbe7;
+    --color-morado: #c594e6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto-cuerpo);
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* 1. LAYOUT PRINCIPAL Y NAVEGACIÓN */
+.caja-principal {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.lista-navegacion {
+    list-style: none;
+    display: flex; /* LAYOUT 1: Flexbox */
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.lista-navegacion a {
+    color: var(--color-texto-cuerpo);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    /* TRANSICIÓN ÚNICA PARA TODO EL DOCUMENTO */
+    transition: all 0.3s ease;
+}
+
+/* PSEUDOCLASE */
+.lista-navegacion a:hover {
+    background-color: var(--color-morado);
+    color: #fff;
+}
+
+/* ENCABEZADO */
+.encabezado-dominio {
+    text-align: center;
+    padding: 30px;
+    background-color: #4E2FB0;
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.titulo-dominio {
+    font-size: 2.2rem;
+    color: var(--color-texto-titulo);
+}
+
+.seccion-bloque {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.subtitulo-seccion {
+    font-size: 1.3rem;
+    color: var(--color-azul);
+    border-bottom: 2px solid var(--color-morado);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* 2. IMAGEN (Float) Y CONTENEDOR */
+.contenedor-imagen-principal {
+    float: left; /* LAYOUT 2: Float */
+    margin: 0 20px 15px 0;
+    width: 40%;
+}
+
+.imagen-destacada {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--color-azul);
+}
+
+.bloque-texto-introduccion::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* 3. MECÁNICAS Y VENTAJAS (Flexbox) */
+.flex-mecanicas,
+.flex-ventajas {
+    display: flex; /* LAYOUT 3: Flexbox */
+    gap: 15px;
+}
+
+.card-mecanica,
+.card-flex {
+    flex: 1;
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    padding: 15px;
+    position: relative; /* LAYOUT 4: Position (para el número) */
+}
+
+/* PSEUDOELEMENTO */
+.card-flex::before {
+    content: "•";
+    color: var(--color-morado);
+    font-size: 1.5rem;
+    position: absolute;
+    top: 5px;
+    right: 12px;
+}
+
+/* 4. ESTADOS Y SHIKIGAMIS (Grid) */
+.grid-estados {
+    display: grid; /* LAYOUT 5: Grid */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.grid-shikigamis {
+    display: grid; /* LAYOUT 6: Grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.tarjeta-grid,
+.tarjeta-shikigami {
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    padding: 15px;
+}
+
+.pie-dominio {
+    text-align: center;
+    padding-top: 15px;
+    font-size: 0.85rem;
+    border-top: 1px solid var(--color-borde);
+}
+    
