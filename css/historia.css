@@ -1,0 +1,143 @@
+/* ============================================================
+   HISTORIA.CSS - ESTILOS DE LÍNEA DE TIEMPO
+   (Sin variables :root de color. Colores directos HEX/RGB)
+   ============================================================ */
+
+body {
+  background-color: #0c0f24;
+  color: #c5ceec;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+}
+
+.caja-principal {
+  background-color: #121733;
+  border: 1px solid #e1a8fa;
+  border-radius: 10px;
+  padding: 30px;
+}
+
+/* CABECERA EN BLOQUE */
+.encabezado-historia {
+  text-align: center;
+  padding: 30px;
+  background-color: #100c49;
+  border: 1px solid #e1a8fa;
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.titulo-principal {
+  font-size: 2.2rem;
+  color: #C6B4EE;
+}
+
+.subtitulo {
+  color: #a5dbe7;
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+/* LÍNEA DE TIEMPO ESTRUCTURA */
+.timeline-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* Eje vertical continuo */
+.timeline-linea-central {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background-color: #9075f1;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Nodo de evento */
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  position: relative;
+  width: 100%;
+}
+
+.timeline-left {
+  flex-direction: row-reverse;
+}
+
+.timeline-right {
+  flex-direction: row;
+}
+
+.timeline-img-box,
+.timeline-content {
+  width: 45%;
+}
+
+.timeline-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #9075f1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.timeline-content {
+  background-color: #100c49;
+  border: 1px solid #e1a8fa;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-fecha {
+  display: inline-block;
+  background-color: #9075f1;
+  color: #100c49;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.timeline-titulo {
+  font-size: 1.2rem;
+  color: #C6B4EE;
+  margin-bottom: 8px;
+}
+
+.footer-historia {
+  text-align: center;
+  padding-top: 20px;
+  font-size: 0.85rem;
+  border-top: 1px solid #e1a8fa;
+  margin-top: 30px;
+}
+
+/* Adaptación Móvil APILADA */
+@media (max-width: 768px) {
+  .timeline-linea-central {
+    left: 20px;
+  }
+
+  .timeline-item {
+    flex-direction: column !important;
+    align-items: flex-start;
+    padding-left: 45px;
+  }
+
+  .timeline-img-box,
+  .timeline-content {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+}

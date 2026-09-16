@@ -1,0 +1,482 @@
+/* ============================================================
+   ESTILOS GENERALES Y FUENTE
+   ============================================================ */
+@font-face {
+  font-family: 'JujutsuFont';
+  src: url('../resourse/jujutsu-kaisen/Jujutsu\ Kaisen.ttf') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0c0f24;
+  color: #c5ceec;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   PANTALLA DE CARGA (COLORES PLANOS ORIGINALES)
+   ============================================================ */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fefff0; /* Fondo plano */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeOutScreen 0.8s ease-in-out 2.2s forwards;
+  pointer-events: none;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.loading-gif {
+  max-width: 180px;
+  height: auto;
+}
+
+.loading-text {
+  font-family: 'JujutsuFont', sans-serif !important;
+  font-weight: 800;
+  color: #000; 
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.progress-wrap {
+  width: 220px;
+  height: 6px;
+  background-color: #6a80ff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  width: 0%;
+  height: 100%;
+  background-color: #0f1677; 
+  animation: fillProgress 2s ease-in-out forwards;
+}
+
+@keyframes fillProgress {
+  100% { width: 100%; }
+}
+
+@keyframes fadeOutScreen {
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* ============================================================
+   HERO CON VIDEO (DEGRADADO EXCLUSIVO EN EL TÍTULO)
+   ============================================================ */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 2;
+}
+
+.hero__text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 80;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 20px;
+  animation: elevateTextOnScroll linear both;
+  animation-timeline: scroll(root block);
+  animation-range: 0px 500px;
+}
+
+.hero__eyebrow {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #fff 0%, #02006e 50%, #000000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 15px rgba(96, 231, 255, 0.9));
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.hero__name {
+  font-family: 'JujutsuFont';
+  font-size: clamp(4rem, 7vw, 6.5rem);
+  line-height: 1.05;
+  font-weight: 900;
+  text-transform: uppercase;
+  /* DEGRADADO APLICADO ÚNICAMENTE AL TÍTULO HERO */
+  background: linear-gradient(135deg, #fefff0 0%, #9075f1 50%, #1b007c 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 15px rgba(34, 22, 22, 0.9));
+  margin-bottom: 15px;
+}
+
+.hero__subtitle {
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, #02006e 0%, #000000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.9));
+  font-weight: 300;
+}
+
+@keyframes elevateTextOnScroll {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-180px); opacity: 0.2; }
+}
+
+/* ============================================================
+   SECCIONES Y CONTENEDORES
+   ============================================================ */
+.main-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.seccion-bloque,
+.content-section,
+.flip-cards-section,
+.quote-section {
+  background-color: #3a4278;
+  border-radius: 12px;
+  padding: 35px;
+  margin-bottom: 35px;
+  
+  
+}
+
+.subtitulo-seccion,
+.section-title {
+  font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #a5dbe7;
+    text-transform: uppercase; 
+    letter-spacing: normal;
+    border-bottom: 2px solid #a5dbe7; 
+  padding-bottom: 8px; 
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.bloque-texto-introduccion {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+  
+}
+
+.contenedor-imagen-principal {
+  flex: 0 0 280px;
+}
+
+.imagen-destacada {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #3a4278;
+  display: block;
+}
+
+.texto-columna {
+  font-family: 'Poppins', sans-serif;
+  color: #C0CEE0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.content-section__text {
+  font-family: 'Poppins', sans-serif;
+  text-align: justify;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* ============================================================
+   FRASE REPRESENTATIVA
+   ============================================================ */
+.quote-box {
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  background-color: #5261a5;
+  border-left: 4px solid #5261a5;
+  padding: 25px;
+  border-radius: 0 10px 10px 0;
+  font-style: italic;
+  line-height: 2;
+  color: #fff;
+  text-align: center;
+}
+
+.quote-box p {
+  font-size: 1.05rem;
+}
+
+/* ============================================================
+   TARJETAS FLIP
+   ============================================================ */
+.flip-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card-flip-checkbox {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-flip {
+  perspective: 1000px;
+  height: 200px;
+  cursor: pointer;
+  display: block;
+}
+
+.card-flip__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+}
+
+.card-flip-checkbox:checked + .card-flip .card-flip__inner {
+  transform: rotateY(180deg);
+}
+
+.card-flip__front,
+.card-flip__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #9075f1;
+  overflow: hidden;
+}
+
+.card-flip__front {
+  background-color: #100c49;
+}
+
+.card-flip__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.45;
+  transition: transform 0.4s ease;
+}
+
+.card-flip:hover .card-flip__img {
+  transform: scale(1.08);
+}
+
+.card-flip__front-content,
+.card-flip__back-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(12, 15, 36, 0.82);
+  padding: 10px 14px;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.card-flip__front-content span {
+  display: block;
+  font-family: 'JujutsuFont', sans-serif;
+  font-size: 0.85rem;
+  color: #e1a8fa;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.card-flip__front-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fefff0;
+}
+
+.card-flip__back {
+  background-color: #3a4278;
+  transform: rotateY(180deg);
+}
+
+.card-flip__back .card-flip__img {
+  opacity: 0.3;
+}
+
+.card-flip__back-content {
+  color: #fefff0;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ============================================================
+   ACCORDION / DESPLEGABLES
+   ============================================================ */
+.accordion-block {
+  background-color: #121733;
+  border: 1px solid #e1a8fa;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.accordion-summary {
+  font-family: 'JujutsuFont', sans-serif;
+  font-size: 1.4rem;
+  color: #fefff0;
+  background-color: #100c49;
+  padding: 20px 25px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-summary::after {
+  content: '▼';
+  font-size: 0.9rem;
+  color: #e1a8fa;
+  transition: transform 0.3s ease;
+}
+
+.accordion-block[open] .accordion-summary::after {
+  transform: rotate(180deg);
+}
+
+.accordion-summary:hover {
+  background-color: #181363;
+}
+
+.accordion-content {
+  padding: 25px;
+  border-top: 1px solid rgba(225, 168, 250, 0.2);
+}
+
+.site-footer {
+  text-align: center;
+  padding: 20px;
+  color: #929292;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+  .bloque-texto-introduccion {
+    flex-direction: column;
+  }
+.megumi-dominio {
+    text-align: center;
+    padding-top: 15px;
+    font-size: 0.85rem;
+    border-top: 1px solid #121733;
+}
+.megumi-flotante {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.megumi-flotante img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0f1677;
+}
+
+.megumi-flotante:hover {
+    transform: scale(1.15) rotate(-7deg);
+}
+
+.megumi-flotante .mensaje {
+    display: none;
+    position: absolute;
+    bottom: 100px;
+    right: 0;
+    background: #fff;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.megumi-flotante:hover .mensaje {
+    display: block;
+}
+}

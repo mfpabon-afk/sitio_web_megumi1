@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --color-fondo: #12163A;
+    --color-tarjeta: #3a4278;
+    --color-tarjeta-sub: #16254a;
+    --color-texto-titulo: #fccfff;
+    --color-texto-cuerpo: #C0CEE0;
+    --color-rosa: #c97272;
+    --color-azul1: #a5dbe7;
+    --color-azul2: #8295f3;
+    --borde-suave: #5261a5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, .titulo-principal, .titulo-seccion {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto-cuerpo);
+    font-family: 'Merriweather', serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.caja-principal {
+    width: 1000px;
+    max-width: 95%;
+}
+
+.contenendor_principal {
+    width: 100%;
+}
+
+/* NAVEGACIÓN */
+.navegacion {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 25px;
+    border-radius: 16px;
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.nav-item {
+    margin-right: 12px;
+}
+
+.nav-item a {
+    color: var(--color-texto-cuerpo);
+    background-color: var(--color-tarjeta-sub);
+    padding: 8px 18px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: block;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover a {
+    color: var(--color-azul1);
+    border-color: var(--color-azul1);
+}
+
+/* ENCABEZADO Y GALERÍA EN ABANICO */
+.encabezado_tecnica {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+    border-radius: 16px;
+    padding: 35px 40px;
+    margin-bottom: 25px;
+    min-height: 260px;
+    gap: 30px;
+}
+
+.texto-encabezado {
+    flex: 1;
+    max-width: 420px;
+}
+
+.titulo-principal {
+    font-size: 2.6rem;
+    color: var(--color-rosa);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    margin-bottom: 8px;
+}
+
+.subtitulo {
+    color: var(--color-azul2);
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Contenedor del abanico */
+.fan-gallery {
+    position: relative;
+    width: 430px;
+    height: 190px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fan-gallery img {
+    position: absolute;
+    top: 0;
+    width: 125px;
+    height: 185px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 1.5px solid var(--borde-suave);
+    transform-origin: bottom right;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Posiciones en reposo (apiladas en abanico) */
+#photo0 { right: 90px; z-index: 1; transform: rotate(-12deg) translateY(5px); }
+#photo1 { right: 60px; z-index: 2; transform: rotate(-6deg) translateY(2px); }
+#photo2 { right: 30px; z-index: 3; transform: rotate(0deg); }
+#photo3 { right: 0;    z-index: 4; transform: rotate(6deg) translateY(2px); }
+
+/* Posiciones al pasar el cursor */
+.fan-gallery:hover #photo0 { right: 305px; transform: rotate(0deg) scale(1.03); z-index: 1; }
+.fan-gallery:hover #photo1 { right: 205px; transform: rotate(0deg) scale(1.03); z-index: 2; }
+.fan-gallery:hover #photo2 { right: 105px; transform: rotate(0deg) scale(1.03); z-index: 3; }
+.fan-gallery:hover #photo3 { right: 0;     transform: rotate(0deg) scale(1.03); z-index: 4; }
+
+.caja-seccion {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--borde-suave);
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.titulo-seccion {
+    font-size: 1.6rem;
+    color: var(--color-azul2);
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--borde-suave);
+    padding-bottom: 6px;
+}
+
+.texto-contenido {
+    font-size: 1.05rem;
+}
+
+/* SECCIÓN 50/50: TÁCTICAS (IMAGEN AJUSTADA EXACTAMENTE A LA ALTURA DEL TEXTO) */
+.contenedor-tacticas {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+}
+
+.columna-tarjetas {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.columna-imagen {
+    flex: 1;
+    display: flex;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.imagen-tacticas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid var(--borde-suave);
+}
+
+.info-card {
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--borde-suave);
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.info-card-title {
+    color: var(--color-azul1);
+    font-size: 1.1rem;
+    margin-bottom: 6px;
+}
+
+/* TIPOS DE TÉCNICA */
+.tipos_tecnica {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.tarjeta_innata, .tarjeta_no_innata {
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--borde-suave);
+    border-radius: 14px;
+    padding: 20px;
+}
+
+.tarjeta_innata h3, .tarjeta_no_innata h3 {
+    color: var(--color-texto-titulo);
+    margin-bottom: 8px;
+}
+
+.etiqueta_ejemplo {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--color-azul2);
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* PERSONAJES PRINCIPALES (FICHAS) */
+.contenedor-fichas {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.tarjeta-personaje {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--borde-suave);
+    border-radius: 16px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.tarjeta-personaje-toji {
+    flex-direction: row-reverse;
+}
+
+.fija-personaje {
+    width: 140px;
+    height: 140px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--borde-suave);
+}
+
+.fija-personaje img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contenido-personaje h3 {
+    color: var(--color-texto-titulo);
+    font-size: 1.3rem;
+}
+
+.subtitulo-personaje {
+    color: var(--color-rosa);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* MIEMBROS SECUNDARIOS (SIN HOVER DE ESCALA Y CON IMAGEN A LA DERECHA) */
+.subtitulo-miembros-secundarios {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    color: var(--color-azul1);
+    margin: 30px 0 15px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.grid-miembros-secundarios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 18px;
+}
+
+.tarjeta-secundaria {
+    background-color: var(--color-tarjeta-sub);
+    border: 1px solid var(--borde-suave);
+    border-radius: 14px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.info-secundaria {
+    flex: 1;
+}
+
+.imagen-secundaria {
+    width: 85px;
+    height: 85px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--borde-suave);
+}
+
+.imagen-secundaria img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-secundario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    border-bottom: 1px solid rgba(82, 97, 165, 0.4);
+    padding-bottom: 4px;
+}
+
+.header-secundario h4 {
+    font-size: 1rem;
+    color: var(--color-texto-titulo);
+}
+
+.rol-badge {
+    font-size: 0.7rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgba(167, 224, 219, 0.15);
+    color: var(--color-azul2);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.tarjeta-secundaria p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--color-texto-cuerpo);
+}
+
+/* BLOQUE FINAL Y FOOTER */
+.caja-analogia {
+    background-color: var(--color-tarjeta-sub);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 15px;
+    border: 1px solid var(--borde-suave);
+}
+
+footer {
+    width: 100%;
+    margin-top: 30px;
+    background-color: #060B12;
+    border-top: 1px solid var(--borde-suave);
+    color: #8A99AD;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.85rem;
+    font-family: 'Poppins', sans-serif;
+}
