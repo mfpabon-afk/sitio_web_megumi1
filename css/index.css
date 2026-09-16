@@ -186,6 +186,8 @@ body {
   border-radius: 12px;
   padding: 35px;
   margin-bottom: 35px;
+  
+  
 }
 
 .subtitulo-seccion,
@@ -195,12 +197,17 @@ body {
     color: #a5dbe7;
     text-transform: uppercase; 
     letter-spacing: normal;
+    border-bottom: 2px solid #a5dbe7; 
+  padding-bottom: 8px; 
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .bloque-texto-introduccion {
   display: flex;
   gap: 25px;
   align-items: center;
+  
 }
 
 .contenedor-imagen-principal {
@@ -429,4 +436,47 @@ body {
   .bloque-texto-introduccion {
     flex-direction: column;
   }
+.megumi-dominio {
+    text-align: center;
+    padding-top: 15px;
+    font-size: 0.85rem;
+    border-top: 1px solid #121733;
+}
+.megumi-flotante {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.megumi-flotante img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #0f1677;
+}
+
+.megumi-flotante:hover {
+    transform: scale(1.15) rotate(-7deg);
+}
+
+.megumi-flotante .mensaje {
+    display: none;
+    position: absolute;
+    bottom: 100px;
+    right: 0;
+    background: #fff;
+    color: #000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.megumi-flotante:hover .mensaje {
+    display: block;
+}
 }
