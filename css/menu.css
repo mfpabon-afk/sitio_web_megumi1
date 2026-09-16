@@ -1,16 +1,9 @@
 /* ============================================================
-   FUENTES Y RECURSOS
+   ESTILOS DEL MENÚ (RESTAURADO A ESTADO ORIGINAL)
    ============================================================ */
 /* ============================================================
-   CARGA DE FUENTE JUJUTSU (RUTA RELATIVA CORREGIDA)
+   ESTILOS DEL MENÚ (SIN TIPOGRAFÍA JUJUTSU)
    ============================================================ */
-@font-face {
-  font-family: 'JujutsuFont';
-  src: url('../resourse/jujutsu.ttf') format('truetype'),
-       url('../resourse/jujutsu.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
 
 * {
   box-sizing: border-box;
@@ -18,7 +11,6 @@
   padding: 0;
 }
 
-/* Checkbox oculto */
 .menu-toggle-checkbox {
   position: fixed;
   top: -9999px;
@@ -26,7 +18,7 @@
   opacity: 0;
 }
 
-/* BOTÓN DE MENÚ (ANCLADO EN LA ESQUINA) */
+/* BOTÓN HAMBURGUESA ESQUINA */
 .menu-toggle-label {
   position: fixed;
   top: 20px;
@@ -56,7 +48,6 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Transformación a X en la misma esquina */
 #menu-toggle:checked ~ .menu-toggle-label {
   background-color: rgba(16, 12, 73, 0.95);
   border-color: #e1a8fa;
@@ -75,7 +66,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* SIDEBAR Y MENÚ */
+/* SIDEBAR DESPLEGABLE CON SCROLL TIMELINE */
 .sidebar {
   position: fixed;
   top: 0;
@@ -95,12 +86,11 @@
   overflow-y: auto;
 }
 
-/* Apertura manual */
 #menu-toggle:checked ~ .sidebar {
   transform: translateX(270px);
 }
 
-/* CIERRE AUTOMÁTICO AL HACER SCROLL EN CSS PURO */
+/* CIERRE AL HACER SCROLL */
 #menu-toggle:checked ~ .sidebar {
   animation: autoCloseMenu linear both;
   animation-timeline: scroll(root block);
@@ -108,12 +98,8 @@
 }
 
 @keyframes autoCloseMenu {
-  0% {
-    transform: translateX(270px);
-  }
-  100% {
-    transform: translateX(0px);
-  }
+  0% { transform: translateX(270px); }
+  100% { transform: translateX(0px); }
 }
 
 .sidebar__header {
@@ -153,8 +139,8 @@
 .sidebar__nav a {
   position: relative;
   display: inline-block;
-  font-family: 'JujutsuFont', 'Poppins', sans-serif;
-  font-size: 1rem;
+  font-family: 'Poppins', sans-serif; /* Se eliminó JujutsuFont */
+  font-size: 0.95rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1.5px;

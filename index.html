@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <!-- PANTALLA DE CARGA EN CSS -->
+  <!-- PANTALLA DE CARGA -->
   <div class="loading-screen">
     <div class="loading-content">
       <img src="resourse/megumi-transparent-megumi.gif" alt="Cargando..." class="loading-gif">
@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <!-- NAVEGACIÓN Y MENÚ HAMBURGUESA -->
+  <!-- NAVEGACIÓN Y MENÚ HAMBURGUESA (ABIERTO POR DEFECTO CON 'CHECKED') -->
   <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" checked>
   <label for="menu-toggle" class="menu-toggle-label" aria-label="Abrir o cerrar menú">
     <span class="menu-toggle-bar"></span>
@@ -50,7 +50,7 @@
     </div>
   </aside>
 
-  <!-- HERO SUPERIOR EN FONDO COMPLETO -->
+  <!-- HERO SUPERIOR -->
   <header class="hero">
     <video autoplay loop muted playsinline class="hero-video">
       <source src="resourse/mahoraga-x-megumi-jujutsu-kaisen-moewalls-com.mov" type="video/mp4">
@@ -64,9 +64,10 @@
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL COMPLETO DEL PERFIL DE MEGUMI -->
+  <!-- CONTENIDO PRINCIPAL -->
   <main class="main-content">
 
+    <!-- 1. ¿QUIÉN ES MEGUMI? -->
     <section class="seccion-bloque" id="introduccion-dominio">
       <h2 class="subtitulo-seccion">¿Quién es Megumi Fushiguro?</h2>
 
@@ -90,85 +91,131 @@
       </div>
     </section>
 
-    <section class="content-section">
-      <h2 class="section-title">Personalidad</h2>
-      <p class="content-section__text">
-        Megumi es una persona tranquila, seria y reservada que rara vez habla de sí mismo. 
-        Su personalidad se define por un exterior estoico, distante y calculador, 
-        que oculta un profundo sentido de la justicia personal. 
-        Aunque no se considera un héroe, desea proteger a las personas que considera buenas o amables, 
-        creyendo que el mundo es injusto y que un hechicero es una herramienta para dar a esas personas más oportunidades de vivir.
-      </p>
-    </section>
-
+    <!-- 2. PERFIL DE PERSONAJE (IMAGEN OCUPANDO TODO EL CUADRADO ATRÁS) -->
     <section class="flip-cards-section">
-      <h2 class="section-title">Ficha Rápida</h2>
+      <h2 class="section-title">Perfil de personaje</h2>
       <div class="flip-cards-grid">
 
         <input type="checkbox" id="card-1" class="card-flip-checkbox">
         <label for="card-1" class="card-flip">
           <div class="card-flip__inner">
-            <div class="card-flip__front"><span>Dato</span>Edad</div>
-            <div class="card-flip__back">15 años</div>
+            <div class="card-flip__front">
+              <img src="resourse/2bff325c670c3f907e20b7db51137674.png" alt="Edad" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <span>Dato</span>
+                <div class="card-flip__front-title">Edad</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <img src="resourse/2bff325c670c3f907e20b7db51137674.png" alt="Edad" class="card-flip__img">
+              <div class="card-flip__back-content">15 años</div>
+            </div>
           </div>
         </label>
 
         <input type="checkbox" id="card-2" class="card-flip-checkbox">
         <label for="card-2" class="card-flip">
           <div class="card-flip__inner">
-            <div class="card-flip__front"><span>Dato</span>Altura</div>
-            <div class="card-flip__back">175 cm</div>
+            <div class="card-flip__front">
+              <img src="resourse/mweg.png" alt="Altura" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <span>Dato</span>
+                <div class="card-flip__front-title">Altura</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <img src="resourse/mweg.png" alt="Altura" class="card-flip__img">
+              <div class="card-flip__back-content">175 cm</div>
+            </div>
           </div>
         </label>
 
         <input type="checkbox" id="card-3" class="card-flip-checkbox">
         <label for="card-3" class="card-flip">
           <div class="card-flip__inner">
-            <div class="card-flip__front"><span>Dato</span>Grado</div>
-            <div class="card-flip__back">Hechicero de Grado 2</div>
+            <div class="card-flip__front">
+              <img src="resourse/2bff325c670c3f907e20b7db51137674.png" alt="Grado" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <span>Dato</span>
+                <div class="card-flip__front-title">Grado</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <img src="resourse/2bff325c670c3f907e20b7db51137674.png" alt="Grado" class="card-flip__img">
+              <div class="card-flip__back-content">Hechicero de Grado 2</div>
+            </div>
           </div>
         </label>
 
         <input type="checkbox" id="card-4" class="card-flip-checkbox">
         <label for="card-4" class="card-flip">
           <div class="card-flip__inner">
-            <div class="card-flip__front"><span>Dato</span>Afiliación</div>
-            <div class="card-flip__back">Escuela Técnica de Tokio</div>
+            <div class="card-flip__front">
+              <img src="resourse/Jujutsu-Kaisen-Logo-No-Background.png" alt="Afiliación" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <span>Dato</span>
+                <div class="card-flip__front-title">Afiliación</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <img src="resourse/Jujutsu-Kaisen-Logo-No-Background.png" alt="Afiliación" class="card-flip__img">
+              <div class="card-flip__back-content">Escuela Técnica de Tokio</div>
+            </div>
           </div>
         </label>
 
         <input type="checkbox" id="card-5" class="card-flip-checkbox">
         <label for="card-5" class="card-flip">
           <div class="card-flip__inner">
-            <div class="card-flip__front"><span>Dato</span>Técnica Maldita</div>
-            <div class="card-flip__back">Técnica de las Diez Sombras</div>
+            <div class="card-flip__front">
+              <img src="resourse/2bff325c670c3f907e20b7db51137674.png" alt="Técnica" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <span>Dato</span>
+                <div class="card-flip__front-title">Técnica Maldita</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <img src="resourse/2bff325c670c3f907e20b7db51137674.png" alt="Técnica" class="card-flip__img">
+              <div class="card-flip__back-content">Técnica de las Diez Sombras</div>
+            </div>
           </div>
         </label>
 
         <input type="checkbox" id="card-6" class="card-flip-checkbox">
         <label for="card-6" class="card-flip">
           <div class="card-flip__inner">
-            <div class="card-flip__front"><span>Dato</span>Clan</div>
-            <div class="card-flip__back">Zen'in (heredero)</div>
+            <div class="card-flip__front">
+              <img src="resourse/mweg.png" alt="Clan" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <span>Dato</span>
+                <div class="card-flip__front-title">Clan</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <img src="resourse/mweg.png" alt="Clan" class="card-flip__img">
+              <div class="card-flip__back-content">Zen'in (heredero)</div>
+            </div>
           </div>
         </label>
 
-        <input type="checkbox" id="card-7" class="card-flip-checkbox">
-        <label for="card-7" class="card-flip">
-          <div class="card-flip__inner">
-            <div class="card-flip__front"><span>Dato</span>Padre</div>
-            <div class="card-flip__back">Tōji Fushiguro</div>
-          </div>
-        </label>
+      </div>
+    </section>
 
-        <input type="checkbox" id="card-8" class="card-flip-checkbox">
-        <label for="card-8" class="card-flip">
-          <div class="card-flip__inner">
-            <div class="card-flip__front"><span>Dato</span>Nacimiento</div>
-            <div class="card-flip__back">22 de diciembre de 2002</div>
-          </div>
-        </label>
+    <!-- 3. PERSONALIDAD -->
+    <section class="content-section">
+      <h2 class="section-title">Personalidad</h2>
+      <p class="content-section__text">
+        Megumi es una persona tranquila, seria y reservada que rara vez habla de sí mismo. Su personalidad se define por un exterior estoico, distante y calculador, que oculta un profundo sentido de la justicia personal. Aunque no se considera un héroe, desea proteger a las personas que considera buenas o amables, creyendo que el mundo es injusto y que un hechicero es una herramienta para dar a esas personas más oportunidades de vivir. Es introspectivo, a menudo pesimista, y carga con un gran sentido de la responsabilidad. A pesar de su apariencia fría, es leal, trabajador y reflexivo, y se esfuerza por ser un estratega lógico y creativo.
+      </p>
+    </section>
 
+    <!-- 4. FRASE REPRESENTATIVA -->
+    <section class="quote-section">
+      <h2 class="section-title">Frase representativa</h2>
+      <div class="quote-box">
+        <p>
+          «La única cosa justa sobre la vida es lo injusta que es para todos. Los chamanes no son más que un engranaje en esta retribución. Si solo más gente buena pudiera recibir justicia… voy a salvar a otros, incluso si eso es injusto. Creo que eso está bien, después de todo, no soy un héroe, solo soy un chamán de jujutsu.»
+        </p>
       </div>
     </section>
 
