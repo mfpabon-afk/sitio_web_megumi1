@@ -1,8 +1,5 @@
 /* ============================================================
-   ESTILOS DEL MENÚ (RESTAURADO A ESTADO ORIGINAL)
-   ============================================================ */
-/* ============================================================
-   ESTILOS DEL MENÚ (SIN TIPOGRAFÍA JUJUTSU)
+   ESTILOS DEL MENÚ (CÓDIGO COMPLETO CORREGIDO)
    ============================================================ */
 
 * {
@@ -11,6 +8,7 @@
   padding: 0;
 }
 
+/* CONTROL DEL CHECKBOX (OCULTO) */
 .menu-toggle-checkbox {
   position: fixed;
   top: -9999px;
@@ -27,9 +25,7 @@
   height: 42px;
   z-index: 1000;
   cursor: pointer;
-  background-color: #100c49;
-  border: 1px solid rgba(225, 168, 250, 0.4);
-  border-radius: 8px;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,6 +44,7 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+/* TRANSFORMACIÓN A "X" AL ACTIVAR EL MENÚ */
 #menu-toggle:checked ~ .menu-toggle-label {
   background-color: rgba(16, 12, 73, 0.95);
   border-color: #e1a8fa;
@@ -66,7 +63,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* SIDEBAR DESPLEGABLE CON SCROLL TIMELINE */
+/* BARRA LATERAL (SIDEBAR) */
 .sidebar {
   position: fixed;
   top: 0;
@@ -86,22 +83,28 @@
   overflow-y: auto;
 }
 
+/* APERTURA DEL MENÚ Y CIERRE AUTOMÁTICO AL HACER SCROLL */
 #menu-toggle:checked ~ .sidebar {
   transform: translateX(270px);
-}
-
-/* CIERRE AL HACER SCROLL */
-#menu-toggle:checked ~ .sidebar {
-  animation: autoCloseMenu linear both;
+  animation: autoCloseMenu linear forwards;
   animation-timeline: scroll(root block);
   animation-range: 10px 200px;
 }
 
 @keyframes autoCloseMenu {
-  0% { transform: translateX(270px); }
-  100% { transform: translateX(0px); }
+  0% {
+    transform: translateX(270px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+.sidebar.is-force-open {
+  animation: none !important;
+  transform: translateX(270px) !important;
 }
 
+/* NAVEGACIÓN Y LOGO */
 .sidebar__header {
   width: 100%;
   display: flex;
@@ -139,7 +142,7 @@
 .sidebar__nav a {
   position: relative;
   display: inline-block;
-  font-family: 'Poppins', sans-serif; /* Se eliminó JujutsuFont */
+  font-family: 'Poppins', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   text-transform: uppercase;
