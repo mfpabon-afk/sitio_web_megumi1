@@ -182,8 +182,7 @@ body {
 .content-section,
 .flip-cards-section,
 .quote-section {
-  background-color: #121733;
-  border: 1px solid #e1a8fa;
+  background-color: #3a4278;
   border-radius: 12px;
   padding: 35px;
   margin-bottom: 35px;
@@ -191,12 +190,11 @@ body {
 
 .subtitulo-seccion,
 .section-title {
-  font-family: 'JujutsuFont', sans-serif;
-  font-size: 1.8rem;
-  color: #e1a8fa;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #9075f1;
-  padding-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #a5dbe7;
+    text-transform: uppercase; 
+    letter-spacing: normal;
 }
 
 .bloque-texto-introduccion {
@@ -206,26 +204,31 @@ body {
 }
 
 .contenedor-imagen-principal {
-  flex: 0 0 260px;
+  flex: 0 0 280px;
 }
 
 .imagen-destacada {
   width: 100%;
   height: auto;
   border-radius: 10px;
-  border: 2px solid #9075f1;
+  border: 2px solid #3a4278;
   display: block;
 }
 
 .texto-columna {
+  font-family: 'Poppins', sans-serif;
+  color: #C0CEE0;
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
   line-height: 1.6;
+  text-align: justify;
 }
 
 .content-section__text {
+  font-family: 'Poppins', sans-serif;
+  text-align: justify;
   line-height: 1.8;
   font-size: 1.05rem;
 }
@@ -234,14 +237,16 @@ body {
    FRASE REPRESENTATIVA
    ============================================================ */
 .quote-box {
+  font-family: 'Poppins', sans-serif;
   position: relative;
-  background-color: #100c49;
-  border-left: 4px solid #e1a8fa;
+  background-color: #5261a5;
+  border-left: 4px solid #5261a5;
   padding: 25px;
   border-radius: 0 10px 10px 0;
   font-style: italic;
-  line-height: 1.8;
-  color: #fefff0;
+  line-height: 2;
+  color: #fff;
+  text-align: center;
 }
 
 .quote-box p {
@@ -348,7 +353,7 @@ body {
 }
 
 .card-flip__back {
-  background-color: #100c49;
+  background-color: #3a4278;
   transform: rotateY(180deg);
 }
 
