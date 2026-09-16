@@ -3,11 +3,7 @@
    ============================================================ */
 @font-face {
   font-family: 'JujutsuFont';
-  src: url('../resourse/jujutsu.ttf') format('truetype'),
-       url('../resourse/jujutsu.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+  src: url('../resourse/jujutsu-kaisen/Jujutsu\ Kaisen.ttf') format('truetype');
 }
 
 * {
@@ -32,7 +28,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #0c0f24; /* Fondo plano */
+  background-color: #fefff0; /* Fondo plano */
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -55,26 +51,25 @@ body {
 
 .loading-text {
   font-family: 'JujutsuFont', sans-serif !important;
-  color: #e1a8fa; /* Color lila plano */
+  font-weight: 800;
+  color: #000; 
   font-size: 1.3rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(225, 168, 250, 0.5);
 }
 
 .progress-wrap {
   width: 220px;
   height: 6px;
-  background-color: #121733;
+  background-color: #6a80ff;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #9075f1;
 }
 
 .progress-bar__fill {
   width: 0%;
   height: 100%;
-  background-color: #e1a8fa; /* Barra de color plano */
+  background-color: #0f1677; 
   animation: fillProgress 2s ease-in-out forwards;
 }
 
@@ -115,54 +110,63 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, rgba(12, 15, 36, 0.3) 0%, rgba(12, 15, 36, 0.85) 100%);
+  background: transparent;
   z-index: 2;
 }
 
 .hero__text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 80;
   position: relative;
   z-index: 3;
   text-align: center;
-  color: #fefff0;
-  padding: 0 20px;
+  padding: 20px;
   animation: elevateTextOnScroll linear both;
   animation-timeline: scroll(root block);
   animation-range: 0px 500px;
 }
 
 .hero__eyebrow {
-  font-family: 'JujutsuFont', sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 1.2rem;
-  color: #e1a8fa;
+  background: linear-gradient(135deg, #fff 0%, #02006e 50%, #000000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 15px rgba(96, 231, 255, 0.9));
   text-transform: uppercase;
   letter-spacing: 3px;
   margin-bottom: 12px;
 }
 
 .hero__name {
-  font-family: 'JujutsuFont', 'Poppins', sans-serif !important;
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-family: 'JujutsuFont';
+  font-size: clamp(4rem, 7vw, 6.5rem);
   line-height: 1.05;
   font-weight: 900;
   text-transform: uppercase;
   /* DEGRADADO APLICADO ÚNICAMENTE AL TÍTULO HERO */
-  background: linear-gradient(135deg, #fefff0 0%, #e1a8fa 50%, #9075f1 100%);
+  background: linear-gradient(135deg, #fefff0 0%, #9075f1 50%, #1b007c 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.9));
+  filter: drop-shadow(0 4px 15px rgba(34, 22, 22, 0.9));
   margin-bottom: 15px;
 }
 
 .hero__subtitle {
-  font-size: 1.3rem;
-  color: #c5ceec;
+  font-size: 1.6rem;
+  background: linear-gradient(135deg, #02006e 0%, #000000 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 15px rgba(255, 255, 255, 0.9));
   font-weight: 300;
 }
 
 @keyframes elevateTextOnScroll {
   0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-80px); opacity: 0.2; }
+  100% { transform: translateY(-180px); opacity: 0.2; }
 }
 
 /* ============================================================
