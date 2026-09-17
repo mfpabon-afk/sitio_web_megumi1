@@ -7,41 +7,43 @@
     <title>Megumi Fushiguro - Vínculos</title>
     <link rel="icon" type="image/x-icon" href="resourse/2bff325c670c3f907e20b7db51137674.png" />
     <link rel="stylesheet" href="css/vinculos.css">
-    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/menu20.css">
 </head>
 
 <body>
 
   <!-- ============================================================
-       MENÚ 
+       MENÚ LATERAL
        ============================================================ -->
-       
- <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
-<label for="menu-toggle" class="menu-toggle-label" aria-label="Abrir o cerrar menú">
-  <span class="menu-toggle-bar"></span>
-  <span class="menu-toggle-bar"></span>
-  <span class="menu-toggle-bar"></span>
-</label>
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox">
+  <label for="menu-toggle" class="menu-toggle-label" aria-label="Abrir o cerrar menú">
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
+  </label>
 
   <aside class="sidebar">
-  <a href="index.html" class="sidebar__logo" aria-label="Inicio">
-    <img src="resourse/Jujutsu-Kaisen-Logo-No-Background.png" alt="logo Jujutsu" class="sidebar__logo-img">
-  </a>
-  <nav class="sidebar__nav" aria-label="Navegación principal">
-    <ul>
- <li><a href="index.html">Megumi Fushiguro</a></li>
-      <li><a href="historia.html">Historia</a></li>
+    <a href="index.html" class="sidebar__logo" aria-label="Inicio">
+      <img src="resourse/Jujutsu-Kaisen-Logo-No-Background.png" alt="logo Jujutsu" class="sidebar__logo-img">
+    </a>
+    <nav class="sidebar__nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="index.html">Megumi Fushiguro</a></li>
+        <li><a href="historia.html">Historia</a></li>
         <li><a href="tecnica.html">Técnica Maldita</a></li>
         <li><a href="dominio.html">Dominio</a></li>
         <li><a href="vinculos.html">Vínculos</a></li>
         <li><a href="zennin.html">Clan Zenin</a></li>
-    </ul>
-  </nav>
-  <div class="sidebar__footer">
-    <p>Fan page · 2026</p>
-  </div>
-</aside>
+      </ul>
+    </nav>
+    <div class="sidebar__footer">
+      <p>Fan page · 2026</p>
+    </div>
+  </aside>
 
+  <!-- ============================================================
+       CONTENIDO PRINCIPAL
+       ============================================================ -->
   <div class="main-content">
     <div class="caja-principal">
 
@@ -52,25 +54,13 @@
             Las personas que marcaron a la historia de Megumi Fushiguro.
           </p>
         </div>
+        <div class="imagen-encabezado">
+          <img src="resourse/fam.jpg" alt="Vínculos de Megumi Fushiguro">
+        </div>
       </header>
 
       <main class="contenendor_principal">
 
-        <!-- ============================================================
-             MAPA DE RELACIONES — tarjetas estilo "shikigami"
-             ------------------------------------------------------------
-             Reutiliza EXACTAMENTE las clases .card-shikigami /
-             .card-art-full / .card-info-overlay / .card-header /
-             .card-title / .type-badge / .card-body / .skills-list /
-             .tactical-box que ya existen en tecnica.css para las
-             cartas de shikigami. Al pasar el mouse (:hover) sobre la
-             tarjeta, el overlay oscuro se revela con la información
-             — mismo comportamiento, cero CSS nuevo para ese efecto.
-
-             Cada categoría (Familia / Amigos / Maestros) es un
-             .carrusel-manual: fila horizontal con scroll-snap, igual
-             que el carrusel de shikigamis de tecnica.html.
-             ============================================================ -->
         <section class="caja-seccion" id="mapa-vinculos">
           <h2 class="titulo-seccion">Ramas de Relaciones</h2>
           <p class="texto-contenido">
@@ -79,224 +69,231 @@
           </p>
 
           <!-- ============ FAMILIA ============ -->
-          <h3 class="subtitulo-seccion categoria-titulo categoria-titulo--primera">Familia</h3>
-          <div class="carrusel-manual">
+          <details class="bloque-desplegable" open>
+            <summary class="subtitulo-seccion categoria-titulo">Familia</summary>
+            <div class="carrusel-manual">
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="resourse/toji.jpg" alt="Tōji Fushiguro">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Tōji Fushiguro</h4>
-                  <span class="type-badge">Familia · Padre biológico</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Sin energía maldita propia, pero con un cuerpo excepcional.</li>
-                    <li>Planeó vender a Megumi al clan Zenin.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/toji.jpg" alt="Tōji Fushiguro">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> más genético que afectivo; define el origen de Megumi.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Tōji Fushiguro</h4>
+                    <span class="type-badge">Familia · Padre biológico</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Sin energía maldita propia, pero con un cuerpo excepcional.</li>
+                      <li>Planeó vender a Megumi al clan Zenin.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> más genético que afectivo; define el origen de Megumi.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="resourse/herm.jpg" alt="Tsumiki Fushiguro">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Tsumiki Fushiguro</h4>
-                  <span class="type-badge">Familia · Hermana adoptiva</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Razón principal por la que Megumi se hizo hechicero.</li>
-                    <li>Su coma marcó profundamente su personalidad.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/herm.jpg" alt="Tsumiki Fushiguro">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> la persona que Megumi más quiere proteger.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Tsumiki Fushiguro</h4>
+                    <span class="type-badge">Familia · Hermana adoptiva</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Razón principal por la que Megumi se hizo hechicero.</li>
+                      <li>Su coma marcó profundamente su personalidad.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> la persona que Megumi más quiere proteger.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="imagenes/naoya.jpg" alt="Maki Zenin">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Naoya Zenin</h4>
-                  <span class="type-badge">Familia · Primo (Clan Zenin)</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Una de las figuras más hostiles hacia Megumi.</li>
-                    <li>Lo desprecia por no haber nacido dentro del clan.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/maki.jpg" alt="Maki Zenin">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> rivalidad y desprecio dentro del propio clan.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Maki Zenin</h4>
+                    <span class="type-badge">Familia · Pariente Lejana(Clan Zenin)</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Tampoco encaja del todo en el rígido clan Zenin.</li>
+                      <li>Comparten el peso de crecer bajo el mismo clan.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> respeto mutuo entre parias del clan Zenin.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-          </div>
+            </div>
+          </details>
 
           <!-- ============ AMIGOS ============ -->
-          <h3 class="subtitulo-seccion categoria-titulo">Amigos</h3>
-          <div class="carrusel-manual">
+          <details class="bloque-desplegable" open>
+            <summary class="subtitulo-seccion categoria-titulo">Amigos</summary>
+            <div class="carrusel-manual">
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="resourse/ita.jpg" alt="Yuji Itadori">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Yuji Itadori</h4>
-                  <span class="type-badge">Amigos · Compañero de clase</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Su primer amigo cercano en la hechicería.</li>
-                    <li>Forman un equipo muy sólido en combate.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/ita.jpg" alt="Yuji Itadori">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> el optimismo de Yuji contrasta con la frialdad de Megumi.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Yuji Itadori</h4>
+                    <span class="type-badge">Amigos · Compañero de clase</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Su primer amigo cercano en la hechicería.</li>
+                      <li>Forman un equipo muy sólido en combate.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> el optimismo de Yuji contrasta con la frialdad de Megumi.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="resourse/nobra.jpg" alt="Nobara Kugisaki">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Nobara Kugisaki</h4>
-                  <span class="type-badge">Amigos · Compañera de clase</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Tercera integrante del trío de primer año.</li>
-                    <li>Carácter directo que choca al inicio con Megumi.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/nobra.jpg" alt="Nobara Kugisaki">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> respeto mutuo forjado en misiones compartidas.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Nobara Kugisaki</h4>
+                    <span class="type-badge">Amigos · Compañera de clase</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Tercera integrante del trío de primer año.</li>
+                      <li>Carácter directo que choca al inicio con Megumi.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> respeto mutuo forjado en misiones compartidas.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="imagenes/maki.jpg" alt="Maki Zenin">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Maki Zenin</h4>
-                  <span class="type-badge">Amigos · Senpai</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Tampoco encaja del todo en el rígido clan Zenin.</li>
-                    <li>Comparten el peso de crecer bajo el mismo clan.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/pan.jpg" alt="Panda">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> respeto mutuo entre parias del clan Zenin.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Panda</h4>
+                    <span class="type-badge">Amigos · Senpai</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Se respetan como hechiceros y coordinan sus habilidades a la perfección en el campo de batalla.</li>
+                      <li>Mantienen una relación de respeto mutuo donde Panda apoya como superior y Megumi responde con absoluta lealtad.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> Su relación es la de dos aliados inquebrantables unidos por el deber y el compañerismo.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-          </div>
+            </div>
+          </details>
 
           <!-- ============ MAESTROS ============ -->
-          <h3 class="subtitulo-seccion categoria-titulo">Maestros</h3>
-          <div class="carrusel-manual">
+          <details class="bloque-desplegable" open>
+            <summary class="subtitulo-seccion categoria-titulo">Maestros</summary>
+            <div class="carrusel-manual">
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="resourse/amor.jpg" alt="Satoru Gojo">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Satoru Gojo</h4>
-                  <span class="type-badge">Maestros · Profesor</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Reconoció su potencial y lo sacó del clan Zenin.</li>
-                    <li>Apostó por él como pieza clave del futuro.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/amor.jpg" alt="Satoru Gojo">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> mentor que le abrió las puertas de la Escuela Técnica.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Satoru Gojo</h4>
+                    <span class="type-badge">Maestros · Tutor</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Reconoció su potencial y lo sacó del clan Zenin.</li>
+                      <li>Apostó por él como pieza clave del futuro.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> mentor y tutor que le abrió las puertas de la Escuela Técnica.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="imagenes/yaga.jpg" alt="Masamichi Yaga">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Masamichi Yaga</h4>
-                  <span class="type-badge">Maestros · Director</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Director de la Escuela Técnica de Tokio.</li>
-                    <li>Supervisa su formación desde una posición institucional.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/yaga.jpg" alt="Masamichi Yaga">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> autoridad y respaldo formal dentro de la escuela.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Masamichi Yaga</h4>
+                    <span class="type-badge">Maestros · Director</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Director de la Escuela Técnica de Tokio.</li>
+                      <li>Supervisa su formación desde una posición institucional.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> autoridad y respaldo formal dentro de la escuela.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-            <article class="card-shikigami">
-              <div class="card-art-full">
-                <img src="imagenes/shoko.jpg" alt="Shoko Ieiri">
-              </div>
-              <div class="card-info-overlay">
-                <header class="card-header">
-                  <h4 class="card-title">Shoko Ieiri</h4>
-                  <span class="type-badge">Maestros · Médica de la escuela</span>
-                </header>
-                <div class="card-body">
-                  <ul class="skills-list">
-                    <li>Lo atiende tras cada misión.</li>
-                    <li>Una de las pocas adultas en quien confían los estudiantes.</li>
-                  </ul>
+              <article class="card-shikigami">
+                <div class="card-art-full">
+                  <img src="resourse/shoko.jpg" alt="Shoko Ieiri">
                 </div>
-                <div class="tactical-box">
-                  <strong>Vínculo:</strong> cuidado y confianza fuera del combate.
+                <div class="card-info-overlay">
+                  <header class="card-header">
+                    <h4 class="card-title">Shoko Ieiri</h4>
+                    <span class="type-badge">Maestros · Médica de la escuela</span>
+                  </header>
+                  <div class="card-body">
+                    <ul class="skills-list">
+                      <li>Lo atiende tras cada misión.</li>
+                      <li>Una de las pocas adultas en quien confían los estudiantes.</li>
+                    </ul>
+                  </div>
+                  <div class="tactical-box">
+                    <strong>Vínculo:</strong> cuidado y confianza fuera del combate.
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
 
-          </div>
+            </div>
+          </details>
 
         </section>
 
-
       </main>
     </div>
-  </div>
 
-  <footer>
-    <div class="footer-content">
+    <!-- ============================================================
+         FOOTER ESTANDARIZADO IGUAL A HISTORIA.CSS
+         ============================================================ -->
+    <footer class="footer-historia">
       <p>MEGUMI FUSHIGURO • VÍNCULOS</p>
-    </div>
-  </footer>
+    </footer>
+
+  </div>
 
 </body>
 </html>
