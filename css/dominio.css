@@ -106,6 +106,14 @@ body {
     clear: both;
 }
 
+/* COMBINADOR '+' (HERMANO ADYACENTE)
+   Separa visualmente el segundo párrafo introductorio del primero.
+   El primer <p class="texto-introduccion"> (que NO tiene otro
+   .texto-introduccion justo antes) no recibe este margen extra. */
+.texto-introduccion + .texto-introduccion {
+    margin-top: 14px;
+}
+
 /* 3. MECÁNICAS (Flexbox) */
 .flex-mecanicas {
     display: flex;
@@ -131,7 +139,12 @@ body {
     right: 12px;
 }
 
-/* 4. TÁCTICAS DE COMBATE (Igualar altura de imagen y bloques) */
+/* COMBINADOR '+'*/
+.card-mecanica + .card-mecanica {
+    border-left: 2px dashed var(--color-morado);
+}
+
+/* 4. TÁCTICAS DE COMBATE */
 .contenedor-tacticas {
     display: flex;
     gap: 20px;
@@ -156,6 +169,12 @@ body {
     object-fit: cover; /* Evita que la imagen se deforme al escalar */
     border-radius: 6px;
     border: 1px solid var(--color-azul);
+}
+
+/* COMBINADOR '>' */
+.contenedor-tacticas > .columna-imagen {
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 /* 5. ESTADOS Y SHIKIGAMIS (Grid) */
