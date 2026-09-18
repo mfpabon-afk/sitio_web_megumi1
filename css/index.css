@@ -33,7 +33,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeOutScreen 0.8s ease-in-out 2.2s forwards;
+  animation: fadeOutScreen 0.8s ease-in-out 1.2s forwards;
   pointer-events: none;
 }
 
@@ -70,7 +70,7 @@ body {
   width: 0%;
   height: 100%;
   background-color: #0f1677; 
-  animation: fillProgress 2s ease-in-out forwards;
+  animation: fillProgress 1s ease-in-out forwards;
 }
 
 @keyframes fillProgress {

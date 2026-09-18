@@ -158,21 +158,4 @@ footer, .footer-historia {
     font-size: 0.85rem;
 }
 
-/* Adaptación Móvil APILADA */
-@media (max-width: 768px) {
-    .timeline-linea-central {
-        left: 20px;
-    }
 
-    .timeline-item {
-        flex-direction: column !important;
-        align-items: flex-start;
-        padding-left: 45px;
-    }
-
-    .timeline-img-box,
-    .timeline-content {
-        width: 100%;
-        margin-bottom: 15px;
-    }
-}
