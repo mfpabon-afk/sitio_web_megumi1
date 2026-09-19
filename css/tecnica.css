@@ -31,6 +31,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding-top: 20px;
+    
 }
 
 .caja-principal {
@@ -83,7 +84,6 @@ body {
     object-fit: cover;
     transform-origin: bottom center;
     transition: transform 0.4s ease;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 #photo0 { transform: rotate(-30deg); z-index: 1; }
@@ -127,7 +127,7 @@ body {
     display: block;
     text-decoration: none;
     border: 1px solid transparent;
-    transition: all 0.3s ease;
+   
 }
 
 .nav-item:hover a {
@@ -293,15 +293,14 @@ body {
 .carrusel-manual {
     display: flex;
     gap: 20px;
-    overflow-x: auto;
+    overflow-x: auto;/* barrita*/
     padding: 10px 5px 18px 5px;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
+    scroll-behavior: smooth;/* fluidez*/
+    scroll-snap-type: x mandatory; /* Tope*/
     scrollbar-color: var(--color-rosa) var(--color-tarjeta-sub);
 }
 
-.carrusel-manual::-webkit-scrollbar {
+.carrusel-manual::-webkit-scrollbar {/* grosor barra*/
     height: 8px;
 }
 
@@ -326,7 +325,7 @@ body {
     overflow: hidden;
     border: 2px solid var(--borde-suave);
     background-color: var(--color-tarjeta-sub);
-    scroll-snap-align: start;
+
 }
 
 .card-art-full {

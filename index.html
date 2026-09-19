@@ -1,12 +1,217 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitio webUwU</title>
-    <link rel="stylesheet" href="css/menu.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Megumi Fushiguro</title>
+    <link rel="icon" type="image/x-icon" href="resourse/2bff325c670c3f907e20b7db51137674.png" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
+
+  <!-- PANTALLA DE CARGA -->
+  <div class="loading-screen">
+    <div class="loading-content">
+      <img src="resourse/megumi-transparent-megumi.gif" alt="Cargando..." class="loading-gif">
+      <p class="loading-text">Cargando...</p>
+      <div class="progress-wrap">
+        <div class="progress-bar__fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN Y MENÚ HAMBURGUESA (ABIERTO POR DEFECTO CON 'CHECKED') -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle-checkbox" checked>
+  <label for="menu-toggle" class="menu-toggle-label" aria-label="Abrir o cerrar menú">
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
+    <span class="menu-toggle-bar"></span>
+  </label>
+
+  <aside class="sidebar">
+    <div class="sidebar__header">
+      <a href="index.html" class="sidebar__logo">
+        <img src="resourse/Jujutsu-Kaisen-Logo-No-Background.png" alt="logo Jujutsu" class="sidebar__logo-img">
+      </a>
+    </div>
+    <nav class="sidebar__nav">
+      <ul>
+       <li><a href="index.html">Megumi Fushiguro</a></li>
+      <li><a href="historia.html">Historia</a></li>
+        <li><a href="tecnica.html">Técnica Maldita</a></li>
+        <li><a href="dominio.html">Dominio</a></li>
+        <li><a href="vinculos.html">Vínculos</a></li>
+        <li><a href="zennin.html">Clan Zenin</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar__footer">
+      <p>Fan page · 2026</p>
+    </div>
+  </aside>
+
+  <!-- HERO SUPERIOR -->
+  <header class="hero">
+    <video autoplay loop muted playsinline class="hero-video">
+      <source src="resourse/mahoraga-x-megumi-jujutsu-kaisen-moewalls-com.mov" type="video/mp4">
+    </video>
+    <div class="hero__overlay"></div>
+
+    <div class="hero__text">
+      <p class="hero__eyebrow">Hechicero de grado 2</p>
+      <h1 class="hero__name">Megumi<br>Fushiguro</h1>
+      <p class="hero__subtitle">Heredero de las Diez Sombras</p>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="main-content">
+
+    <!-- 1. ¿QUIÉN ES MEGUMI? -->
+    <section class="seccion-bloque" id="introduccion-dominio">
+      <h2 class="subtitulo-seccion">¿Quién es Megumi Fushiguro?</h2>
+
+      <div class="bloque-texto-introduccion">
+        <div class="contenedor-imagen-principal">
+          <img id="megumifus" src="resourse/megu.jpg" alt="Megumi Fushiguro" class="imagen-destacada">
+        </div>
+        
+        <div class="texto-columna">
+          <p class="texto-introduccion">
+            Megumi Fushiguro (伏黒恵) es uno de los protagonistas centrales de Jujutsu Kaisen. 
+            Es un estudiante de primer año en la Escuela Técnica de Magia de Tokio (Tokyo Jujutsu High) 
+            y compañero de clase de Yuji Itadori y Nobara Kugisaki. Como hijo de Toji Fushiguro, 
+            es el <strong>heredero de la Técnica Maldita de las Diez Sombras (Ten Shadows Technique)</strong>, 
+            la técnica familiar del prestigioso Clan Zenin.
+          </p>
+          <p class="texto-introduccion">
+            A pesar de su juventud, es un hechicero de grado 2 y se le considera un genio con un potencial comparable al de los hechiceros más fuertes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PERFIL DE PERSONAJE (IMAGEN OCUPANDO TODO EL CUADRADO ATRÁS) -->
+    <section class="flip-cards-section">
+      <h2 class="section-title">Perfil de personaje</h2>
+      <div class="flip-cards-grid">
+
+        <input type="checkbox" id="card-1" class="card-flip-checkbox">
+        <label for="card-1" class="card-flip">
+          <div class="card-flip__inner">
+            <div class="card-flip__front">
+              <img src="resourse/1.jpg" alt="Edad" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <div class="card-flip__front-title">Edad</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <div class="card-flip__back-content">15 años</div>
+            </div>
+          </div>
+        </label>
+
+        <input type="checkbox" id="card-2" class="card-flip-checkbox">
+        <label for="card-2" class="card-flip">
+          <div class="card-flip__inner">
+            <div class="card-flip__front">
+              <img src="resourse/2.jpg" alt="Altura" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <div class="card-flip__front-title">Altura</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <div class="card-flip__back-content">175 cm</div>
+            </div>
+          </div>
+        </label>
+
+        <input type="checkbox" id="card-3" class="card-flip-checkbox">
+        <label for="card-3" class="card-flip">
+          <div class="card-flip__inner">
+            <div class="card-flip__front">
+              <img src="resourse/4.jpg" alt="Grado" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <div class="card-flip__front-title">Grado</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <div class="card-flip__back-content">Hechicero de Grado 2</div>
+            </div>
+          </div>
+        </label>
+
+        <input type="checkbox" id="card-4" class="card-flip-checkbox">
+        <label for="card-4" class="card-flip">
+          <div class="card-flip__inner">
+            <div class="card-flip__front">
+              <img src="resourse/3.jpg" alt="Afiliación" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <div class="card-flip__front-title">Afiliación</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <div class="card-flip__back-content">Escuela Técnica de Tokio</div>
+            </div>
+          </div>
+        </label>
+
+        <input type="checkbox" id="card-5" class="card-flip-checkbox">
+        <label for="card-5" class="card-flip">
+          <div class="card-flip__inner">
+            <div class="card-flip__front">
+              <img src="resourse/5.jpg" alt="Técnica" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <div class="card-flip__front-title">Técnica Maldita</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <div class="card-flip__back-content">Técnica de las Diez Sombras</div>
+            </div>
+          </div>
+        </label>
+
+        <input type="checkbox" id="card-6" class="card-flip-checkbox">
+        <label for="card-6" class="card-flip">
+          <div class="card-flip__inner">
+            <div class="card-flip__front">
+              <img src="resourse/6l.jpg" alt="Clan" class="card-flip__img">
+              <div class="card-flip__front-content">
+                <div class="card-flip__front-title">Clan</div>
+              </div>
+            </div>
+            <div class="card-flip__back">
+              <div class="card-flip__back-content">Zenin (heredero)</div>
+            </div>
+          </div>
+        </label>
+
+      </div>
+    </section>
+
+    <!-- 3. PERSONALIDAD -->
+    <section class="content-section">
+      <h2 class="section-title">Personalidad</h2>
+      <p class="content-section__text">
+        Megumi es una persona tranquila, seria y reservada que rara vez habla de sí mismo. Su personalidad se define por un exterior estoico, distante y calculador, que oculta un profundo sentido de la justicia personal. Aunque no se considera un héroe, desea proteger a las personas que considera buenas o amables, creyendo que el mundo es injusto y que un hechicero es una herramienta para dar a esas personas más oportunidades de vivir. Es introspectivo, a menudo pesimista, y carga con un gran sentido de la responsabilidad. A pesar de su apariencia fría, es leal, trabajador y reflexivo, y se esfuerza por ser un estratega lógico y creativo.
+      </p>
+    </section>
+
+    <!-- 4. FRASE REPRESENTATIVA -->
+    <section class="quote-section">
+      <h2 class="section-title">Frase representativa</h2>
+      <div class="quote-box">
+        <p>
+          «La única cosa justa sobre la vida es lo injusta que es para todos. Los chamanes no son más que un engranaje en esta retribución. Si solo más gente buena pudiera recibir justicia… voy a salvar a otros, incluso si eso es injusto. Creo que eso está bien, después de todo, no soy un héroe, solo soy un chamán de jujutsu.»
+        </p>
+      </div>
+    </section>
+    </main>
     
+    <footer class="site-footer">
+      <p>MEGUMI FUSHIGURO · JUJUTSU KAISEN © GEGE AKUTAMI</p>
+    </footer>
+ 
+  
 </body>
-<!-- </html> -->
+</html>
