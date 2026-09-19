@@ -35,21 +35,6 @@ body {
     padding: 25px;
 }
 
-.lista-navegacion {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.lista-navegacion a {
-    color: var(--color-texto-cuerpo);
-    text-decoration: none;
-    padding: 6px 12px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
 
 .lista-navegacion a:hover {
     background-color: var(--color-morado);
